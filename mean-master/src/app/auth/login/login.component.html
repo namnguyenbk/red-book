@@ -1,0 +1,30 @@
+<mat-card class="login-card">
+  <mat-card-header>
+
+    <mat-card-title class="title-card">Đăng nhập vào hệ thống quản lí</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="example-form">
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+            <input matInput placeholder="Tài khoản" [(ngModel)]="email" name="email" required>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+        <td>
+          <mat-form-field class="example-full-width">
+          <input matInput placeholder="Mật khẩu" [(ngModel)]="password"type="password" name="password" required>
+        </mat-form-field>
+      </td>
+      </tr>
+    </table>
+    </form>
+    <mat-progress-spinner mode="indeterminate" mode="indeterminate" [style.display]="showSpinner ? 'block' : 'none'"></mat-progress-spinner>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="login()" color="primary" class="">Login</button>
+  </mat-card-actions>
+</mat-card>
