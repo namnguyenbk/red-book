@@ -5,10 +5,6 @@ const RedBookSchema = new mongoose.Schema({
         type: String,
         required: false,
     },
-    party_id: {
-        type: String,
-        required: false,
-    },
     no_land: { // số thứ tự thửa đất
         type: String,
         required: true,

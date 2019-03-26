@@ -34,8 +34,16 @@ const PersonSchema = new mongoose.Schema({
         required: true,
         match: [/^[0-9]{4}$/,"nhập đúng năm sinh"]
     },
+    rb_addr_id: {
+        type: String,
+        required: false,
+    },
     address_id: {
         type: String,
+        required: true,
+    },
+    gender:{
+        type: Number,
         required: true,
     },
     status_id: {

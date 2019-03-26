@@ -5,10 +5,6 @@ const DetailSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    area2: {
-        type: Number,
-        required: false,
-    },
     images: {
         type: [String],
         required: false,

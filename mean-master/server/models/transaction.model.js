@@ -1,14 +1,6 @@
 const mongoose = require('mongoose');
 
 const TransactionSchema = new mongoose.Schema({
-    personA_id: {
-        type: String,
-        required: false,
-    },
-    personB_id: {
-        type: String,
-        required: false,
-    },
     partyA_id: {
         type: String,
         required: false,
@@ -20,6 +12,7 @@ const TransactionSchema = new mongoose.Schema({
     time_trans: {
         type: Date,
         required: true,
+        default: Date.now,
     },
     type: {
         type: String,
