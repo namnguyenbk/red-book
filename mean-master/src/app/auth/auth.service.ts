@@ -1,13 +1,18 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpInterceptor, HttpRequest, HttpHandler, HttpEvent} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+import { catchError } from 'rxjs/operators';
+import 'rxjs/add/observable/throw'
+import 'rxjs/add/operator/catch';
+
 
 import { TokenStorage } from './token.storage';
 import { TooltipComponent } from '@angular/material';
+import { of } from 'rxjs';
 
 @Injectable()
-export class AuthService {
+export class AuthService{
 
   constructor(private http : HttpClient, private token: TokenStorage) {}
 
@@ -56,6 +61,8 @@ export class AuthService {
   me(): Observable<any> {
     return Observable.create(observer => {
       const tokenVal = this.token.getToken();
+      console.log(tokenVal);
+    
       if (!tokenVal) return  observer.complete();
       this.http.get('/api/auth/me').subscribe((data : any) => {
         observer.next({user: data.user});

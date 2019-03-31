@@ -1,7 +1,7 @@
 <header>
   <mat-toolbar color="primary">
     <a [routerLink]="['/']" class="logo"></a>
-    <span>RED BOOKS ONLINE SYSTEM</span>
+    <span [routerLink]="['/']" class="home">RED BOOKS ONLINE SYSTEM</span>
     <span class="example-spacer"></span>
     <a class="links side" [routerLink]="['/auth/login']" *ngIf="!user">Admin</a>
     <div>

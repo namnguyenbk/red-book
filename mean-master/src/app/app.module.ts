@@ -6,16 +6,16 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
-import { MaterialImportModule} from './material-import/material-import.module';
+import { CommonModuleUi} from './common-ui-module.module';
 
 import { AppComponent } from './app.component';
 import { AdminModule } from './admin/admin.module';
 import { AuthHeaderInterceptor } from './interceptors/header.interceptor';
 import { CatchErrorInterceptor } from './interceptors/http-error.interceptor';
 
-import { AppRoutingModule } from './app-routing/app-routing.module';
-import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HeaderComponent } from './components/header/header.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -32,10 +32,10 @@ import { HomeComponent } from './home/home.component';
     AuthModule,
     AdminModule,
     AppRoutingModule,
-    MaterialImportModule,
+    CommonModuleUi,
   ],
   exports:[
-    MaterialImportModule,
+    CommonModuleUi,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

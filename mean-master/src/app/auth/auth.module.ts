@@ -8,13 +8,13 @@ import { RegisterComponent } from './register/register.component';
 import { AuthService } from './auth.service';
 import { TokenStorage } from './token.storage';
 import { AuthRoutingModule } from './auth-routing.module';
-import { MaterialImportModule} from '../material-import/material-import.module';
+import { CommonModuleUi} from '../common-ui-module.module';
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     AuthRoutingModule,
-    MaterialImportModule
+    CommonModuleUi
   ],
   declarations: [
     LoginComponent,
@@ -22,7 +22,7 @@ import { MaterialImportModule} from '../material-import/material-import.module';
   ],
   providers: [
     AuthService,
-    TokenStorage
+    TokenStorage,
   ]
 })
 export class AuthModule { }

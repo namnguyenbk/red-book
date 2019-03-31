@@ -1,19 +1,35 @@
-import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
-import {TokenStorage} from '../auth/token.storage';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { catchError, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { LoadingEffectService } from '../services/common/loading-effect.service';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class AuthHeaderInterceptor implements HttpInterceptor {
-	intercept(req : HttpRequest <any>, next : HttpHandler) : Observable <HttpEvent<any>> {
-			// Clone the request to add the new header
-      const token = new TokenStorage();
-      const tokenVal = token.getToken();
-			const clonedRequest = req.clone({
-			headers: req
-				.headers
-				.set('Authorization', tokenVal ? `Bearer ${ tokenVal}` : '')
-		});
 
-		// Pass the cloned request instead of the original request to the next handle
-		return next.handle(clonedRequest);
+	constructor(private loader: LoadingEffectService) { }
+	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+		this.loader.showLoading();
+		return next.handle(req)
+			// .pipe(catchError((error, caught) => {
+			// 	this.handleAuthError(error);
+			// 	return of(error);
+			// }) as any);
+			.pipe(tap((event: HttpEvent<any>) => { 
+				if (event instanceof HttpResponse) {
+					this.loader.stopLoading();
+				}
+			},
+				(err: any) => {
+					this.handleAuthError(err);
+			}));
+	}
+
+	handleAuthError(error: any): any {
+		this.loader.stopLoading();
+		if (error.status == '401') {
+			alert('Co loi khi dang hhap, kiem tra email va mat khau!');
+		}
 	}
 }

@@ -9,7 +9,7 @@ import {AuthService} from '../auth.service';
   styleUrls: ['../auth.component.scss']
 })
 export class LoginComponent implements OnInit {
-
+  showSpinner : boolean = false;
   constructor(private authService: AuthService, private router: Router) { }
 
   email: string;
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.email, this.password)
     .subscribe(data => {
       this.router.navigate(['']);
-    })
+    });
   }
 
 }
