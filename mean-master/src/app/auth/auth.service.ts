@@ -58,11 +58,9 @@ export class AuthService{
     return this.$userSource.asObservable();
   }
 
-  me(): Observable<any> {
+  me(): Observable<any> {    
     return Observable.create(observer => {
-      const tokenVal = this.token.getToken();
-      console.log(tokenVal);
-    
+      const tokenVal = this.token.getToken();    
       if (!tokenVal) return  observer.complete();
       this.http.get('/api/auth/me').subscribe((data : any) => {
         observer.next({user: data.user});
