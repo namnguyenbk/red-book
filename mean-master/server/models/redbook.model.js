@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
-
+const Schema = mongoose.Schema;
+const Address = require('./address.model');
 const RedBookSchema = new mongoose.Schema({
+    _id: Schema.Types.ObjectId,
     owner_id: {
         type: String,
         required: false,
@@ -9,10 +11,7 @@ const RedBookSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    addr_id: {
-        type: String,
-        required: true,
-    },
+    addr_id: {type: Schema.Types.ObjectId, ref: 'Address'},
     type: {
         type: String,
         required: true,
@@ -36,10 +35,11 @@ const RedBookSchema = new mongoose.Schema({
     date_licencing: {
         type: Date,
         required: true,
+        default: Date.now,
     },
     detail_id: {
         type: String,
-        required: true,
+        required: false,
     },
     user_for: {
         type: String,

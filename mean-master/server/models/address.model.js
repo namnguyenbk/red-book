@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const Schema = mongoose.Schema;
 const AddressSchema = new mongoose.Schema({
     province: {
         type: String,
@@ -25,6 +25,8 @@ const AddressSchema = new mongoose.Schema({
         type: Number,
         required: false,
     },
+    rbAddress:{type: Schema.Types.ObjectId, ref: 'RedBook'},
+
 });
 
 module.exports = mongoose.model('Address', AddressSchema);
