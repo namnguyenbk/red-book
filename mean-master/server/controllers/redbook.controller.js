@@ -10,8 +10,20 @@ const searchSchema = Joi.object({
     street: Joi.string(),
     address: Joi.string(),
     owner_name: Joi.string(),
-    max_size: Joi.number().required(),
-    min_size: Joi.number().required(),
+    max_size: Joi.number().required().error(err =>{
+        return {
+            code: 1001,
+            result: {},
+            message: 'max_size is required!',
+        }
+    }),
+    min_size: Joi.number().required().error(err =>{
+        return {
+            code: 1001,
+            result: {},
+            message: 'min_size is required!',
+        }
+    }),
 });
 
 
@@ -37,13 +49,23 @@ const changeInfoRBSchema = Joi.object({
 });
 
 async function search(searchObj){
-    searchObj = await Joi.validate(searchObj, searchSchema,{ abortEarly: false});
+    //searchObj = await  Joi.validate(searchObj, searchSchema,{ abortEarly: false});
+    if(!searchObj.max_size || !searchObj.min_size){
+        return {
+            code: 1001,
+            result: {},
+            message: 'parameters is missing!'
+        };
+    }
+
+
+
     let province_name = searchObj.province? searchObj.province:/.*/;
     let district_name = searchObj.district? searchObj.district: /.*/;
     let street_name = searchObj.district?searchObj.street: /.*/;
     let address = searchObj.address? searchObj.address: /.*/;
     let owner_name = searchObj.owner_name? new RegExp(`^${searchObj.owner_name}$`): /.*/;
-    let max_size = searchObj.max_size;
+    let max_size = parseInt(searchObj.max_size);
     let min_size = searchObj.min_size;
     
     // let redBook1 = new Redbook({
@@ -110,12 +132,16 @@ async function search(searchObj){
             result  = result.slice(0,max_size);
         }
     }
-    return result;
+    return {
+        code: 1000,
+        result: result,
+        message: 'OK'
+    };
 }
 
 
-async function addRB(infoRB1){
-    infoRB = await Joi.validate(infoRB1, addRbSchema,{ abortEarly: false});
+async function addRB(infoRB){
+    //infoRB = await Joi.validate(infoRB1, addRbSchema,{ abortEarly: false});
     // if(error){
     //     let result = {
     //         code: 1001,
@@ -123,6 +149,19 @@ async function addRB(infoRB1){
     //     };
     //     return result;
     // }
+
+
+    if(!infoRB.owner_id || !infoRB.street || !infoRB.district ||
+       !infoRB.province || !infoRB.address || !infoRB.area || 
+       !infoRB.type || !infoRB.exp || !infoRB.date_time ||
+       !infoRB.num_licence || !infoRB.user_for || !infoRB.source_provide ||
+       !infoRB.no_land){
+           return {
+               code: 1001,
+               result: {},
+               message: 'parameter is missing!',
+           }
+       }
     let owner_id = infoRB.owner_id;
     let street = infoRB.street;
     let district = infoRB.district;
@@ -175,19 +214,28 @@ async function addRB(infoRB1){
             redbook: newRB,
             address: addr,
         },
+        rb_id: newRB._id,
+        message: 'add red book successfully!'
     };
 
     return result;
 }
 
-async function change_owner(infoObj1){
-    const infoObj = await Joi.validate(infoObj1, changeInfoRBSchema,{ abortEarly: false});
+async function change_owner(infoObj){
+    //const infoObj = await Joi.validate(infoObj1, changeInfoRBSchema,{ abortEarly: false});
+    if(!infoObj.rb_id || !infoObj.owner_id){
+        return {
+            code: 1001,
+            message: 'parameter is missing!',
+        }
+    }
     let RB = await Redbook.findOne({_id: infoObj.rb_id});
     RB.owner_id = infoObj.owner_id;
     await RB.save();
     return {
         code: 1000,
         RB,
+        rb_id: RB._id,
     };
 }
 

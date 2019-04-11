@@ -9,8 +9,5 @@ router.route('/').post(asyncHandler(searchRB));
 
 async function searchRB(req,res){
     let result = await rebbookCrl.search(req.body);
-    res.json({
-        code: 1000,
-        result: result,
-    });
+    res.json(result);
 }
