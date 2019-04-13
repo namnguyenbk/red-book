@@ -16,11 +16,11 @@ const RedBookSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    trans_history_id: {
+    trans: {
         type: [String],
         required: false,
     },
-    time_remain: {
+    exp: {
         type: String,
         required: true,
     },
@@ -32,19 +32,27 @@ const RedBookSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    date_licencing: {
+    created: {
         type: Date,
         required: true,
         default: Date.now,
     },
-    detail_id: {
-        type: String,
-        required: false,
-    },
     user_for: {
         type: String,
         required: true,
-    }
+    },
+    area: {
+        type: Number,
+        required: true,
+    },
+    images: {
+        type: [String],
+        required: false,
+    },
+    description: {
+        type: String,
+        required: false,
+    },
 
 });
 

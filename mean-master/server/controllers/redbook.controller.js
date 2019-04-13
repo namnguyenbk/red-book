@@ -167,45 +167,53 @@ async function addRB(infoRB){
     let district = infoRB.district;
     let province = infoRB.province;
     let address = infoRB.address;
+
+    let latidute = infoRB.latidute? infoRB.latidute: "";
+    let longtidute = infoRB.longtidute? infoRB.longtidute: "";
+
     let area = infoRB.area;
     let type = infoRB.type;
     let exp = infoRB.exp;
-    let date_time = infoRB.date_time;
+    let date_time = infoRB.created;
     let num_licence = infoRB.num_licence;
     let user_for = infoRB.user_for;
     let source_provide = infoRB.source_provide;
     let no_land = infoRB.no_land;
+    let trans = infoRB.trans;
+    let images = infoRB.images;
+    let description = infoRB.description;
 
-
-    let detailRB = new Detail({
-        area1: area,
-        _id: new mongoose.Types.ObjectId(),
-    });
-
-    await detailRB.save();
     let newRB = new Redbook({
         _id: new mongoose.Types.ObjectId(),
         owner_id: owner_id,
         no_land: no_land,
         type: type,
-        time_remain: exp,
+        exp: exp,
         source_provide: source_provide,
         no_licence: num_licence,
-        date_licencing: date_time,
+        created: date_time,
         user_for: user_for,
-        detail_id: detailRB._id,
+        trans: trans,
+        area: area,
+        images: images,
+        description: description,
     });
 
-    await newRB.save();
+    
 
     let addr = new Address({
+        _id: new mongoose.Types.ObjectId(),
         province: province,
         district: district,
         street: street,
         address: address,
         rbAddress: newRB._id,
+        latidute: latidute,
+        longtidute: longtidute,
     });
 
+    newRB.addr_id = addr._id;
+    await newRB.save();
     await addr.save();
 
     let result = {
