@@ -229,25 +229,6 @@ async function addRB(infoRB){
     return result;
 }
 
-async function change_owner(infoObj){
-    //const infoObj = await Joi.validate(infoObj1, changeInfoRBSchema,{ abortEarly: false});
-    if(!infoObj.rb_id || !infoObj.owner_id){
-        return {
-            code: 1001,
-            message: 'parameter is missing!',
-        }
-    }
-    let RB = await Redbook.findOne({_id: infoObj.rb_id});
-    RB.owner_id = infoObj.owner_id;
-    await RB.save();
-    return {
-        code: 1000,
-        RB,
-        rb_id: RB._id,
-    };
-}
-
-
 async function getDetail(objId){
     if(!objId){
         let result = {
@@ -284,6 +265,5 @@ async function getDetail(objId){
 module.exports = {
     search,
     addRB,
-    change_owner,
     getDetail,
 };
