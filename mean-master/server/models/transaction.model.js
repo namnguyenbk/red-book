@@ -9,7 +9,7 @@ const TransactionSchema = new mongoose.Schema({
         type: String,
         required: false,
     },
-    time_trans: {
+    created: {
         type: Date,
         required: true,
         default: Date.now,
@@ -22,7 +22,7 @@ const TransactionSchema = new mongoose.Schema({
         type: String,
         required: false,
     },
-    trans_amount: {
+    transaction_amount: {
         type: number,
         required: true,
     }

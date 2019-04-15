@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const AddressSchema = new mongoose.Schema({
+    _id: Schema.Types.ObjectId,
     province: {
         type: String,
         required: true,
@@ -15,7 +16,7 @@ const AddressSchema = new mongoose.Schema({
     },
     address: {
         type: String,
-        required: false,
+        required: true,
     },
     latidute: {
         type: Number,

@@ -16,6 +16,10 @@ const passport = require('./passport')
 
 const searchRoute = require('../routes/search.route');
 const addRBroute = require('../routes/redbook.route');
+const assetRoute = require('../routes/asset.route');
+const personRoute = require('../routes/person.route');
+const transactionRoute = require('../routes/transaction.route');
+const addressRoute = require('../routes/address.route');
 const app = express();
 
 if (config.env === 'development') {
@@ -65,6 +69,10 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api/', routes);
 app.use('/api/search',searchRoute);
 app.use('/api/redbook',addRBroute);
+app.use('/api/asset',assetRoute);
+app.use('/api/person',personRoute);
+app.use('/api/transaction',transactionRoute);
+app.use('/api/address',addressRoute);
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new httpError(404)

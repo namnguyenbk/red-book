@@ -7,7 +7,7 @@ const PersonSchema = new mongoose.Schema({
     },
     midname: {
         type: String,
-        required: true,
+        required: false,
     },
     lastname: {
         type: String,
@@ -30,11 +30,10 @@ const PersonSchema = new mongoose.Schema({
         match: [/^[0-9]{12}$/, "nhập đúng số CMND"],
     },
     birth: {
-        type: Number,
+        type: String,
         required: true,
-        match: [/^[0-9]{4}$/,"nhập đúng năm sinh"]
     },
-    rb_addr_id: {
+    postal_addr_id: {
         type: String,
         required: false,
     },
@@ -43,12 +42,12 @@ const PersonSchema = new mongoose.Schema({
         required: true,
     },
     gender:{
-        type: Number,
+        type: String,
         required: true,
     },
     status_id: {
         type: String,
-        required: true,
+        required: false,
     }
 });
 
