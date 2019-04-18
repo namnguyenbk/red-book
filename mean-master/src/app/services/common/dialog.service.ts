@@ -18,6 +18,19 @@ export class DialogService {
     });
   }
 
+  openConfirm( title, mess ): any {
+    return this.dialogService.openConfirm({
+      message: mess,
+      disableClose: true || false, // defaults to false
+      // viewContainerRef: this._viewContainerRef, //OPTIONAL
+      title: title, //OPTIONAL, hides if not provided
+      cancelButton: 'Huỷ', //OPTIONAL, defaults to 'CANCEL'
+      acceptButton: 'Đồng ý', //OPTIONAL, defaults to 'ACCEPT'
+      width: '500px', //OPTIONAL, defaults to 400px
+    })
+  }
+
+
   openPrompt(title, message) {
     return this.dialogService.openPrompt({
       message: message,

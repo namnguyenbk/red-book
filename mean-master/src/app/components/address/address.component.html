@@ -1,0 +1,20 @@
+<div class="container">
+  <mat-grid-list  rowHeight="4:1" cols="4">
+    <mat-grid-tile>
+      <app-search-item [title]=" 'Tỉnh, thành' " [type]="'province'" (onchange)="updateIdAddr($event)"></app-search-item>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <app-search-item [title]=" 'Quận,huyện, thành phố thuộc tỉnh' " [type]="'district'" [preId]="provinceId" (onchange)="updateIdAddr($event)"></app-search-item>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <app-search-item [title]=" 'Xã, phường, thị trấn' " [type]="'ward'" [preId]="districtId" (onchange)="updateIdAddr($event)"></app-search-item>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Chi tiết" [(value)]="detail">
+          </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-divider></mat-divider>
+</div>
+

@@ -23,7 +23,7 @@ const TransactionSchema = new mongoose.Schema({
         required: false,
     },
     transaction_amount: {
-        type: number,
+        type: String,
         required: true,
     }
 });

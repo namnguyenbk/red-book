@@ -1,0 +1,8 @@
+<mat-form-field >
+  <mat-label >{{title}}</mat-label>
+  <mat-select [(value)]="addr" (selectionChange)="changeId()">
+    <mat-option  *ngFor="let item of data" [value]="item">
+      {{item.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
