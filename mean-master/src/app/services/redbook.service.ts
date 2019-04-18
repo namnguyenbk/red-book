@@ -40,15 +40,7 @@ export class RedbookService {
   }
 
   addRB( rbData : any){
-    let redbook_id : string ;
-    this.http.post(addRBAPI, rbData).subscribe( (res : any) => {
-      if(res.code == '1000'){
-        redbook_id = res.rb_id;
-      }
-      if(res.code == '1001'){
-
-      }
-    });
-    return redbook_id;
-  }
+    // let redbook_id : string ;
+    return this.http.post(addRBAPI, rbData);
+}
 }

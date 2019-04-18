@@ -26,7 +26,7 @@
     </mat-grid-tile>
     <mat-grid-tile>
       <mat-form-field>
-        <input matInput placeholder="Số CMND" formControlName="card_id" type="number">
+        <input matInput placeholder="Số CMND" formControlName="card_id" type="text">
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile>
@@ -46,8 +46,9 @@
       </mat-form-field>
     </mat-grid-tile>
   </mat-grid-list>
-  <app-address></app-address>
+  <app-address #addrOwner></app-address>
   <div>
+      <button mat-button color="primary" (click)="getDate()">Hien thi ngay</button>
     <button mat-button matStepperNext color="primary">Tiếp</button>
   </div>
 </form>

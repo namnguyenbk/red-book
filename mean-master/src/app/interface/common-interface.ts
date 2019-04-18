@@ -57,5 +57,5 @@ export interface address{
   province : string;
   district : string;
   street : string;
-  addr : string;
+  address : string;
 }

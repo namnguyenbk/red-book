@@ -20,14 +20,14 @@ const PersonSchema = new mongoose.Schema({
     phonenumber: {
         type: String,
         required: false,
-        unique: true,
+        unique: false,
         match: [/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g,"nhập đúng số điện thoại"],
     },
     id_card_number: {
         type: String,
         required: true,
         unique: true,
-        match: [/^[0-9]{12}$/, "nhập đúng số CMND"],
+        // match: [/^[0-9]{12}$/, "nhập đúng số CMND"],
     },
     birth: {
         type: String,

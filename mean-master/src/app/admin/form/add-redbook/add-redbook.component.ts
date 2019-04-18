@@ -12,7 +12,7 @@ import { RedbookService} from '../../../services/redbook.service';
 export class AddRedbookComponent implements OnInit {
 
   @Input() redbookForm : FormGroup;
-  @ViewChild(AddressComponent) addrRB : AddressComponent;
+  @ViewChild('addrRB') addrRB : AddressComponent;
   rb_data : any;
   addr : address;
   constructor(
@@ -24,18 +24,18 @@ export class AddRedbookComponent implements OnInit {
   ngOnInit() {
   }
 
-  setRBData( owner_id : string){
-    this.rb_data = {
+  getRBData( owner_id : string){
+    return this.rb_data = {
       owner_id : owner_id,
       addr_id : '',
       area : this.redbookForm.get('area').value,
-      type : this.redbookForm.get('type').value,
+      type : this.rbService.getType( this.redbookForm.get('type').value ),
       exp : this.redbookForm.get('exp').value,
       created : '',
       num_license : this.redbookForm.get('num_license').value,
-      use_for : this.redbookForm.get('use_for').value,
+      use_for : this.rbService.getuse_for(this.redbookForm.get('use_for').value),
       no_land : this.redbookForm.get('no_land').value,
-      source_provide : this.redbookForm.get('source_provide').value,
+      source_provide : this.rbService.getres(this.redbookForm.get('source_provide').value),
       address : this.addrRB.detail? this.addrRB.detail : '',
       street : this.addrRB.wardName,
       district : this.addrRB.districtName,
@@ -53,8 +53,8 @@ export class AddRedbookComponent implements OnInit {
   //   return addr_id;
   // }
 
-  uploadRBData(){
-    return this.rbService.addRB(this.rb_data);
+  uploadRBData( data){
+    return this.rbService.addRB(data);
   }
 
 }

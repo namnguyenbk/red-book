@@ -5,7 +5,7 @@ import dataDistrict from '../local-data/quan_huyen.json';
 import dataWard from '../local-data/xa_phuong.json';
 import {address} from '../../interface/common-interface';
 
-const addAdressAPI = "/api/add_addr";
+const addAdressAPI = "/api/address/add";
 
 var provinces: Array<any> = (<any>dataProvince);
 provinces = converJSONtoArray(provinces);
@@ -35,12 +35,20 @@ export class AddressService {
     }
   }
 
-  addAdress(addrData : address){
-    let addr_id : string;
-     this.http.post(addAdressAPI, addrData).subscribe( (id: string) =>{
-       addr_id = id;
+  addAdress(addrData : address) {
+     return this.http.post(addAdressAPI, addrData);
+  }
+
+  async addLox(){
+    var addr_id;
+    await this.http.post(addAdressAPI, null).toPromise().then( (res: any) =>{
+       addr_id = res.addr_id;
+       return addr_id;
     });
-    return addr_id;
+  }
+
+  getDate( dateTime : Date){
+    return dateTime.getDate() + '/'+ dateTime.getMonth()+ '/' + dateTime.getFullYear();
   }
 
 
@@ -56,10 +64,11 @@ export function converJSONtoArray(data) {
 }
 
 export function filterAddr(data, preId) {
-  let result = data.filter(item => {
+  var result = data.filter(item => {
     if (item.parent_code.toString() == preId) {
       return true;
     }
   });
   return result;
 }
+

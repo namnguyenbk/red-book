@@ -13,10 +13,10 @@
             <mat-option value="0">
               Xây nhà hợp pháp
             </mat-option>
-            <mat-option value="2">
+            <mat-option value="1">
                 Mua nhà theo Nghị định 61/CP
               </mat-option>
-            <mat-option value="3">
+            <mat-option value="2">
               Nhà được cấp theo quy định
             </mat-option>
             <mat-option value="3">
@@ -55,6 +55,7 @@
   <progress class="example-full-width" max="100" [value]="(uploadProgress | async)"></progress>
   <!-- End image -->
   <div>
+      <button mat-button (click)="upload()" color="primary">Upload</button>
       <button mat-button matStepperPrevious color="primary">Trở về</button>
     <button mat-button matStepperNext color="primary" (click)="confirmComplete()">Hoàn thành</button>
   </div>

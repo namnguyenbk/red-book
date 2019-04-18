@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 import { TdDialogService } from '@covalent/core/dialogs';
+import {MatSnackBar} from '@angular/material';
 @Injectable({
   providedIn: 'root'
 })
 export class DialogService {
 
-  constructor( private dialogService : TdDialogService) { }
+
+  constructor( 
+    private dialogService : TdDialogService,
+    private snackBar: MatSnackBar) {
+     }
 
   openAlert(message): void {
     this.dialogService.openAlert({
@@ -41,6 +46,12 @@ export class DialogService {
       cancelButton: 'Huỷ', //OPTIONAL, defaults to 'CANCEL'
       acceptButton: 'Đồng ý', //OPTIONAL, defaults to 'ACCEPT'
       width: '500px', //OPTIONAL, defaults to 400px
+    });
+  }
+
+  showNotification( mess, content, type){
+    this.snackBar.open(content, 'OK',{
+      duration: 2000
     });
   }
 
