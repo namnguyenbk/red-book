@@ -4,6 +4,7 @@ import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage'
 import { DialogService } from '../../../services/common/dialog.service'
 import { AssetService } from '../../../services/asset.service';
 import { AddressService} from '../../../services/common/address.service';
+import { async } from 'q';
 
 @Component({
   selector: 'app-add-asset',
@@ -64,8 +65,11 @@ taskUpload : AngularFireUploadTask;
   }
 
   getDataAsset( rbId : string){
-    var dateTime = this.assetForm.get('created').value;
-    this.upload();
+    var dateTime = this.assetForm.get('created').value ;
+     ( async function(){
+      await this.upload();
+    }());
+
     var asset :  any = {
       rb_id : rbId,
       type : this.assetService.getType(this.assetForm.get('type').value),
