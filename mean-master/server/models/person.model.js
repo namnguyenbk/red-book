@@ -7,7 +7,7 @@ const PersonSchema = new mongoose.Schema({
     },
     midname: {
         type: String,
-        required: true,
+        required: false,
     },
     lastname: {
         type: String,
@@ -20,21 +20,19 @@ const PersonSchema = new mongoose.Schema({
     phonenumber: {
         type: String,
         required: false,
-        unique: true,
         match: [/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g,"nhập đúng số điện thoại"],
     },
     id_card_number: {
         type: String,
         required: true,
         unique: true,
-        match: [/^[0-9]{12}$/, "nhập đúng số CMND"],
+        // match: [/^[0-9]{12}$/, "nhập đúng số CMND"],
     },
     birth: {
-        type: Number,
+        type: String,
         required: true,
-        match: [/^[0-9]{4}$/,"nhập đúng năm sinh"]
     },
-    rb_addr_id: {
+    postal_addr_id: {
         type: String,
         required: false,
     },
@@ -43,12 +41,12 @@ const PersonSchema = new mongoose.Schema({
         required: true,
     },
     gender:{
-        type: Number,
+        type: String,
         required: true,
     },
     status_id: {
         type: String,
-        required: true,
+        required: false,
     }
 });
 

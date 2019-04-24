@@ -1,1 +1,63 @@
-<h4>HELLO FROM ADMIN PAGE</h4>
+<td-layout>
+    <td-layout-nav color="accent">
+        <div td-toolbar-content layout="row" layout-align="start center" flex>
+            <button mat-icon-button class="td-menu-button" (click)="sidenav.toggle()" mdTooltip="Main menu">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <mat-icon class="mat-icon-logo" svgIcon="assets:covalent"></mat-icon>
+            <span>{{ 'demo.title' | translate }}</span>
+            <span flex></span>
+            <button mat-button *ngIf="user">
+                <mat-icon>account_circle</mat-icon>
+                {{user.fullname}}
+            </button>
+        </div>
+        <mat-sidenav-container fullscreen >
+            <mat-sidenav #sidenav mode="side" opened="true" style="width:257px;border-right:1px solid #ccc">
+                <div flex class="mat-content bgc-grey-50">
+                    <mat-nav-list >
+                        <a mat-list-item class="active" >
+                           Danh sách chức năng
+                        </a>
+                        <mat-divider></mat-divider>
+                        <a mat-list-item routerLink="/admin/add">
+                            <mat-icon matListIcon  >add</mat-icon>Thêm mới sổ đỏ
+                        </a>
+                        <a mat-list-item>
+                            <mat-icon matListIcon>list</mat-icon>Danh sách
+                        </a>
+                        <a mat-list-item routerLink="/admin/query" >
+                            <mat-icon matListIcon>list</mat-icon>Tra cứu
+                        </a>
+                        <a mat-list-item>
+                            <mat-icon matListIcon>business</mat-icon>Thống kê
+                        </a>
+                        <mat-divider></mat-divider>
+                        <a mat-list-item>
+                            <mat-icon matListIcon>settings</mat-icon>Cài đặt
+                        </a>
+                        <a mat-list-item>
+                            <mat-icon matListIcon>help</mat-icon>LAN
+                        </a>
+                        <a mat-list-item>
+                            <mat-icon matListIcon>help</mat-icon>Tài liệu
+                        </a>
+                        <a mat-list-item (click)="logout()">
+                            <mat-icon matListIcon>exit_to_app</mat-icon>Đăng xuất
+                        </a>
+                    </mat-nav-list>
+                </div>
+            </mat-sidenav>
+            <div tdMediaToggle="gt-xs" [mediaClasses]="['push-md']">
+                <mat-card>
+                    <router-outlet></router-outlet>
+                </mat-card>
+            </div>
+        </mat-sidenav-container>
+    </td-layout-nav>
+    <td-layout-footer>
+        <div layout="row" layout-align="start center">
+            <span class="mat-caption">Copyright &copy; 2017 Teradata. All rights reserved</span>
+        </div>
+    </td-layout-footer>
+</td-layout>

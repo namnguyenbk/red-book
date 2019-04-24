@@ -16,7 +16,7 @@ const AddressSchema = new mongoose.Schema({
     },
     address: {
         type: String,
-        required: false,
+        required: true,
     },
     latidute: {
         type: Number,

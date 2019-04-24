@@ -1,0 +1,71 @@
+<form [formGroup]="redbookForm">
+  <mat-grid-list cols="3" rowHeight="3:1">
+    <mat-grid-tile>
+      <mat-form-field>
+        <input matInput placeholder="Diện tích" formControlName="area" type="number" required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <input matInput placeholder="Số thửa" formControlName="no_land" type="number" required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Hình thức</mat-label>
+        <mat-select formControlName="type" >
+          <mat-option [value]="1">
+            Sử dụng chung
+          </mat-option>
+          <mat-option [value]="2">
+            Sử dụng riêng
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list cols="4" rowHeight="4:1">
+      <mat-grid-tile>
+        <mat-form-field>
+          <mat-label>Mục đích</mat-label>
+        <mat-select formControlName="use_for" required>
+          <mat-option [value]="1">
+            Đất ở đô thị
+          </mat-option>
+          <mat-option [value]="2">
+            Đất xây dựng công trình
+          </mat-option>
+        </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field>
+          <input matInput placeholder="Thời hạn( năm)" formControlName="exp" type="number" required>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field>
+            <input matInput placeholder="Số hiệu văn bản" formControlName="num_license" required>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+          <mat-form-field>
+              <mat-label>Nguồn gốc sử dụng đất</mat-label>
+              <mat-select formControlName="source_provide" >
+                <mat-option [value]="1">
+                  Nhà nước công nhận quyền sử dụng và giao đất có thu tiền
+                </mat-option>
+                <mat-option [value]="2">
+                  Khác
+                </mat-option>
+              </mat-select>
+          </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+  <span>Địa chỉ: </span>
+  <app-address #addrRB></app-address>
+  <div>
+    <button mat-button matStepperPrevious color="primary">Trở về</button>
+    <button mat-button matStepperNext color="primary">Tiếp</button>
+  </div>
+</form>

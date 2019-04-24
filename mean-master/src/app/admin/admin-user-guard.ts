@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { CanActivate } from "@angular/router";
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../auth/auth.service';
-
+import { TokenStorage } from '../auth/token.storage';
 @Injectable()
 export class OnlyAdminUsersGuard implements CanActivate {
-  constructor() {}
+  constructor( private token : TokenStorage, private auth : AuthService) {}
 
   canActivate() {
-    const user = (<any>window).user;
-    return user && user.isAdmin;
+    if(this.auth.me()){
+      return true;
+    }
+    return false;
   }
 }

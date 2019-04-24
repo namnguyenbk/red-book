@@ -1,0 +1,62 @@
+<form [formGroup]="assetForm">
+  <mat-grid-list cols="3" rowHeight="3:1">
+    <mat-grid-tile>
+      <mat-form-field>
+        <input matInput placeholder="Diện tích sử dụng" formControlName="area" required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+          <mat-label>Loại hình tài sản</mat-label>
+        <!-- <input  placeholder="" > -->
+        <mat-select matInput formControlName="type" required>
+            <mat-option value="0">
+              Xây nhà hợp pháp
+            </mat-option>
+            <mat-option value="1">
+                Mua nhà theo Nghị định 61/CP
+              </mat-option>
+            <mat-option value="2">
+              Nhà được cấp theo quy định
+            </mat-option>
+            <mat-option value="3">
+               Khác
+              </mat-option>
+          </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Thời gian cấp phép" formControlName="created">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker></mat-datepicker>
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <!-- Image  -->
+  <mat-grid-list cols="3" rowHeight="3:1">
+    <mat-grid-tile>
+          <label for="file">Ảnh 1: </label>
+          <mat-icon matSuffix>folder</mat-icon>
+          <input type="file" (change)="onChangeImage($event, 'image1')" accept=".png,.jpg" />
+    </mat-grid-tile>
+    <mat-grid-tile>
+          <label for="file">Ảnh 2: </label>
+          <mat-icon matSuffix>folder</mat-icon>
+          <input type="file" (change)="onChangeImage($event, 'image2')" accept=".png,.jpg" />
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-form-field>
+            <textarea matInput placeholder="Chi tiet" class="example-full-width" formControlName="detail"></textarea>
+          </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <progress class="example-full-width" max="100" [value]="(uploadProgress | async)"></progress>
+  <!-- End image -->
+  <div>
+      <button mat-button (click)="upload()" color="primary">Upload</button>
+      <button mat-button matStepperPrevious color="primary">Trở về</button>
+    <button mat-button matStepperNext color="primary" (click)="confirmComplete()">Hoàn thành</button>
+  </div>
+</form>

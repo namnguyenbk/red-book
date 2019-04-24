@@ -1,0 +1,54 @@
+<form [formGroup]="personForm">
+  <mat-grid-list cols="3" rowHeight="3:1">
+    <mat-grid-tile>
+      <mat-form-field>
+        <input matInput placeholder="Tên" formControlName="fname" required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <input matInput placeholder="Tên đệm" formControlName="mname" required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <input matInput placeholder="Họ" formControlName="lname" required>
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list cols="3" rowHeight="3:1">
+    <mat-grid-tile>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Ngày sinh" formControlName="birthDay">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker></mat-datepicker>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <input matInput placeholder="Số CMND" formControlName="card_id" type="text">
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Giới tính:</mat-label>
+        <mat-select formControlName="gender">
+          <mat-option value="1">
+            Nam
+          </mat-option>
+          <mat-option value="2">
+            Nữ
+          </mat-option>
+          <mat-option value="3">
+            Khác
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <app-address #addrOwner></app-address>
+  <div>
+      <button mat-button color="primary" (click)="getDate()">Hien thi ngay</button>
+    <button mat-button matStepperNext color="primary">Tiếp</button>
+  </div>
+</form>

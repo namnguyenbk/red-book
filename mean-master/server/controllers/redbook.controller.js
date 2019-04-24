@@ -151,6 +151,19 @@ async function addRB(infoRB){
     // }
 
 
+    console.log(infoRB.owner_id);
+    console.log(infoRB.street);
+    console.log(infoRB.district);
+    console.log(infoRB.province);
+    console.log(infoRB.address);
+    console.log(infoRB.area);
+    console.log(infoRB.type);
+    console.log(infoRB.exp);
+    console.log(infoRB.num_license);
+    console.log(infoRB.use_for);
+    console.log(infoRB.source_provide);
+    console.log(infoRB.no_land);
+
     if(!infoRB.owner_id || !infoRB.street || !infoRB.district ||
        !infoRB.province || !infoRB.address || !infoRB.area || 
        !infoRB.type || !infoRB.exp ||
@@ -190,7 +203,7 @@ async function addRB(infoRB){
         type: type,
         exp: exp,
         source_provide: source_provide,
-        no_licence: num_licence,
+        num_licence: num_licence,
         created: date_time,
         user_for: user_for,
         trans: trans,
@@ -229,25 +242,6 @@ async function addRB(infoRB){
     return result;
 }
 
-async function change_owner(infoObj){
-    //const infoObj = await Joi.validate(infoObj1, changeInfoRBSchema,{ abortEarly: false});
-    if(!infoObj.rb_id || !infoObj.owner_id){
-        return {
-            code: 1001,
-            message: 'parameter is missing!',
-        }
-    }
-    let RB = await Redbook.findOne({_id: infoObj.rb_id});
-    RB.owner_id = infoObj.owner_id;
-    await RB.save();
-    return {
-        code: 1000,
-        RB,
-        rb_id: RB._id,
-    };
-}
-
-
 async function getDetail(objId){
     if(!objId){
         let result = {
@@ -284,6 +278,5 @@ async function getDetail(objId){
 module.exports = {
     search,
     addRB,
-    change_owner,
     getDetail,
 };
