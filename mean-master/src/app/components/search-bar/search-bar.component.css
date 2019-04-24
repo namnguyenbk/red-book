@@ -5,3 +5,7 @@
 .container{
     margin: 10px;
 }
+
+#btn-search{
+    background: accent;
+}

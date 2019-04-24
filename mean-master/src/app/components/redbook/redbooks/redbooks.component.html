@@ -1,27 +1,41 @@
-<app-search-bar></app-search-bar>
+<app-search-bar (search)="updateList()"></app-search-bar>
 <mat-card>
-    <mat-grid-list cols="3" >
-        <mat-grid-tile *ngFor="let redbook of redbooks" [style.border]="'1px solid #ddd'" >
+    <mat-grid-list cols="3">
+        <!-- <mat-grid-tile *ngFor="let redbook of redbooks" [style.border]="'1px solid #ddd'" >
             <mat-card class="card-item example-card">
                 <mat-card-header>
                     <mat-card-title>{{redbook.title}}</mat-card-title>
                 </mat-card-header>
                 <mat-card-content>{{redbook.content}}</mat-card-content>
             </mat-card>
-        </mat-grid-tile>
-        <!-- <mat-grid-tile *ngFor="let redbook of redbooks" [style.border]="'1px solid #ddd'" >
-                <mat-card class="card-item example-card">
-                    <mat-card-header>
-                        <mat-card-title>{{redbook.no_land}}</mat-card-title>
-                    </mat-card-header>
-                    <img mat-card-image src="{{redbook.image_cover}}" >
-                    <mat-card-content>{{redbook.onwer_name}}</mat-card-content>
-                    <mat-card-footer> {{redbook.addr</mat-card-footer>
-                </mat-card>
         </mat-grid-tile> -->
-      </mat-grid-list>
-      <mat-divider></mat-divider>
-      <td-paging-bar #pagingBar [firstLast]="firstLast" [pageSize]="12" [total]="10000" (change)="change($event)">
-        1 of 6
-      </td-paging-bar>
+        <mat-grid-tile *ngFor="let redbook of rbOnPage">
+            <mat-card class="card-item example-card">
+                <mat-card-header>
+                    <mat-card-title>{{redbook.no_land}}</mat-card-title>
+                </mat-card-header>
+                <!-- <img mat-card-image src="{{redbook.image_cover}}" > -->
+                <mat-card-content>{{redbook.source_provide}}</mat-card-content>
+                <mat-card-footer>
+                </mat-card-footer>
+                <mat-card-actions>
+                    <button class="btn-nomally" mat-card-action mat-button>Chi tiết</button>
+                </mat-card-actions>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+    <mat-divider></mat-divider>
+    <!-- <td-paging-bar #pagingBar [firstLast]="true" [pageSize]="pageSize" [total]="totalPage"
+        (change)="change($event)">
+        {{currentPage }} trên {{totalPage}}
+    </td-paging-bar> -->
+    <td-paging-bar #pagingBarPageSize [firstLast]="true" [pageSize]="pageSize" [total]="numRedbook" (change)="changePageSize($event)">
+            <span hide-xs>Số lượng trên 1 trang: </span>
+            <mat-select [style.width.px]="50" [(ngModel)]="pageSize" >
+              <mat-option *ngFor="let size of [6,12,24,36,72,144,288,1000]" [value]="size">
+                {{size}}
+              </mat-option>
+            </mat-select>
+            <span>{{pagingBarPageSize.range}} <span hide-xs>of {{pagingBarPageSize.total}}</span></span>
+          </td-paging-bar>
 </mat-card>

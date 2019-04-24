@@ -150,24 +150,10 @@ async function addRB(infoRB){
     //     return result;
     // }
 
-
-    console.log(infoRB.owner_id);
-    console.log(infoRB.street);
-    console.log(infoRB.district);
-    console.log(infoRB.province);
-    console.log(infoRB.address);
-    console.log(infoRB.area);
-    console.log(infoRB.type);
-    console.log(infoRB.exp);
-    console.log(infoRB.num_license);
-    console.log(infoRB.use_for);
-    console.log(infoRB.source_provide);
-    console.log(infoRB.no_land);
-
     if(!infoRB.owner_id || !infoRB.street || !infoRB.district ||
        !infoRB.province || !infoRB.address || !infoRB.area || 
        !infoRB.type || !infoRB.exp ||
-       !infoRB.num_license || !infoRB.use_for || !infoRB.source_provide ||
+       !infoRB.no_licence || !infoRB.use_for || !infoRB.source_provide ||
        !infoRB.no_land){
            return {
                code: 1001,
@@ -189,7 +175,7 @@ async function addRB(infoRB){
     let exp = infoRB.exp;
     let date_time = infoRB.created;
     let num_licence = infoRB.num_licence;
-    let user_for = infoRB.use_for;
+    let use_for = infoRB.use_for;
     let source_provide = infoRB.source_provide;
     let no_land = infoRB.no_land;
     let trans = infoRB.trans;
@@ -205,7 +191,7 @@ async function addRB(infoRB){
         source_provide: source_provide,
         num_licence: num_licence,
         created: date_time,
-        user_for: user_for,
+        use_for: use_for,
         trans: trans,
         area: area,
         images: images,

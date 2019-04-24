@@ -37,7 +37,7 @@ const RedBookSchema = new mongoose.Schema({
         required: false,
         default: Date.now,
     },
-    user_for: {
+    use_for: {
         type: String,
         required: true,
     },

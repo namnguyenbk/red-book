@@ -4,7 +4,6 @@ import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage'
 import { DialogService } from '../../../services/common/dialog.service'
 import { AssetService } from '../../../services/asset.service';
 import { AddressService} from '../../../services/common/address.service';
-import { async } from 'q';
 
 @Component({
   selector: 'app-add-asset',
@@ -46,29 +45,35 @@ taskUpload : AngularFireUploadTask;
     }
   }
 
-  upload() {
+  async upload() {
     const randomId1 = Math.random().toString(36).substring(2);
     const randomId2 = Math.random().toString(36).substring(2);
 
     let ref1  = this.afStorage.ref(randomId1);
     let ref2  = this.afStorage.ref(randomId2);
 
-    ref1.put(this.image1).then((uploadSnapshot: firebase.storage.UploadTaskSnapshot) => {
+    await ref1.put(this.image1).then((uploadSnapshot: firebase.storage.UploadTaskSnapshot) => {
+      alert('nam1');
       const imageUrl1 = uploadSnapshot.downloadURL;
       this.images.push(imageUrl1);
      });
-  
-    ref2.put(this.image2).then((uploadSnapshot: firebase.storage.UploadTaskSnapshot) => {
+
+    await ref2.put(this.image2).then((uploadSnapshot: firebase.storage.UploadTaskSnapshot) => {
+      alert('NAM2');
       const imageUrl2 = uploadSnapshot.downloadURL;
       this.images.push(imageUrl2);
      });
+    
   }
 
-  getDataAsset( rbId : string){
+  async getDataAsset( rbId : string){
+
     var dateTime = this.assetForm.get('created').value ;
-     ( async function(){
-      await this.upload();
-    }());
+    await this.upload();
+    alert('nam1');
+    // ( async function(){
+    //   await this.upload();
+    // }());
 
     var asset :  any = {
       rb_id : rbId,
@@ -81,6 +86,10 @@ taskUpload : AngularFireUploadTask;
     return asset;
   }
 
+  // async upload2(){
+  //   await this.upload();
+  //   alert('nam');
+  // }
   uploadAsset(data){
     return this.assetService.addAsset(data);
   }

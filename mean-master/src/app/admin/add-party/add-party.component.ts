@@ -25,10 +25,10 @@ export class AddPartyComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private dialog : DialogService,
-    private router : Router,
-    private addrService : AddressService
-   ) {
+    private dialog: DialogService,
+    private router: Router,
+    private addrService: AddressService
+  ) {
   }
 
   ngOnInit() {
@@ -36,60 +36,62 @@ export class AddPartyComponent implements OnInit {
       fname: ['', Validators.required],
       mname: ['', Validators.required],
       lname: ['', Validators.required],
-      birthDay: [ new  Date() , Validators.required],
+      birthDay: [new Date(), Validators.required],
       gender: ['2', Validators.required],
       card_id: ['', Validators.required],
     });
 
     this.secondFormGroup = this._formBuilder.group({
-      area: ['', Validators.required],
-      no_land: ['', Validators.required],
-      type: [''],
-      use_for: ['0'],
+      area: ['0', Validators.required],
+      no_land: ['0', Validators.required],
+      type: ['1'],
+      use_for: ['1'],
       exp: ['50', Validators.required],
       num_license: [''],
-      source_provide: [''],
+      source_provide: ['1'],
 
     });
 
     this.thirdFormGroup = this._formBuilder.group({
-      area: ['', Validators.required],
-      type: ['', Validators.required],
-      created : [''],
-      images : ['', Validators.required],
-      detail : ['']
+      area: ['0', Validators.required],
+      type: ['1', Validators.required],
+      created: [''],
+      images: ['', Validators.required],
+      detail: ['']
     });
   }
 
-  completeAdd(){
+  completeAdd() {
     var person_id, rb_id, asset_id;
-    this.addrService.addAdress(this.personForm.getPostalAddr()).subscribe( (res :any)  => {
-      if(res.code == '1000'){
+    this.addrService.addAdress(this.personForm.getPostalAddr()).subscribe((res: any) => {
+      if (res.code == '1000') {
         let addrPerson_id = res.addr_id;
         let personData = this.personForm.getPersonData(addrPerson_id);
-        this.personForm.uploadPersonData(personData).subscribe( (res : any) => {
-          if(res.code == '1000'){
+        this.personForm.uploadPersonData(personData).subscribe((res: any) => {
+          if (res.code == '1000') {
             person_id = res.owner_id;
             let rbData = this.redbookForm.getRBData(person_id);
-            this.redbookForm.uploadRBData( rbData).subscribe( (res : any) => {
-              if( res.code == '1000'){
+            this.redbookForm.uploadRBData(rbData).subscribe((res: any) => {
+              if (res.code == '1000') {
                 rb_id = res.rb_id;
-                let assetData = this.asset.getDataAsset( rb_id);
-                this.asset.uploadAsset( assetData).subscribe( (res : any) => {
-                  if( res.code == '1000'){
-                    asset_id = res.asset_id;
-                    this.dialog.showNotification('Thành công', 'Đã thêm thông tin về chủ sở hữu, đất, tài sản thành công!', 'success');
-                    this.router.navigate(['/admin/add']);
-                  }
-                })
+                this.asset.getDataAsset(rb_id).then((assetData: any) => {
+                  alert('nam2');
+                  this.asset.uploadAsset(assetData).subscribe((res: any) => {
+                    if (res.code == '1000') {
+                      asset_id = res.asset_id;
+                      this.dialog.showNotification('Thành công', 'Đã thêm thông tin về chủ sở hữu, đất, tài sản thành công!', 'success');
+                      this.router.navigate(['/admin/add']);
+                    }else{
+                      this.dialog.showNotification('Thất bại', 'Có lỗi khi thêm thông tin sổ đỏ', 'error');
+                    }
+                  })
+                });
               }
             })
           }
         })
       }
     });
-    this.dialog.showNotification('Thất bại', 'Có lỗi khi thêm thông tin sổ đỏ', 'error');
-
     // this.addrService.addAdress(this.personForm.getPostalAddr())
     //         .map((res : Response) => res.json())
     //         .mergeMap(addr_id => {
@@ -99,7 +101,7 @@ export class AddPartyComponent implements OnInit {
     //         })
     //         .map((res: Response) => res.json())
     //         .mergeMap(res => {
-              
+
     //         });
 
 
