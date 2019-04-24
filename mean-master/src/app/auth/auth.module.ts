@@ -9,7 +9,6 @@ import { AuthService } from './auth.service';
 import { TokenStorage } from './token.storage';
 import { AuthRoutingModule } from './auth-routing.module';
 import { CommonModuleUi} from '../common-ui-module.module';
-import { HeaderComponent} from '../components/header/header.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -19,8 +18,7 @@ import { HeaderComponent} from '../components/header/header.component';
   ],
   declarations: [
     LoginComponent,
-    RegisterComponent,
-    HeaderComponent,
+    RegisterComponent
   ],
   providers: [
     AuthService,

@@ -28,13 +28,13 @@ const RedBookSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    num_licence: {// số văn bản cấp sổ đỏ,
+    no_licence: {// số văn bản cấp sổ đỏ,
         type: String,
-        required: false,
+        required: true,
     },
     created: {
         type: Date,
-        required: false,
+        required: true,
         default: Date.now,
     },
     user_for: {
