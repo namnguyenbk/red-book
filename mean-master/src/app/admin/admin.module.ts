@@ -15,7 +15,7 @@ import { AddTransComponent } from './form/add-trans/add-trans.component';
 import { EditRedbookComponent } from './form/edit-redbook/edit-redbook.component';
 import { EditPersonComponent } from './form/edit-person/edit-person.component';
 import { CommonModuleUi } from '../common-ui-module.module';
-import { RedbooksComponent } from './redbooks/redbooks.component';
+import { RedbookListComponent } from './redbooks/redbooks.component';
 import { ManageListComponent } from './manage-list/manage-list.component';
 import { AddPartyComponent } from './add-party/add-party.component';
 import { AngularFireModule } from '@angular/fire';
@@ -32,7 +32,7 @@ import { environment } from '../../environments/environment';
     AddTransComponent,
     EditRedbookComponent,
     EditPersonComponent,
-    RedbooksComponent,
+    RedbookListComponent,
     ManageListComponent,
     AddPartyComponent,
   ],

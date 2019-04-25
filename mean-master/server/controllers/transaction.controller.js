@@ -39,7 +39,39 @@ async function add_trans(transInfo) {
     }
 }
 
+async function list_trans(req) {
+    var trans_data = [];
+    try {
+        let listId = req.list_tran_id;
+        if (listId) {
+            for( let i=0; i < listId.length; i ++){
+                id = listId[i];
+                let trans = await Transaction.findOne({ _id: id });
+                if (trans) {
+                    trans_data.push(trans);
+                }
+            }
+            return {
+                code : "1000",
+                trans_data : trans_data
+            }
+        // lost data
+        } else {
+            return {
+                code: "1001"
+            }
+        }
+        // internal error
+    } catch (error) {
+        return {
+            code: "999"
+        }
+    }
+}
+
+
 
 module.exports = {
-    add_trans
-  }
+    add_trans,
+    list_trans
+}

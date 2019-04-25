@@ -37,7 +37,7 @@ import {
     MatSelectModule, MatSlideToggleModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule,
     MatSidenavModule, MatButtonToggleModule, MatSnackBarModule,
     MatTabsModule, MatTooltipModule, MatRippleModule, MatGridListModule,
-    MatSliderModule, MatAutocompleteModule, MatStepperModule,
+    MatSliderModule, MatAutocompleteModule, MatStepperModule,MatExpansionModule,
 
 } from '@angular/material';
 
@@ -72,6 +72,7 @@ import {
         MatSliderModule,
         MatAutocompleteModule,
         MatStepperModule,
+        MatExpansionModule,
         MaterialFileInputModule,
         /** Covalent Modules */
         CovalentLayoutModule,
@@ -125,6 +126,7 @@ import {
         MatAutocompleteModule,
         MatStepperModule,
         MaterialFileInputModule,
+        MatExpansionModule,
         
 
         CovalentLayoutModule,

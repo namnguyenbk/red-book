@@ -7,7 +7,9 @@ import { AdminComponent } from './admin.component';
 import { SearchBarComponent } from '../components/search-bar/search-bar.component';
 import { ManageListComponent } from './manage-list/manage-list.component';
 import { RedbooksComponent} from '../components/redbook/redbooks/redbooks.component';
+import { RedbookListComponent} from './redbooks/redbooks.component';
 import { AddPartyComponent} from '../admin/add-party/add-party.component';
+import { RedbookInfoComponent} from '../components/redbook/redbook-info/redbook-info.component'
 const routes: Routes = [
   {
   path: 'admin',
@@ -23,12 +25,12 @@ const routes: Routes = [
       component: RedbooksComponent,
     },
     {
-      path: 'test1',
-      component: SearchBarComponent,
+      path: 'list',
+      component: RedbookListComponent,
     },
     {
-      path: 'test2',
-      component: ManageListComponent,
+      path: 'detail',
+      component: RedbookInfoComponent,
     },
   ]
 },

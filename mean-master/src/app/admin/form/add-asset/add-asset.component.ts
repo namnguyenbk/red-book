@@ -4,7 +4,7 @@ import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage'
 import { DialogService } from '../../../services/common/dialog.service'
 import { AssetService } from '../../../services/asset.service';
 import { AddressService } from '../../../services/common/address.service';
-import { async } from '@angular/core/testing';
+
 
 @Component({
   selector: 'app-add-asset',
@@ -114,5 +114,7 @@ export class AddAssetComponent implements OnInit {
         }
       });
   }
+
+  
 
 }

@@ -65,7 +65,22 @@ async function change_owner(infoObj){
     };
 }
 
+async function list_owner(){
+     let list_owner  = await Person.find({});
+     if( list_owner){
+         return {
+             code : "1000",
+             list_owner : list_owner
+         }
+     }else{
+         return {
+             code : "9999"
+         }
+     }
+}
+
 module.exports = {
     change_owner,
-    add_owner
+    add_owner,
+    list_owner
 };
