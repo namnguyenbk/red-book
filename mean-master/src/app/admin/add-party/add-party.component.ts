@@ -74,18 +74,18 @@ export class AddPartyComponent implements OnInit {
             this.redbookForm.uploadRBData(rbData).subscribe((res: any) => {
               if (res.code == '1000') {
                 rb_id = res.rb_id;
-                this.asset.getDataAsset(rb_id).then((assetData: any) => {
-                  alert('nam2');
-                  this.asset.uploadAsset(assetData).subscribe((res: any) => {
+                // this.asset.getDataAsset(rb_id).then((assetData: any) => {
+                  this.asset.uploadAsset(this.asset.getDataAsset(rb_id)).subscribe((res: any) => {
                     if (res.code == '1000') {
                       asset_id = res.asset_id;
                       this.dialog.showNotification('Thành công', 'Đã thêm thông tin về chủ sở hữu, đất, tài sản thành công!', 'success');
+                      this.asset.uploadMediaAsset(asset_id, rb_id);
                       this.router.navigate(['/admin/add']);
                     }else{
                       this.dialog.showNotification('Thất bại', 'Có lỗi khi thêm thông tin sổ đỏ', 'error');
                     }
                   })
-                });
+                // });
               }
             })
           }

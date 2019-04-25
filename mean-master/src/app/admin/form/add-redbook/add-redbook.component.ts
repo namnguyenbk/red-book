@@ -31,7 +31,7 @@ export class AddRedbookComponent implements OnInit {
       area : this.redbookForm.get('area').value,
       type : this.rbService.getType( this.redbookForm.get('type').value ),
       exp : this.redbookForm.get('exp').value,
-      created : '',
+      created : this.addrService.getDate(new Date()).toString(),
       num_license : this.redbookForm.get('num_license').value,
       use_for : this.rbService.getuse_for(this.redbookForm.get('use_for').value),
       no_land : this.redbookForm.get('no_land').value,

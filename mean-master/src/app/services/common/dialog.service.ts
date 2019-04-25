@@ -51,7 +51,7 @@ export class DialogService {
 
   showNotification( mess, content, type){
     this.snackBar.open(content, 'OK',{
-      duration: 2000
+      duration: 3000
     });
   }
 

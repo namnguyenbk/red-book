@@ -15,7 +15,7 @@ export class RedbooksComponent implements OnInit, AfterContentChecked {
   numRedbook = 0;
   currentPage = 1;
   totalPage ;
-  pageSize = 0;
+  pageSize = 12;
   rbOnPage : any;
   redbooks : any;
   eventPageSize: IPageChangeEvent;
@@ -49,11 +49,14 @@ export class RedbooksComponent implements OnInit, AfterContentChecked {
 
   updateList(){
     this.redbooks = this.search.resultSearch;
+    this.rbOnPage = this.redbooks.slice(0, this.pageSize);
   }
 
-  changePageSize(event: IPageChangeEvent): void {
-    this.currentPage
+  changePager(event: IPageChangeEvent): void {
     this.eventPageSize = event;
+    // this.currentPage = event.toRow;
+    // this.pageSize = event.pageSize;
+    // this.pageSize = this
   }
 
 }

@@ -27,39 +27,65 @@ async function addAsset(infoAsset) {
     let area = infoAsset.area;
     let type = infoAsset.type;
     let detail_info = infoAsset.detail_info;
-    let date = '';
-    if (!infoAsset.date) {
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = today.getFullYear();
-        today = mm + '/' + dd + '/' + yyyy;
-        date = today;
-    }
-    let images = [];
-    if (infoAsset.images && infoAsset.images.length != 0) {
-        for (image of infoAsset.images) {
-            images.push(image);
-        }
-    }
-    asset = {
+    let date = infoAsset.date;
+
+    let asset  = new Asset({
         _id: new mongoose.Types.ObjectId(),
+        rb_id : rb_id,
         type,
         area,
-        images,
         detail_info,
-        date
-    }
-    let as = await Asset.findOneAndUpdate({ rb_id: infoAsset.rb_id }, { $push: { assets: asset } }, { upsert: true });
-    let result = {};
+        date 
+    })
+    let as = await asset.save();
     if (as) {
-        result = {
-            code: 1000,
+        return {
+            code: "1000",
             asset_id: asset._id
-        };
+        }
+    }else{
+        return {
+            code : "9999"
+        }
+    }
+}
+
+async function uploadImage(assetData){
+
+    if( !assetData.asset_id || !assetData.rb_id){
+        return {
+            code : "1001",
+            message : "thieu asset id hoac rb_id"
+        }
     }
 
-    return result;
+
+    let images = [];
+    if (assetData.images && assetData.images.length != 0) {
+        for (image of assetData.images) {
+            images.push(image);
+        }
+        let assetUpdate = {
+            images : images
+        }
+        try {
+            let asset = await Asset.findOne({ _id: assetData.asset_id });
+            asset.images = images;
+            asset.save();
+            if( asset){
+                return {
+                    code : "1000"
+                }
+            }  
+        } catch (error) {
+            console.log(error);
+            return {
+                code : "9999"
+            }
+        }
+    }else{
+        console.log("no image");
+    }
 }
 
 
@@ -83,5 +109,6 @@ async function getAsset(assetQuery) {
 }
 module.exports = {
     addAsset,
-    getAsset
+    getAsset,
+    uploadImage,
   }

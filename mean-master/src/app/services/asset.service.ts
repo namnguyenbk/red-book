@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 const addAssetAPI = "/api/asset/add";
+const uploadAPI = "/api/asset/upload_image";
 @Injectable({
   providedIn: 'root'
 })
@@ -27,4 +28,9 @@ export class AssetService {
   addAsset( data : any){
     return this.http.post( addAssetAPI, data);
   }
+
+  uploadImage( data : any){
+    return this.http.post ( uploadAPI, data);
+  }
+
 }

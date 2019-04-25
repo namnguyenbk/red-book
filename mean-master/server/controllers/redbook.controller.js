@@ -153,7 +153,7 @@ async function addRB(infoRB){
     if(!infoRB.owner_id || !infoRB.street || !infoRB.district ||
        !infoRB.province || !infoRB.address || !infoRB.area || 
        !infoRB.type || !infoRB.exp ||
-       !infoRB.no_licence || !infoRB.use_for || !infoRB.source_provide ||
+       !infoRB.num_license || !infoRB.use_for || !infoRB.source_provide ||
        !infoRB.no_land){
            return {
                code: 1001,
@@ -174,7 +174,7 @@ async function addRB(infoRB){
     let type = infoRB.type;
     let exp = infoRB.exp;
     let date_time = infoRB.created;
-    let num_licence = infoRB.num_licence;
+    let num_license = infoRB.num_license;
     let use_for = infoRB.use_for;
     let source_provide = infoRB.source_provide;
     let no_land = infoRB.no_land;
@@ -189,7 +189,7 @@ async function addRB(infoRB){
         type: type,
         exp: exp,
         source_provide: source_provide,
-        num_licence: num_licence,
+        num_license: num_license,
         created: date_time,
         use_for: use_for,
         trans: trans,
