@@ -4,108 +4,25 @@ const Joi = require('joi');
 const Person = require('../models/person.model');
 const mongoose = require('mongoose');
 const Detail = require('../models/detail.model');
-const searchSchema = Joi.object({
-    province: Joi.string(),
-    district: Joi.string(),
-    street: Joi.string(),
-    address: Joi.string(),
-    owner_name: Joi.string(),
-    max_size: Joi.number().required().error(err =>{
-        return {
-            code: 1001,
-            result: {},
-            message: 'max_size is required!',
-        }
-    }),
-    min_size: Joi.number().required().error(err =>{
-        return {
-            code: 1001,
-            result: {},
-            message: 'min_size is required!',
-        }
-    }),
-});
-
-
-const addRbSchema = Joi.object({
-    owner_id: Joi.string().required(),
-    street: Joi.string().required(),
-    district: Joi.string().required(),
-    province: Joi.string().required(),
-    address: Joi.string().required(),
-    area: Joi.number().required(),
-    type: Joi.number().required(),
-    exp: Joi.string().required(),
-    date_time: Joi.date().required(),
-    num_licence: Joi.string().required(),
-    user_for: Joi.string().required(),
-    source_provide: Joi.string().required(),
-    no_land: Joi.number().required(),
-});
-
-const changeInfoRBSchema = Joi.object({
-    owner_id: Joi.string().required(),
-    rb_id: Joi.string().required(),
-});
 
 async function search(searchObj){
-    //searchObj = await  Joi.validate(searchObj, searchSchema,{ abortEarly: false});
-    if(!searchObj.max_size || !searchObj.min_size){
+
+    // validate just one parameter max_size, min_size is useless
+    if(!searchObj.max_size){
         return {
             code: 1001,
             result: {},
-            message: 'parameters is missing!'
+            message: 'parameter is missing!'
         };
     }
 
-
-
+    // get parameters
     let province_name = searchObj.province? searchObj.province:/.*/;
     let district_name = searchObj.district? searchObj.district: /.*/;
-    let street_name = searchObj.district?searchObj.street: /.*/;
+    let street_name = searchObj.street? searchObj.street: /.*/;
     let address = searchObj.address? searchObj.address: /.*/;
-    let owner_name = searchObj.owner_name? new RegExp(`^${searchObj.owner_name}$`): /.*/;
+    let owner_name = searchObj.owner_name? searchObj.owner_name: null;
     let max_size = parseInt(searchObj.max_size);
-    let min_size = searchObj.min_size;
-    
-    // let redBook1 = new Redbook({
-    //     _id: new mongoose.Types.ObjectId(),
-    //     no_land: 'N12',
-    //     type: 'nha o',
-    //     time_remain: '123',
-    //     source_provide: 'nha nuoc cap',
-    //     no_licence: 'DH123',
-    //     detail_id: 'dsadsd',
-    //     user_for: 'kinh doanh',
-    // });
-
-    // await redBook1.save();
-
-    // let addr1 = new Address({
-    //     province: 'Nam Dinh',
-    //     district: 'Giao Thuy',
-    //     street: '1B',
-    //     address: '123 A',
-    //     rbAddress: redBook1._id,
-    // });
-
-    // await addr1.save();
-
-    // let p1 = new Person({
-    //     _id: new mongoose.Types.ObjectId(),
-    //     firstname: 'An',
-    //     midname: 'Cong',
-    //     lastname: 'Luu',
-    //     fullname: 'Luu Cong An',
-    //     id_card_number: '333334433333',
-    //     birth: 20,
-    //     address_id: 'dasdsadas',
-    //     gender: 1,
-    //     status_id: 'dasdsa',
-    //     phonenumber: '034333333323'
-    // });
-
-    // await p1.save();
     
     let result = await Address.find({
         province: province_name,
@@ -115,23 +32,44 @@ async function search(searchObj){
     }).populate('rbAddress');
 
     if(result){
+
+        // get redbook obj from addres obj
         result = result.map(addrObj =>{
             return addrObj.rbAddress;
         });
 
-        result = result.filter(async (item)=>{
-            let personId = item.owner_id;
-            let person = await Person.find({}).where('_id').equals(personId);
-            if(person){
-                return person.fullname.match(owner_name) == null? false:true;
-            }
-            return false;
-        });
+        // deprecate null and undefined obj
+        result = result.filter( (item) => {return item !== null && item !==undefined });
 
-        if(result.length > max_size){
-            result  = result.slice(0,max_size);
+        // filter with owner name
+        let newResult = [];
+        if(owner_name != null){
+            await Promise.all(result.map(async (item)=>{
+                let personId = item.owner_id;
+                let person = await Person.find({}).where('_id').equals(personId);
+                let check = false;
+                if(person[0]){
+                    console.log('=========================================');
+                    console.log('-->'+person[0].fullname +'-->'+owner_name + '-->'+person[0].fullname.includes(owner_name));
+                    if(person[0].fullname.toLowerCase().includes(owner_name.toLowerCase())){
+                        await newResult.push(item);
+                    }
+                }
+            }));
         }
+
+        // get right quantity of max value
+        if(newResult.length > max_size){
+            newResult  = newResult.slice(0,max_size);
+        }
+
+        return {
+            code: 1000,
+            result: newResult,
+            message: 'OK'
+        };
     }
+
     return {
         code: 1000,
         result: result,
@@ -141,40 +79,27 @@ async function search(searchObj){
 
 
 async function addRB(infoRB){
-    //infoRB = await Joi.validate(infoRB1, addRbSchema,{ abortEarly: false});
-    // if(error){
-    //     let result = {
-    //         code: 1001,
-    //         message: 'invalid input data',
-    //     };
-    //     return result;
-    // }
-
-    if(!infoRB.owner_id || !infoRB.street || !infoRB.district ||
-       !infoRB.province || !infoRB.address || !infoRB.area || 
-       !infoRB.type || !infoRB.exp ||
-       !infoRB.num_license || !infoRB.use_for || !infoRB.source_provide ||
-       !infoRB.no_land){
+    if(!infoRB.owner_id || !infoRB.no_land || !infoRB.addr_id ||
+       !infoRB.type || !infoRB.exp || !infoRB.source_provide ||
+       !infoRB.no_license || !infoRB.use_for ||
+       !infoRB.area){
            return {
                code: 1001,
                result: {},
                message: 'parameter is missing!',
            }
        }
+    
+    // get address info
+    let addr_id = infoRB.addr_id;
+
+    // get note book info
     let owner_id = infoRB.owner_id;
-    let street = infoRB.street;
-    let district = infoRB.district;
-    let province = infoRB.province;
-    let address = infoRB.address;
-
-    let latidute = infoRB.latidute? infoRB.latidute: "";
-    let longtidute = infoRB.longtidute? infoRB.longtidute: "";
-
     let area = infoRB.area;
     let type = infoRB.type;
     let exp = infoRB.exp;
-    let date_time = infoRB.created;
-    let num_license = infoRB.num_license;
+    let created = infoRB.created;
+    let no_license = infoRB.no_license;
     let use_for = infoRB.use_for;
     let source_provide = infoRB.source_provide;
     let no_land = infoRB.no_land;
@@ -186,47 +111,47 @@ async function addRB(infoRB){
         _id: new mongoose.Types.ObjectId(),
         owner_id: owner_id,
         no_land: no_land,
+        addr_id: addr_id,
         type: type,
         exp: exp,
         source_provide: source_provide,
-        num_license: num_license,
-        created: date_time,
+        no_license: no_license,
+        created: created,
         use_for: use_for,
         trans: trans,
         area: area,
         images: images,
         description: description,
     });
-
-    
-
-    let addr = new Address({
-        _id: new mongoose.Types.ObjectId(),
-        province: province,
-        district: district,
-        street: street,
-        address: address,
-        rbAddress: newRB._id,
-        latidute: latidute,
-        longtidute: longtidute,
-    });
-
-    newRB.addr_id = addr._id;
     await newRB.save();
-    await addr.save();
 
     let result = {
         code: 1000,
-        result:{
-            redbook: newRB,
-            address: addr,
-        },
         rb_id: newRB._id,
         message: 'add red book successfully!'
     };
 
     return result;
 }
+
+async function change_owner(infoObj){
+    //const infoObj = await Joi.validate(infoObj1, changeInfoRBSchema,{ abortEarly: false});
+    if(!infoObj.rb_id || !infoObj.owner_id){
+        return {
+            code: 1001,
+            message: 'parameter is missing!',
+        }
+    }
+    let RB = await Redbook.findOne({_id: infoObj.rb_id});
+    RB.owner_id = infoObj.owner_id;
+    await RB.save();
+    return {
+        code: 1000,
+        RB,
+        rb_id: RB._id,
+    };
+}
+
 
 async function getDetail(objId){
     if(!objId){
@@ -264,5 +189,6 @@ async function getDetail(objId){
 module.exports = {
     search,
     addRB,
+    change_owner,
     getDetail,
 };

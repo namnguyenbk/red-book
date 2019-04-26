@@ -5,7 +5,7 @@ const RedBookSchema = new mongoose.Schema({
     _id: Schema.Types.ObjectId,
     owner_id: {
         type: String,
-        required: false,
+        required: true,
     },
     no_land: { // số thứ tự thửa đất
         type: String,
@@ -27,10 +27,11 @@ const RedBookSchema = new mongoose.Schema({
     source_provide: {
         type: String,
         required: true,
+        default: Date.now,
     },
-    num_license: {// số văn bản cấp sổ đỏ,
+    no_license: {// số văn bản cấp sổ đỏ,
         type: String,
-        required: false,
+        required: true,
     },
     created: {
         type: String,
@@ -55,12 +56,5 @@ const RedBookSchema = new mongoose.Schema({
     },
 
 });
-
-// const Id_tran = new mongoose.Schema({
-//     id_tran:{
-//         type: String,
-//         required: true,
-//     }
-// });
 
 module.exports = mongoose.model('RedBook', RedBookSchema);

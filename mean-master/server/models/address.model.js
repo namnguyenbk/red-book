@@ -26,7 +26,11 @@ const AddressSchema = new mongoose.Schema({
         type: Number,
         required: false,
     },
-    rbAddress:{type: Schema.Types.ObjectId, ref: 'RedBook'},
+    rbAddress:{
+        type: Schema.Types.ObjectId, 
+        ref: 'RedBook',
+        required: false,
+    },
 
 });
 
