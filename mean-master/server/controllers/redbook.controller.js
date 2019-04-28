@@ -56,18 +56,31 @@ async function search(searchObj){
                     }
                 }
             }));
+
+
+            if(newResult.length > max_size){
+                newResult  = newResult.slice(0,max_size);
+            }
+    
+            return {
+                code: 1000,
+                result: newResult,
+                message: 'OK'
+            };
         }
 
         // get right quantity of max value
-        if(newResult.length > max_size){
-            newResult  = newResult.slice(0,max_size);
+
+        if(result.length > max_size){
+            result  = result.slice(0,max_size);
         }
 
         return {
             code: 1000,
-            result: newResult,
+            result: result,
             message: 'OK'
         };
+        
     }
 
     return {
