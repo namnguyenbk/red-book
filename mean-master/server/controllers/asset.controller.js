@@ -63,6 +63,7 @@ async function uploadImage(assetData){
     let images = [];
     if (assetData.images && assetData.images.length != 0) {
         for (image of assetData.images) {
+            if( image)
             images.push(image);
         }
         let assetUpdate = {
@@ -99,12 +100,16 @@ async function getAsset(assetQuery) {
         }
     }
 
-    let as = await Asset.findOne({rb_id: assetQuery.rb_id});
-    
-
-    return {
-        code: 10000,
-        assets: as.assets,
+    let as = await Asset.find({rb_id: assetQuery.rb_id});
+    if(as){
+        return {
+            code: 1000,
+            assets: as,
+        }
+    }else{
+        return {
+            code: 1001,
+        }
     }
 }
 module.exports = {

@@ -29,9 +29,10 @@ const routes: Routes = [
       component: RedbookListComponent,
     },
     {
-      path: 'detail',
+      path: 'detail/:redbook_id',
       component: RedbookInfoComponent,
     },
+    
   ]
 },
 // {

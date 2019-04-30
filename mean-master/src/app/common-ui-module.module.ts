@@ -23,6 +23,8 @@ import {
 
 } from '@covalent/core';
 
+import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
+
 import { CovalentDialogsModule} from '@covalent/core/dialogs';
 import { CovalentLoadingModule} from '@covalent/core/loading';
 import { TdDialogService} from '@covalent/core/dialogs';
@@ -92,6 +94,7 @@ import {
         CovalentMessageModule,
 
         NotifierModule,
+        NgZorroAntdModule,
 
         RouterModule
     ],
@@ -127,6 +130,7 @@ import {
         MatStepperModule,
         MaterialFileInputModule,
         MatExpansionModule,
+        NgZorroAntdModule,
         
 
         CovalentLayoutModule,

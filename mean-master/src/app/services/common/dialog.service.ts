@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TdDialogService } from '@covalent/core/dialogs';
 import {MatSnackBar} from '@angular/material';
+import { NzNotificationService } from 'ng-zorro-antd';
 @Injectable({
   providedIn: 'root'
 })
@@ -9,7 +10,8 @@ export class DialogService {
 
   constructor( 
     private dialogService : TdDialogService,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar, 
+    private notify : NzNotificationService) {
      }
 
   openAlert(message): void {
@@ -53,6 +55,14 @@ export class DialogService {
     this.snackBar.open(content, 'OK',{
       duration: 3000
     });
+  }
+
+  showNotify( type, title, content){
+    this.notify.create(
+      type,
+      title,
+      content
+    );
   }
 
 }

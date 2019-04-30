@@ -3,7 +3,7 @@
       <!-- <mat-step [stepControl]="thirdFormGroup" [editable]="true"> -->
     <ng-template matStepLabel>Thông tin chủ sở hữu</ng-template>
     <!-- <app-add-asset [assetForm]="thirdFormGroup"></app-add-asset> -->
-    <app-add-person [personForm]="firstFormGroup">
+    <app-add-person #person [personForm]="firstFormGroup">
     </app-add-person>
     <div>
       <button mat-button matStepperNext color="primary">Tiếp</button>
@@ -11,7 +11,7 @@
   </mat-step>
   <mat-step [stepControl]="secondFormGroup" [editable]="true">
     <ng-template matStepLabel>Thông tin đất</ng-template>
-    <app-add-redbook [redbookForm]="secondFormGroup"></app-add-redbook>
+    <app-add-redbook #redbook [redbookForm]="secondFormGroup"></app-add-redbook>
     <div>
         <button mat-button matStepperPrevious color="primary">Trở về</button>
         <button mat-button matStepperNext color="primary">Tiếp</button>
@@ -19,8 +19,8 @@
   </mat-step>
   <mat-step [stepControl]="thirdFormGroup" [editable]="true">
     <ng-template matStepLabel >Tài sản</ng-template>
-    <app-add-asset [assetForm]="thirdFormGroup" (onComplete)="completeAdd()"></app-add-asset>
+    <app-add-asset #asset [assetForm]="thirdFormGroup" (onComplete)="completeAdd()"></app-add-asset>
   </mat-step>
 </mat-vertical-stepper>
 
-<app-add-trans></app-add-trans>
+<!-- <app-add-trans></app-add-trans> -->

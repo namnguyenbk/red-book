@@ -31,7 +31,7 @@ const RedBookSchema = new mongoose.Schema({
     },
     no_license: {// số văn bản cấp sổ đỏ,
         type: String,
-        required: true,
+        required: false,
     },
     created: {
         type: String,

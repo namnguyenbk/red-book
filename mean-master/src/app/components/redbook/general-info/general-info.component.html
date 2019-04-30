@@ -1,0 +1,52 @@
+<mat-card *ngIf="!personData">
+    <nz-skeleton></nz-skeleton>
+</mat-card>
+<mat-card class="full-width" *ngIf="personData">
+  <mat-card-header>
+    <mat-card-title>
+      <span class="mat-title">I. Thông tin chung</span>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <div nz-row>
+      <div nz-col nzSpan="24">
+        <span class="mat-subheading-2"> Chủ sở hữu</span>
+      </div>
+    </div>
+    <div nz-row>
+      <div nz-col nzSpan="3">
+        <span></span>
+      </div>
+      <div nz-col nzSpan="21">
+        <p class="mat-body-strong">{{personData.gender}}: {{personData.fullname}}</p>
+        <p>Ngày sinh: {{personData.birth}}  - Số CMND: {{personData.id_card_number}}</p>
+        <p>Địa chỉ thường trú: {{personData.address}}</p>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div nz-row>
+        <div nz-col nzSpan="24">
+          <span class="mat-subheading-2">Thửa đất được quyền sử dụng</span>
+        </div>
+      </div>
+      <div nz-row>
+        <div nz-col nzSpan="3">
+          <span></span>
+        </div>
+        <div nz-col nzSpan="21">
+          <p>1. Mã số : RB120{{redbookData.no_land}}  Thuộc thửa bản đồ số: 32</p>
+          <p>2. Địa chỉ: {{redbookData.address}} </p>
+          <p>3. Diện tích: {{redbookData.area}} m<sup>2</sup> ( Bằng chữ: )</p>
+          <p>4. Hình thức sử dụng: {{redbookData.type}}</p>
+          <p>  + Sử dụng chung: 0 m<sup>2</sup></p>
+          <p>  + Sử dụng riêng: {{redbookData.area}} m<sup>2</sup></p>
+          <p>5. Mục đích sử dụng: {{redbookData.use_for}}</p>
+          <p>6. Thời hạn sử dụng: {{redbookData.exp}} năm</p>
+          <p>7. Nguồn gốc: {{redbookData.source_provide}}</p>
+        </div>
+      </div>
+  </mat-card-content>
+  
+
+</mat-card>

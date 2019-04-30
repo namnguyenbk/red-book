@@ -1,5 +1,6 @@
 const Transaction = require('../models/transaction.model');
 const Redbook = require('../models/redbook.model');
+const Person = require('../models/person.model');
 const mongoose = require('mongoose');
 
 
@@ -47,8 +48,20 @@ async function list_trans(req) {
             for( let i=0; i < listId.length; i ++){
                 id = listId[i];
                 let trans = await Transaction.findOne({ _id: id });
+                let transData = new Object();
+                transData.id = trans._id;
+                transData.created = trans.created;
+                transData.type = trans.type;
+                transData.description = trans.description;
+                transData.transaction_amount = trans.transaction_amount;
                 if (trans) {
-                    trans_data.push(trans);
+                    let partyA = await Person.findOne({ _id: trans.partyA_id});
+                    transData.partyA = partyA;
+                    // trans.set('partyA', partyA);
+                    let partyB = await Person.findOne({ _id: trans.partyB_id});
+                    // trans.set('partyB', partyB);
+                    transData.partyB = partyB;
+                    trans_data.push(transData);
                 }
             }
             return {
@@ -63,6 +76,8 @@ async function list_trans(req) {
         }
         // internal error
     } catch (error) {
+        console.log(error);
+        
         return {
             code: "999"
         }

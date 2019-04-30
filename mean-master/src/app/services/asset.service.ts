@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-const assetDetailAPI = "/asset/get";
+const assetDetailAPI = "api/asset/get";
 const addAssetAPI = "/api/asset/add";
 const uploadAPI = "/api/asset/upload_image";
 @Injectable({

@@ -15,9 +15,9 @@ import 'rxjs/add/operator/mergeMap';
 })
 export class AddPartyComponent implements OnInit {
 
-  @ViewChild(AddRedbookComponent) redbookForm: AddRedbookComponent;
-  @ViewChild(AddPersonComponent) personForm: AddPersonComponent;
-  @ViewChild(AddAssetComponent) asset: AddAssetComponent;
+  @ViewChild('redbook') redbookForm: AddRedbookComponent;
+  @ViewChild('person') personForm: AddPersonComponent;
+  @ViewChild('asset') asset: AddAssetComponent;
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;

@@ -92,10 +92,10 @@ async function search(searchObj){
 
 
 async function addRB(infoRB){
-    if(!infoRB.owner_id || !infoRB.no_land || !infoRB.addr_id ||
+    if(!infoRB.owner_id || !infoRB.no_land || !infoRB.province ||
        !infoRB.type || !infoRB.exp || !infoRB.source_provide ||
-       !infoRB.no_license || !infoRB.use_for ||
-       !infoRB.area){
+       !infoRB.no_license || !infoRB.use_for || !infoRB.district ||
+       !infoRB.street || !infoRB.address || !infoRB.area){
            return {
                code: 1001,
                result: {},
@@ -104,7 +104,19 @@ async function addRB(infoRB){
        }
     
     // get address info
-    let addr_id = infoRB.addr_id;
+    let province = infoRB.province;
+    let district = infoRB.district;
+    let street = infoRB.street;
+    let address = infoRB.address;
+
+    let newAddress = new Address({
+        _id: new mongoose.Types.ObjectId(),
+        province,
+        district,
+        street,
+        address
+    });
+    await newAddress.save();
 
     // get note book info
     let owner_id = infoRB.owner_id;
@@ -124,7 +136,7 @@ async function addRB(infoRB){
         _id: new mongoose.Types.ObjectId(),
         owner_id: owner_id,
         no_land: no_land,
-        addr_id: addr_id,
+        addr_id: newAddress._id,
         type: type,
         exp: exp,
         source_provide: source_provide,
@@ -194,7 +206,7 @@ async function getDetail(objId){
     }
 
     return {
-        code: 10000,
+        code: 1000,
         message: 'Not found redbook',
     }
 

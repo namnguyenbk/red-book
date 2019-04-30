@@ -52,7 +52,7 @@ export class RedbookService {
   }
 
   getDetail( rbId){
-    return this.http.post( detailAPI, { rd_id : rbId});
+    return this.http.post( detailAPI, { rb_id : rbId});
   }
 
 }

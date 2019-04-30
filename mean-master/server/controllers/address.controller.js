@@ -29,6 +29,24 @@ async function add_addr(addrInfo) {
     }
 }
 
+async function getFullAddr(req){
+    if(!req.addr_id){
+        return {
+            code : "999"
+        }
+    }else{
+        let addr = await Address.findOne({_id: req.addr_id});
+        if(addr){
+            let fullAddr = addr.address + " " + addr.street + " " + addr.district + " " + addr.province;
+            return {
+                code : "1000",
+                full_addr : fullAddr,
+            }
+        }
+    }
+}
+
 module.exports = {
-    add_addr
+    add_addr,
+    getFullAddr,
   }

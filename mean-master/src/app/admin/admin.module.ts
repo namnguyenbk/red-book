@@ -21,6 +21,7 @@ import { AddPartyComponent } from './add-party/add-party.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { environment } from '../../environments/environment';
+import { RedbooksComponent } from '../components/redbook/redbooks/redbooks.component';
 
 // import { AddressComponent} from '../components/address/address.component';
 @NgModule({
@@ -32,7 +33,7 @@ import { environment } from '../../environments/environment';
     AddTransComponent,
     EditRedbookComponent,
     EditPersonComponent,
-    RedbookListComponent,
+    // RedbookListComponent,
     ManageListComponent,
     AddPartyComponent,
   ],
@@ -54,6 +55,11 @@ import { environment } from '../../environments/environment';
   ],
   providers: [
     OnlyAdminUsersGuard
+  ],
+
+  exports: [
+    AddTransComponent
+    
   ]})
 export class AdminModule {}
 export function HttpLoaderFactory(http: HttpClient) {

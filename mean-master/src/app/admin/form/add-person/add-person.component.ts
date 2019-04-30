@@ -49,10 +49,10 @@ export class AddPersonComponent implements OnInit, OnChanges {
 
   getPostalAddr() {
     return this.addrOwner = {
-      province: this.addr.provinceName,
-      district: this.addr.districtName,
-      street: this.addr.wardName,
-      address: this.addr.detail,
+      province: this.addr.provinceName? this.addr.provinceName : 'Hà Nội',
+      district: this.addr.districtName? this.addr.districtName : 'Hai Bà Trưng',
+      street: this.addr.wardName? this.addr.wardName : 'Bách Khoa',
+      address: this.addr.detail? this.addr.detail : '43 Trần Đại Nghĩa',
     }
 
   }

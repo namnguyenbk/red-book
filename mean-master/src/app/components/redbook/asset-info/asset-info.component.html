@@ -1,0 +1,34 @@
+<mat-card *ngIf="!assetData">
+    <nz-skeleton></nz-skeleton>
+</mat-card>
+<mat-card class="full-width" *ngIf="assetData">
+    <mat-card-header>
+        <mat-card-title class="mat-title">
+          II. Thông tin tài sản đi kèm
+        </mat-card-title>
+      </mat-card-header>
+    <mat-card-content>
+      <div nz-row>
+        <div nz-col nzSpan="24">
+          <span class="mat-subheading-2" >Danh sách tài sản</span>
+        </div>
+      </div>
+      <div nz-row *ngFor="let asset of assetData">
+        <div nz-col nzSpan="3">
+          <span></span>
+        </div>
+        <div nz-col nzSpan="13">
+          <p class="mat-body-strong">+ Loại hình tài sản: {{asset.type}}</p>
+          <p>+ Diện tích xây dựng: {{asset.area}}  m<sup>2</sup>  - Diện tích sử dụng: {{asset.area}} m<sup>2</sup></p>
+          <p>+ Thời gian được thêm vào: {{asset.date}}   </p>
+          <p>+. Chi tiết: {{asset.detail_info}}  </p>
+        </div>
+        <div nz-col nzSpan="6">
+          <app-image-view *ngIf="asset.images" [src]="asset.images"></app-image-view>
+        </div>
+        <mat-divider *ngIf="assetData"></mat-divider>
+      </div>
+    </mat-card-content>
+    
+  
+  </mat-card>

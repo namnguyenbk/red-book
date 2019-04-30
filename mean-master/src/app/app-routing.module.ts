@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth-guard.service';
 import { HomeComponent } from './components/home/home.component';
+import { ImageViewComponent } from './components/image-view/image-view.component';
 const routes: Routes = [{
   path: '',
   component: HomeComponent
@@ -16,6 +17,11 @@ const routes: Routes = [{
   path: 'control',
   loadChildren: 'app/guest/guest.module#GuestModule'
 },
+{
+  path: 'testimageview',
+  component: ImageViewComponent
+},
+
 ];
 
 @NgModule({

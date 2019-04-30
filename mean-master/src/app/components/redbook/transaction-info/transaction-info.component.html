@@ -1,0 +1,33 @@
+<mat-card *ngIf="!listTrans">
+    <nz-skeleton ></nz-skeleton>
+</mat-card>
+<mat-card *ngIf="listTrans" class="full-width">
+  <mat-card-header>
+      <mat-card-title class="mat-title">
+          III. Lịch sử giao dịch
+        </mat-card-title>
+  </mat-card-header>
+    <mat-card-content>
+      <nz-timeline nzMode="alternate" >
+        <nz-timeline-item nzColor="red">Khởi tạo</nz-timeline-item>
+        <!-- <nz-timeline-item nzColor="green">Solve initial network problems 2015-09-01</nz-timeline-item>
+        <nz-timeline-item [nzDot]="dotTemplate">Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+          accusantium doloremque laudantium, totam rem
+          aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+          explicabo.</nz-timeline-item>
+        <nz-timeline-item nzColor="red">Network problems being solved 2015-09-01</nz-timeline-item>
+        <nz-timeline-item>Create a services site 2015-09-01</nz-timeline-item> -->
+        <nz-timeline-item [nzDot]="dotTemplate" *ngFor="let trans of listTrans">
+          <p>Thời gian: {{trans.created}} </p>
+          <p>Bên A: {{trans.partyA.fullname}}</p>
+          <p>Bên B: {{trans.partyB.fullname}} </p>
+          <p>Hình thức: {{trans.type}} </p>
+          <p>Chi tiết: {{trans.description}} </p>
+        </nz-timeline-item>
+        <nz-timeline-item nzColor="green"></nz-timeline-item>
+      </nz-timeline>
+    </mat-card-content>
+  </mat-card>
+  <ng-template #dotTemplate>
+    <i nz-icon type="clock-circle-o" style="font-size: 16px;"></i>
+  </ng-template>

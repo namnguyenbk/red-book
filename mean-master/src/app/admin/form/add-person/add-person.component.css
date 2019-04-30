@@ -6,3 +6,8 @@
     margin-bottom: 20px;
     margin-top: 20px;
 }
+
+::ng-deep .cdk-overlay-container mat-datepicker{
+    z-index:2000 !important;
+  }
+  

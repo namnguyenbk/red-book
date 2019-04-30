@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {GuestComponent} from '../guest/guest.component';
 import {RedbooksComponent} from '../components/redbook/redbooks/redbooks.component';
+import { RedbookInfoComponent } from '../components/redbook/redbook-info/redbook-info.component';
 
 const routes: Routes = [
   {
@@ -12,10 +13,10 @@ const routes: Routes = [
       path: 'query',
       component: RedbooksComponent,
     },
-    // {
-    //   path: 'test2',
-    //   component: ManageListComponent,
-    // },
+    {
+      path: 'detail/:redbook_id',
+      component: RedbookInfoComponent,
+    },
   ]
 },
 ];

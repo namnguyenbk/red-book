@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TransHistoryComponent } from './trans-history.component';
+import { AssetInfoComponent } from './asset-info.component';
 
-describe('TransHistoryComponent', () => {
-  let component: TransHistoryComponent;
-  let fixture: ComponentFixture<TransHistoryComponent>;
+describe('AssetInfoComponent', () => {
+  let component: AssetInfoComponent;
+  let fixture: ComponentFixture<AssetInfoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TransHistoryComponent ]
+      declarations: [ AssetInfoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TransHistoryComponent);
+    fixture = TestBed.createComponent(AssetInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

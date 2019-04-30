@@ -6,6 +6,7 @@ import dataWard from '../local-data/xa_phuong.json';
 import {address} from '../../interface/common-interface';
 
 const addAdressAPI = "/api/address/add";
+const getAdressAPI = "/api/address/get";
 
 var provinces: Array<any> = (<any>dataProvince);
 provinces = converJSONtoArray(provinces);
@@ -49,6 +50,10 @@ export class AddressService {
 
   getDate( dateTime : Date){
     return dateTime.getDate() + '/'+ dateTime.getMonth()+ '/' + dateTime.getFullYear();
+  }
+
+  getAddr( addrId : string){
+    return this.http.post(getAdressAPI, { addr_id : addrId});
   }
 
 

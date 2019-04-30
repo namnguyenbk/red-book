@@ -39,14 +39,32 @@
         </mat-form-field>
       </mat-grid-tile>
       <mat-grid-tile>
-        <mat-form-field>
+        <!-- <mat-form-field>
           <input matInput placeholder="Thời hạn( năm)" formControlName="exp" type="number" required>
-        </mat-form-field>
+        </mat-form-field> -->
+        <nz-row>
+            <label>Thời hạn: </label>
+        </nz-row>
+        <nz-row>
+            <nz-col nzSpan="12">
+              <nz-slider [nzMin]="1" [nzMax]="50" formControlName="exp" [(ngModel)]="exp" ></nz-slider>
+            </nz-col>
+            <div nz-col nzSpan="4">
+              <nz-input-number
+                [nzMin]="1"
+                [nzMax]="50"
+                [ngStyle]="{ marginLeft: '16px' }"
+                formControlName="exp"
+                [(ngModel)]="exp"
+              ></nz-input-number>
+            </div>
+          </nz-row>
       </mat-grid-tile>
       <mat-grid-tile>
         <mat-form-field>
             <input matInput placeholder="Số hiệu văn bản" formControlName="num_license" required>
         </mat-form-field>
+        
       </mat-grid-tile>
       <mat-grid-tile>
           <mat-form-field>
@@ -64,4 +82,5 @@
     </mat-grid-list>
   <span>Địa chỉ: </span>
   <app-address #addrRB></app-address>
+  <!-- <button (click)="display()">display</button> -->
 </form>

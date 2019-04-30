@@ -14,14 +14,16 @@ import { AuthHeaderInterceptor } from './interceptors/header.interceptor';
 import { CatchErrorInterceptor } from './interceptors/http-error.interceptor';
 import { GuestModule } from './guest/guest.module';
 import { AppRoutingModule } from './app-routing.module';
+import { ImageViewerModule } from "ngx-image-viewer";
+
 
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { RedbooksComponent } from './components/redbook/redbooks/redbooks.component';
-import { TransHistoryComponent } from './components/redbook/trans-history/trans-history.component';
-import { PersonInfoComponent } from './components/redbook/person-info/person-info.component';
 import { RedbookInfoComponent } from './components/redbook/redbook-info/redbook-info.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { AssetInfoComponent} from './components/redbook/asset-info/asset-info.component';
+import { TransactionInfoComponent} from './components/redbook/transaction-info/transaction-info.component';
 
 import { TdDialogService} from '@covalent/core/dialogs';
 import { TdLoadingService} from '@covalent/core/loading';
@@ -29,16 +31,23 @@ import { SearchItemComponent } from './components/search-item/search-item.compon
 import { AddressComponent } from './components/address/address.component';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-
+import { GeneralInfoComponent } from './components/redbook/general-info/general-info.component';
+import { ImageViewComponent } from './components/image-view/image-view.component';
+import { RedbookListComponent} from './admin/redbooks/redbooks.component'
+import { RedbookListItemComponent } from './components/redbook/redbook-list-item/redbook-list-item.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     RedbooksComponent,
-    TransHistoryComponent,
-    PersonInfoComponent,
     RedbookInfoComponent,
     SearchBarComponent,
+    GeneralInfoComponent,
+    AssetInfoComponent,
+    TransactionInfoComponent,
+    ImageViewComponent,
+    RedbookListComponent,
+    RedbookListItemComponent,
     // SearchItemComponent,
     // AddressComponent, 
   ],
@@ -53,6 +62,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
     GuestModule,
     AppRoutingModule,
     CommonModuleUi,
+    ImageViewerModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,

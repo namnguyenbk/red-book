@@ -96,3 +96,10 @@
   //    cursor: -webkit-grabbing;
   //  }
  }
+
+ .cdk-overlay-connected-position-bounding-box {
+  z-index: 99999 !important;
+}
+.cdk-global-overlay-wrapper {
+  z-index: 1000 !important;
+}

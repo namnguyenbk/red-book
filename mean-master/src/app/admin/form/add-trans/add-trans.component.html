@@ -1,6 +1,6 @@
 <mat-grid-list cols="2" rowHeight="4:1">
   <mat-grid-tile>
-    <p class="example-full-width mat-h1">Chủ ở hữu hiện tại : Nam</p>
+    <p class="example-full-width mat-body-strong">Chủ sở hữu hiện tại : {{ownername}}</p>
   </mat-grid-tile>
   <mat-grid-tile>
     <form class="example-form" class="example-full-width">
@@ -13,33 +13,16 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-      <button mat-mini-fab color="accent" matTooltip="Thêm chủ sở hữu khác" >
+      <button mat-mini-fab color="accent" matTooltip="Thêm chủ sở hữu khác" (click)="displayModalPerson()" >
           <mat-icon >add</mat-icon>
       </button>
     </form>
-    <!-- <mat-slide-toggle [checked]="isHasOwner">Thêm chủ sở hữu</mat-slide-toggle> -->
   </mat-grid-tile>
-  <!-- <mat-grid-tile class="example-full-width" [colspan]="2">
-      <mat-accordion>
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Nếu chưa có chủ sở hữu
-              </mat-panel-title>
-              <mat-panel-description>
-               Nhập thông tin chủ sở hữu mới
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-        
-          </mat-expansion-panel>
-      
-        </mat-accordion>
-  </mat-grid-tile> -->
   <mat-grid-tile>
       <mat-form-field class="example-full-width">
           <input matInput [matDatepicker]="picker" placeholder="Thời gian thực hiện" [(ngModel)]="date" required>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
+          <mat-datepicker touchUi #picker></mat-datepicker>
         </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile>
@@ -66,7 +49,20 @@
         </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile>
-      <button mat-raised-button color="primary" (click)="addTrans()">Lưu giao dịch</button>
-      <!-- <button mat-raised-button color="primary" (click)="addTrans()">Lưu giao dịch</button> -->
+
+  </mat-grid-tile>
+  <mat-grid-tile>
+      <button mat-raised-button color="primary" (click)="addTrans()">Lưu</button>
   </mat-grid-tile>
 </mat-grid-list>
+
+ <!-- form add person -->
+<nz-modal [(nzVisible)]="isVisibleModal" nzTitle="Thêm chủ sở hữu" (nzOnCancel)="cancelModal()"  nzZIndex="50"
+    (nzOnOk)="addPerson()" nzWidth="1000" nzHeight="600" [nzFooter]="modalFooter"
+    >
+    <app-add-person #addPerson *ngIf="personForm" [personForm]="personForm"></app-add-person>
+    <ng-template #modalFooter>
+        <button nz-button nzType="default" (click)="cancelModal()">Huỷ</button>
+        <button nz-button nzType="primary" (click)="addPerson()" >OK</button>
+      </ng-template>
+  </nz-modal>
