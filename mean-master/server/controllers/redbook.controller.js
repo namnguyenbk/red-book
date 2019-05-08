@@ -116,7 +116,7 @@ async function addRB(infoRB){
         street,
         address
     });
-    await newAddress.save();
+    
 
     // get note book info
     let owner_id = infoRB.owner_id;
@@ -148,6 +148,8 @@ async function addRB(infoRB){
         images: images,
         description: description,
     });
+    newAddress.rbAddress = newRB._id;
+    await newAddress.save();
     await newRB.save();
 
     let result = {
