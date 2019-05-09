@@ -1,16 +1,20 @@
 <mat-card *ngIf="!assetData">
     <nz-skeleton></nz-skeleton>
 </mat-card>
-<mat-card class="full-width" *ngIf="assetData">
+<mat-card class="full-width" *ngIf="assetData" class="card-back">
     <mat-card-header>
-        <mat-card-title class="mat-title">
-          II. Thông tin tài sản đi kèm
+        <mat-card-title >
+        <span class="mat-title">
+            <mat-icon matListIcon color="primary">assessment</mat-icon>
+          II. Thông tin tài sản đi kèm</span>  
         </mat-card-title>
       </mat-card-header>
     <mat-card-content>
       <div nz-row>
         <div nz-col nzSpan="24">
-          <span class="mat-subheading-2" >Danh sách tài sản</span>
+          <span class="mat-subheading-2" >
+              <mat-icon matListIcon color="primary">sort</mat-icon>
+            Danh sách tài sản</span>
         </div>
       </div>
       <div nz-row *ngFor="let asset of assetData">

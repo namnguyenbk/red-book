@@ -3,3 +3,18 @@
     height: 650px;
     overflow: auto;
 }
+
+.text-header{
+    color: purple;
+}
+
+span{
+    color: #1976D2
+}
+p{
+    font-weight: bold;
+}
+
+.card-back{
+    background: #eceff1;
+}

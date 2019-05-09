@@ -1,3 +1,7 @@
+<mat-card class="card-back">
+<p class="mat-title">
+    <mat-icon matListIcon color="primary">image_search</mat-icon>
+    TRA CỨU THÔNG TIN</p>
 <div class="container">
   <mat-grid-list [cols]="breakpoint" rowHeight="5:5" (window:resize)="onResize($event)">
     <mat-grid-tile>
@@ -17,10 +21,13 @@
   </td-search-input>
     </mat-grid-tile>
     <mat-grid-tile>
-        <button mat-button class="btn-nomally" (click)="onSearch()" >Tra cứu </button>
+        <button mat-raised-button color="primary" (click)="onSearch()" >
+            <mat-icon matListIcon>search</mat-icon>
+          Tra cứu </button>
     </mat-grid-tile>
   </mat-grid-list>
   <span *ngIf="keySearch" class="text-super">Tìm kiếm: {{keySearch}} </span>
   <mat-divider></mat-divider>
 </div>
+</mat-card>
 

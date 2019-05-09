@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 import { CovalentHttpModule } from '@covalent/http';
 import { CovalentDynamicFormsModule } from '@covalent/dynamic-forms';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
-import { NotifierModule } from 'angular-notifier';
 import {
     CovalentLayoutModule,
     CovalentStepsModule,
@@ -93,7 +92,6 @@ import {
         CovalentDataTableModule,
         CovalentMessageModule,
 
-        NotifierModule,
         NgZorroAntdModule,
 
         RouterModule
@@ -149,7 +147,6 @@ import {
         CovalentDataTableModule,
         CovalentMessageModule,
 
-        NotifierModule,
     ],
     providers: [
         //   TdDialogService,

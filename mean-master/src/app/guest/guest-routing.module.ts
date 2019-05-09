@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {GuestComponent} from '../guest/guest.component';
 import {RedbooksComponent} from '../components/redbook/redbooks/redbooks.component';
 import { RedbookInfoComponent } from '../components/redbook/redbook-info/redbook-info.component';
-
+import {AddressMapComponent} from '../components/address-map/address-map.component';
 const routes: Routes = [
   {
   path: 'control',
@@ -16,6 +16,10 @@ const routes: Routes = [
     {
       path: 'detail/:redbook_id',
       component: RedbookInfoComponent,
+    },
+    {
+      path: 'testmap',
+      component: AddressMapComponent,
     },
   ]
 },

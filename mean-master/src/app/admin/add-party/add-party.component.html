@@ -6,15 +6,15 @@
     <app-add-person #person [personForm]="firstFormGroup">
     </app-add-person>
     <div>
-      <button mat-button matStepperNext color="primary">Tiếp</button>
+      <button mat-raised-button color="primary" matStepperNext color="primary">Tiếp</button>
     </div>
   </mat-step>
   <mat-step [stepControl]="secondFormGroup" [editable]="true">
     <ng-template matStepLabel>Thông tin đất</ng-template>
     <app-add-redbook #redbook [redbookForm]="secondFormGroup"></app-add-redbook>
     <div>
-        <button mat-button matStepperPrevious color="primary">Trở về</button>
-        <button mat-button matStepperNext color="primary">Tiếp</button>
+        <button mat-button matStepperPrevious >Trở về</button>
+        <button mat-raised-button color="primary" matStepperNext color="primary">Tiếp</button>
       </div>
   </mat-step>
   <mat-step [stepControl]="thirdFormGroup" [editable]="true">

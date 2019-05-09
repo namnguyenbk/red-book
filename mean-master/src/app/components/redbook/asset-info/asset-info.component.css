@@ -10,3 +10,11 @@
     color: #fff;
     overflow: hidden;
   }
+
+  span{
+    color: #1976D2
+}
+
+.card-back{
+    background: #eceff1;
+}

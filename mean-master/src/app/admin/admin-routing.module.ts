@@ -10,6 +10,7 @@ import { RedbooksComponent} from '../components/redbook/redbooks/redbooks.compon
 import { RedbookListComponent} from './redbooks/redbooks.component';
 import { AddPartyComponent} from '../admin/add-party/add-party.component';
 import { RedbookInfoComponent} from '../components/redbook/redbook-info/redbook-info.component'
+import { MapComponent } from '../components/map/map.component';
 const routes: Routes = [
   {
   path: 'admin',
@@ -21,8 +22,8 @@ const routes: Routes = [
       component: AddPartyComponent,
     },
     {
-      path: 'query',
-      component: RedbooksComponent,
+      path: 'map',
+      component: MapComponent,
     },
     {
       path: 'list',

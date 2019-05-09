@@ -1,4 +1,5 @@
 <app-search-bar (search)="updateList()"></app-search-bar>
+<mat-card >
 <mat-nav-list flex>
   <!-- <ng-template let-item let-i="data" let-last="last" ngFor [ngForOf]="rbOnPage"> -->
   <!-- <a mat-list-item > -->
@@ -9,12 +10,18 @@
                 <button class="margin-5" mat-icon-button matTooltip="Xem trên Google map"><mat-icon color="primary">place</mat-icon></button>
                 <button class="margin-5" mat-icon-button matTooltip="Xoá sổ đỏ này"><mat-icon color="warn">delete_forever</mat-icon></button>
                 <button class="margin-5" mat-icon-button matTooltip="Đang nghĩ thêm"><mat-icon>more_vert</mat-icon></button> -->
-  <app-redbook-list-item *ngFor="let rb of rbOnPage" [redbook]="rb" (onAddTrans)="onAddTrans($event)"></app-redbook-list-item>
+  <app-redbook-list-item *ngFor="let rb of rbOnPage" [redbook]="rb" (onDisplayMap)="onDisplayMap($event)"
+    (onAddTrans)="onAddTrans($event)"
+    (onUploadImage)="onUploadImage($event)"
+    (onDelete)="onDelete($event)">
+
+  </app-redbook-list-item>
 
   <!-- </a> -->
 
   <!-- </ng-template> -->
 </mat-nav-list>
+
 <td-paging-bar #pagingBarPageSize [firstLast]="true" [pageSize]="pageSize" [total]="numRedbook"
   (change)="changePager($event)">
   <span hide-xs>Số lượng trên 1 trang: </span>
@@ -25,10 +32,39 @@
   </mat-select>
   <span>{{pagingBarPageSize.range}} <span hide-xs>of {{pagingBarPageSize.total}}</span></span>
 </td-paging-bar>
+</mat-card>
 
-<nz-modal [(nzVisible)]="isVisibleModalTrans" nzTitle="Thêm giao dịch" (nzOnCancel)="cancelModalTrans()"  nzZIndex="50" nzWidth="1000" nzHeight="600" [nzFooter]="modalFooter">
-    <!-- <app-add-trans #addTrans *ngIf="dataAddTrans" [rbId]="dataAddTrans.rbId" [ownername]="dataAddtrans.ownername" [ownerId]="dataAddTrans.ownerId"></app-add-trans> -->
-    <app-add-trans #addTrans *ngIf="rbId" [rbId]="rbId" [ownername]="ownername" [ownerId]="ownerId"></app-add-trans>
-    <ng-template #modalFooter>
-      </ng-template>
-  </nz-modal>
+<nz-modal [(nzVisible)]="isVisibleModalTrans" nzTitle="Thêm giao dịch" (nzOnCancel)="cancelModalTrans()" nzZIndex="50"
+  nzWidth="1000" nzHeight="600" [nzFooter]="modalFooter">
+  <!-- <app-add-trans #addTrans *ngIf="dataAddTrans" [rbId]="dataAddTrans.rbId" [ownername]="dataAddtrans.ownername" [ownerId]="dataAddTrans.ownerId"></app-add-trans> -->
+  <app-add-trans #addTrans *ngIf="rbId" [rbId]="rbId" [ownername]="ownername" [ownerId]="ownerId"></app-add-trans>
+  <ng-template #modalFooter>
+    </ng-template>
+</nz-modal>
+
+<nz-modal [(nzVisible)]="isVisibleModalMap" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter"
+  nzWidth="1200" nzHeight="1200" (nzOnCancel)="cancelModalMap()">
+  <ng-template #modalTitle>
+    Vị trí của mảnh đất
+  </ng-template>
+  <ng-template #modalContent>
+    <app-address-map *ngIf="isVisibleModalMap" [ownername]="ownername" [area]="area" [address]="address"> </app-address-map>
+  </ng-template>
+  <ng-template #modalFooter>
+    </ng-template>
+</nz-modal>
+
+<nz-modal [(nzVisible)]="isVisibleModalUpload" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter"
+  nzWidth="700" nzHeight="50" (nzOnCancel)="cancelModalUpload()">
+  <ng-template #modalTitle>
+    Thay đổi ảnh
+  </ng-template>
+  <ng-template #modalContent>
+      <label for="file">Chọn ảnh: </label>
+      <mat-icon matSuffix>folder</mat-icon>
+      <input nz-input type="file" (change)="onChangeImage($event)" accept=".png,.jpg" />
+  </ng-template>
+  <ng-template #modalFooter>
+      <button nz-button nzType="primary" (click)="onSaveImage" >Tải lên</button>
+    </ng-template>
+</nz-modal>

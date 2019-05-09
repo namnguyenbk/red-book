@@ -9,3 +9,17 @@
 .margin-1{
     margin: 5px;
 }
+
+.card-rgb{
+    background: #fce4ec;
+    margin-bottom: 5px;
+}
+
+.text-header{
+    color: red;
+    align-content: center;
+}
+
+.card-back{
+    background: #eceff1;
+}

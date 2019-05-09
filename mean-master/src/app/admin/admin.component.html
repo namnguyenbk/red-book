@@ -2,48 +2,56 @@
     <td-layout-nav color="accent">
         <div td-toolbar-content layout="row" layout-align="start center" flex>
             <button mat-icon-button class="td-menu-button" (click)="sidenav.toggle()" mdTooltip="Main menu">
-                <mat-icon >menu</mat-icon>
+                <mat-icon>menu</mat-icon>
             </button>
             <mat-icon class="mat-icon-logo" svgIcon="assets:covalent"></mat-icon>
-            <span>{{ 'demo.title' | translate }}</span>
+            <!-- <div class="logo"></div> -->
+            <span>HỆ THỐNG QUẢN LÍ SỔ ĐỎ</span>
             <span flex></span>
-            <button mat-button *ngIf="user">
+            <span class="logo"></span>
+            <button class="logo" mat-button *ngIf="user" [matMenuTriggerFor]="menu">
                 <mat-icon>account_circle</mat-icon>
-                {{user.fullname}}
+                Admin : {{user.fullname}}
             </button>
+            <mat-menu #menu="matMenu">
+                <button mat-button mat-list-item (click)="logout()">
+                    <mat-icon matListIcon color="warn">exit_to_app</mat-icon>Đăng xuất
+                </button>
+            </mat-menu>
         </div>
-        <mat-sidenav-container fullscreen >
-            <mat-sidenav #sidenav mode="side" opened="true" style="width:200px;border-right:1px solid #ccc">
+        <mat-sidenav-container fullscreen>
+            <mat-sidenav #sidenav mode="side" opened="true" style="width:200px;border-right:1px solid #ccc" >
                 <div flex class="mat-content bgc-grey-50">
-                    <mat-nav-list >
-                        <a mat-list-item class="active" >
-                           Danh sách chức năng
+                    <mat-nav-list>
+                        <a mat-list-item class="mat-body-strong" >
+                            <!-- <mat-icon matListIcon color="primary">dashboard</mat-icon> -->
+                            Danh sách chức năng
                         </a>
                         <mat-divider></mat-divider>
-                        <a mat-list-item routerLink="/admin/add" >
-                            <mat-icon matListIcon color="warn" >add</mat-icon>Thêm mới sổ đỏ
+                        <a mat-list-item routerLink="/admin/add">
+                            <mat-icon matListIcon color="warn">add</mat-icon>Thêm mới sổ đỏ
                         </a>
                         <a mat-list-item routerLink="/admin/list">
                             <mat-icon matListIcon color="warn">list</mat-icon>Danh sách
                         </a>
-                        <a mat-list-item routerLink="/admin/query" >
-                            <mat-icon matListIcon color="warn">list</mat-icon>Tra cứu
+                        <a mat-list-item routerLink="/admin/map">
+                            <mat-icon matListIcon color="warn">place</mat-icon>Bản đồ
                         </a>
                         <a mat-list-item>
                             <mat-icon matListIcon color="warn">business</mat-icon>Thống kê
                         </a>
                         <mat-divider></mat-divider>
                         <a mat-list-item>
-                            <mat-icon matListIcon color="warn" >settings</mat-icon>Cài đặt
+                            <mat-icon matListIcon color="warn">settings</mat-icon>Cài đặt
                         </a>
                         <a mat-list-item>
-                            <mat-icon matListIcon color="warn" >help</mat-icon>LAN
+                            <mat-icon matListIcon color="warn">help</mat-icon>LAN
                         </a>
                         <a mat-list-item>
-                            <mat-icon matListIcon color="warn" >help</mat-icon>Tài liệu
+                            <mat-icon matListIcon color="warn">help</mat-icon>Tài liệu
                         </a>
                         <a mat-list-item (click)="logout()">
-                            <mat-icon matListIcon color="warn" >exit_to_app</mat-icon>Đăng xuất
+                            <mat-icon matListIcon color="warn">exit_to_app</mat-icon>Đăng xuất
                         </a>
                     </mat-nav-list>
                 </div>
@@ -57,7 +65,7 @@
     </td-layout-nav>
     <td-layout-footer>
         <div layout="row" layout-align="start center">
-            <span class="mat-caption">Copyright &copy; 2017 Teradata. All rights reserved</span>
+            <span class="mat-caption">Copyright &copy; 2019 LANANH. <b>Theo bản quyền của Nguyễn Danh Nam</b></span>
         </div>
     </td-layout-footer>
 </td-layout>

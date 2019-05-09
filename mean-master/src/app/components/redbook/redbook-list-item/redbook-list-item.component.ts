@@ -12,6 +12,9 @@ export class RedbookListItemComponent implements OnInit {
 
   @Input() redbook : any;
   @Output() onAddTrans : EventEmitter<any> = new EventEmitter<any>(); 
+  @Output() onDisplayMap : EventEmitter<any> = new EventEmitter<any>(); 
+  @Output() onDelete : EventEmitter<any> = new EventEmitter<any>(); 
+  @Output() onUploadImage : EventEmitter<any> = new EventEmitter<any>(); 
   isVisibleModalTrans : boolean;
   generalData : any
   constructor(
@@ -37,6 +40,22 @@ export class RedbookListItemComponent implements OnInit {
       ownername : this.generalData.owner.fullname
     }
     this.onAddTrans.emit(data);
+  }
+
+  displayMapEvent() {
+    let data = {
+      address : this.generalData.address,
+      ownername : this.generalData.owner.fullname
+    }
+    this.onDisplayMap.emit(data);
+  }
+
+  deleteEvent(){
+    this.onDelete.emit(this.generalData.redbook._id);
+  }
+
+  uploadImageEvent(){
+    this.onUploadImage.emit(this.generalData.redbook._id);
   }
 
 }

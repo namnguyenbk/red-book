@@ -196,11 +196,15 @@ async function getDetail(objId){
         let addr = await Address.findOne({rbAddress: rb._id});
         if(addr){
             let address = addr.address + addr.street + addr.district + addr.province;
+            let lat = addr.latidute?addr.latidute:"";
+            let lng = addr.longtidute?addr.longtidute: "";
             let person = await Person.findOne({_id: rb.owner_id});
             let result = {
                 redbook: rb,
                 address: address,
                 owner: person,
+                lat : lat,
+                lng : lng
             };
 
             return result;

@@ -1,17 +1,21 @@
 <mat-card *ngIf="!personData">
     <nz-skeleton></nz-skeleton>
 </mat-card>
-<mat-card class="full-width" *ngIf="personData">
+<mat-card class="full-width" *ngIf="personData" class="card-back">
   <mat-card-header>
     <mat-card-title>
-      <span class="mat-title">I. Thông tin chung</span>
+      <span class="mat-title">
+          <mat-icon matListIcon color="primary">account_balance</mat-icon>
+        I. Thông tin chung</span>
     </mat-card-title>
   </mat-card-header>
   <mat-divider></mat-divider>
   <mat-card-content>
     <div nz-row>
       <div nz-col nzSpan="24">
-        <span class="mat-subheading-2"> Chủ sở hữu</span>
+        <span class="mat-subheading-2"> 
+            <mat-icon matListIcon color="primary">contact_mail</mat-icon>
+          Chủ sở hữu</span>
       </div>
     </div>
     <div nz-row>
@@ -27,7 +31,9 @@
     <mat-divider></mat-divider>
     <div nz-row>
         <div nz-col nzSpan="24">
-          <span class="mat-subheading-2">Thửa đất được quyền sử dụng</span>
+          <span class="mat-subheading-2">
+              <mat-icon matListIcon color="primary">security</mat-icon>
+            Thửa đất được quyền sử dụng</span>
         </div>
       </div>
       <div nz-row>
