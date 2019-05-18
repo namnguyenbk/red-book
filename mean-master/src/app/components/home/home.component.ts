@@ -12,4 +12,8 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  getAddress(place: object) { 
+    alert( place['formatted_address']);
+  }
+
 }

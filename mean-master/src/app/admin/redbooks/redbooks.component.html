@@ -55,7 +55,7 @@
 </nz-modal>
 
 <nz-modal [(nzVisible)]="isVisibleModalUpload" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter"
-  nzWidth="700" nzHeight="50" (nzOnCancel)="cancelModalUpload()">
+  nzWidth="700" nzHeight="50" (nzOnCancel)="cancelModalUpload()" >
   <ng-template #modalTitle>
     Thay đổi ảnh
   </ng-template>
@@ -65,6 +65,6 @@
       <input nz-input type="file" (change)="onChangeImage($event)" accept=".png,.jpg" />
   </ng-template>
   <ng-template #modalFooter>
-      <button nz-button nzType="primary" (click)="onSaveImage" >Tải lên</button>
+      <button nz-button nzType="primary" (click)="onSaveImage()" >Tải lên</button>
     </ng-template>
 </nz-modal>

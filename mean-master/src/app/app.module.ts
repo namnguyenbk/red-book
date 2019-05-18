@@ -36,7 +36,6 @@ import { ImageViewComponent } from './components/image-view/image-view.component
 import { RedbookListComponent } from './admin/redbooks/redbooks.component'
 import { RedbookListItemComponent } from './components/redbook/redbook-list-item/redbook-list-item.component';
 import { AddressMapComponent } from './components/address-map/address-map.component';
-import { GooglePlaceComponent } from './components/google-place/google-place.component';
 import { MapComponent } from './components/map/map.component';
 @NgModule({
   declarations: [
@@ -53,7 +52,7 @@ import { MapComponent } from './components/map/map.component';
     RedbookListComponent,
     RedbookListItemComponent,
     AddressMapComponent,
-    GooglePlaceComponent,
+    // GooglePlaceComponent,
     MapComponent,
     // SearchItemComponent,
     // AddressComponent, 
@@ -71,7 +70,7 @@ import { MapComponent } from './components/map/map.component';
     CommonModuleUi,
     ImageViewerModule.forRoot(),
     AgmCoreModule.forRoot({
-      // apiKey: 'AIzaSyAvcDy5ZYc2ujCS6TTtI3RYX5QmuoV8Ffw'
+      apiKey: 'AIzaSyBvm9f0kpkaz5RzAc7quZgGbzEyvzivEBw'
     })
   ],
   exports: [

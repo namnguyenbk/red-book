@@ -80,7 +80,10 @@
           </mat-form-field>
       </mat-grid-tile>
     </mat-grid-list>
-  <span>Địa chỉ: </span>
-  <app-address #addrRB></app-address>
+  <!-- <span>
+    Địa chỉ: </span> -->
+    <AutocompleteComponent (setAddress)="setAddress5($event)" adressType="geocode"></AutocompleteComponent>
+  <!-- <app-address #addrRB></app-address> -->
+
   <!-- <button (click)="display()">display</button> -->
 </form>

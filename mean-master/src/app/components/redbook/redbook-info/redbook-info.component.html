@@ -38,9 +38,12 @@
     </mat-grid-tile-header>
   </mat-grid-tile>
 </mat-grid-list> -->
-<mat-card class="card-rgb">
+<!-- <mat-card class="card-rgb">
   <div class="mat-title text-header" >THÔNG TIN CHI TIẾT VỀ SỔ ĐỎ</div>
-</mat-card>
+</mat-card> -->
+<mat-toolbar color="primary">
+    Thông tin chi tiết về sổ đỏ
+</mat-toolbar>
 <div nz-row *ngIf="redbookData && personData" class="card-back">
   <div nz-col nzSpan="14">
     <app-general-info [redbookData]="redbookData" [personData]="personData">

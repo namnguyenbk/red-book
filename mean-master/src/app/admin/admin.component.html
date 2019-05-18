@@ -1,5 +1,5 @@
 <td-layout>
-    <td-layout-nav color="accent">
+    <td-layout-nav color="primary">
         <div td-toolbar-content layout="row" layout-align="start center" flex>
             <button mat-icon-button class="td-menu-button" (click)="sidenav.toggle()" mdTooltip="Main menu">
                 <mat-icon>menu</mat-icon>
@@ -20,39 +20,46 @@
             </mat-menu>
         </div>
         <mat-sidenav-container fullscreen>
-            <mat-sidenav #sidenav mode="side" opened="true" style="width:200px;border-right:1px solid #ccc" >
+            <mat-sidenav #sidenav mode="side" opened="true" style="width:90px;border-right:1px solid #ccc">
                 <div flex class="mat-content bgc-grey-50">
                     <mat-nav-list>
-                        <a mat-list-item class="mat-body-strong" >
-                            <!-- <mat-icon matListIcon color="primary">dashboard</mat-icon> -->
-                            Danh sách chức năng
+                         <a mat-list-item class="mat-body-strong" matTooltip="Danh sách chức năng">
+                            <mat-icon matListIcon color="warn">dashboard</mat-icon>
                         </a>
                         <mat-divider></mat-divider>
-                        <a mat-list-item routerLink="/admin/add">
-                            <mat-icon matListIcon color="warn">add</mat-icon>Thêm mới sổ đỏ
+                        <a mat-list-item routerLink="/admin/add" matTooltip="Thêm mới sổ đỏ " >
+                            <mat-icon matListIcon color="warn">add</mat-icon>
+                            <!-- Thêm mới sổ đỏ -->
                         </a>
-                        <a mat-list-item routerLink="/admin/list">
-                            <mat-icon matListIcon color="warn">list</mat-icon>Danh sách
+                        <a mat-list-item routerLink="/admin/list" matTooltip="Danh sách ">
+                            <mat-icon matListIcon color="warn">list</mat-icon>
+                            <!-- Danh sách -->
                         </a>
-                        <a mat-list-item routerLink="/admin/map">
-                            <mat-icon matListIcon color="warn">place</mat-icon>Bản đồ
+                        <a mat-list-item routerLink="/admin/map" matTooltip="Bản đồ ">
+                            <mat-icon matListIcon color="warn">place</mat-icon>
+                            <!-- Bản đồ -->
                         </a>
-                        <a mat-list-item>
-                            <mat-icon matListIcon color="warn">business</mat-icon>Thống kê
+                        <a mat-list-item matTooltip="Thống kê ">
+                            <mat-icon matListIcon color="warn">business</mat-icon>
+                            <!-- Thống kê -->
                         </a>
                         <mat-divider></mat-divider>
-                        <a mat-list-item>
-                            <mat-icon matListIcon color="warn">settings</mat-icon>Cài đặt
+                        <a mat-list-item matTooltip="Cài đặt">
+                            <mat-icon matListIcon color="warn">settings</mat-icon>
+                            <!-- Cài đặt -->
                         </a>
-                        <a mat-list-item>
-                            <mat-icon matListIcon color="warn">help</mat-icon>LAN
+                        <a mat-list-item matTooltip="LAN ">
+                            <mat-icon matListIcon color="warn">help</mat-icon>
+                            <!-- LAN -->
                         </a>
-                        <a mat-list-item>
-                            <mat-icon matListIcon color="warn">help</mat-icon>Tài liệu
+                        <a mat-list-item matTooltip=" Tài liệu ">
+                            <mat-icon matListIcon color="warn">help</mat-icon>
+                            <!-- Tài liệu -->
                         </a>
-                        <a mat-list-item (click)="logout()">
-                            <mat-icon matListIcon color="warn">exit_to_app</mat-icon>Đăng xuất
-                        </a>
+                        <a mat-list-item (click)="logout()" matTooltip="Đăng xuất">
+                            <mat-icon matListIcon color="warn">exit_to_app</mat-icon>
+                            <!-- Đăng xuất -->
+                        </a> 
                     </mat-nav-list>
                 </div>
             </mat-sidenav>

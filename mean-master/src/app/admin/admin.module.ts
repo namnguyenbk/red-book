@@ -22,6 +22,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { environment } from '../../environments/environment';
 import { RedbooksComponent } from '../components/redbook/redbooks/redbooks.component';
+import { AutocompleteComponent } from '../components/map/google-place.components';
 
 // import { AddressComponent} from '../components/address/address.component';
 @NgModule({
@@ -36,6 +37,7 @@ import { RedbooksComponent } from '../components/redbook/redbooks/redbooks.compo
     // RedbookListComponent,
     ManageListComponent,
     AddPartyComponent,
+    AutocompleteComponent
   ],
   imports: [
     CommonModule,
@@ -43,13 +45,13 @@ import { RedbooksComponent } from '../components/redbook/redbooks/redbooks.compo
     CommonModuleUi,
     GuestModule,
     HttpClientModule,
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: HttpLoaderFactory,
-                deps: [HttpClient]
-            }
-        }),
+        // TranslateModule.forRoot({
+        //     loader: {
+        //         provide: TranslateLoader,
+        //         useFactory: HttpLoaderFactory,
+        //         deps: [HttpClient]
+        //     }
+        // }),
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireStorageModule
   ],
@@ -62,6 +64,6 @@ import { RedbooksComponent } from '../components/redbook/redbooks/redbooks.compo
     
   ]})
 export class AdminModule {}
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
-}
+// export function HttpLoaderFactory(http: HttpClient) {
+//   return new TranslateHttpLoader(http);
+// }

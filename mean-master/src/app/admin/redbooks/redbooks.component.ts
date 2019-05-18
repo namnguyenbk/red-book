@@ -6,6 +6,7 @@ import { searchReq } from '../../interface/common-interface';
 import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
 import { RedbookService } from '../../services/redbook.service';
 import { DialogService } from '../../services/common/dialog.service';
+import { LoadingEffectService } from '../../services/common/loading-effect.service';
 
 export interface dataAddTrans{
   rbId : string,
@@ -48,7 +49,8 @@ export class RedbookListComponent implements OnInit {
     private searchService : SearchService,
     private afStorage: AngularFireStorage,
     private rbService : RedbookService,
-    private dialogService : DialogService) { }
+    private dialogService : DialogService,
+    private loadingEffect : LoadingEffectService) { }
 
   ngOnInit() {
     let searchTemp : searchReq =  {
@@ -108,26 +110,31 @@ export class RedbookListComponent implements OnInit {
   }
 
   onUploadImage( event){
-    this.rbId = event.rbId;
+    this.rbId = event;
     this.displayModalUpload();
   }
 
   onSaveImage(){
+    this.cancelModalUpload();
     let randomId = this.rbId;
     let ref = this.afStorage.ref(randomId);
+    this.loadingEffect.showLoading();
     ref.put(this.image).then((uploadSnapshot: firebase.storage.UploadTaskSnapshot) => {
         this.afStorage.ref(randomId).getDownloadURL().subscribe(url => {
           this.imageLink = url;
-          let imageData = {
+          let imageData : any = {
             rb_id: this.rbId,
-            image: this.imageLink
+            images: this.imageLink
           }
           console.log(url);
-          this.rbService.uploadImage(imageData).subscribe((res: any) => {
+          this.rbService.update(imageData).subscribe((res: any) => {
+            this.loadingEffect.stopLoading();
             if (res.code == "1000") {
-              this.dialogService.showNotification("Upload ảnh", "Upload ảnh thành công", "success");
+              // this.dialogService.showNotification("Upload ảnh", "Upload ảnh thành công", "success");
+              this.dialogService.showNotify("fail","Upload ảnh","Upload ảnh thành công");
             } else {
-              this.dialogService.showNotification("Upload ảnh", "Upload ảnh thất bại", "success");
+              // this.dialogService.showNotification("Upload ảnh", "Upload ảnh thất bại", "fail");
+              this.dialogService.showNotify("fail","Upload ảnh","Upload ảnh thất bại");
             }
           })
         })

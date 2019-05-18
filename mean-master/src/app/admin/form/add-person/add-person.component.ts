@@ -82,4 +82,9 @@ export class AddPersonComponent implements OnInit, OnChanges {
     // alert( this.dateTime.getDate() + '/'+ this.dateTime.getMonth()+ '/' + this.dateTime.getFullYear());
   }
 
+  getAddress(place: object) {
+     let address = place['formatted_address'];
+     alert(address);
+  }
+
 }

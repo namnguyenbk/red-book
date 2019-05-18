@@ -51,4 +51,7 @@ export class AddRedbookComponent implements OnInit {
     alert(this.redbookForm.get('exp').value);
   }
 
+  // getAddress(place: object) { 
+  //   alert( place['formatted_address']);
+  // }
 }

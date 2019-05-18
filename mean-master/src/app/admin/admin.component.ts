@@ -32,7 +32,7 @@ export class AdminComponent implements OnInit{
     // update this.user after login/register/logout
     this.userSubscription = this.authService.$userSource.subscribe((user) => {
       this.user = user;
-      this.navigate('/admin/list');
+      // this.navigate('/admin/list');
     });
   }
 

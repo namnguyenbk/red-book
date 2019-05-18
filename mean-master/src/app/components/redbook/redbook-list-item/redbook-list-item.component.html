@@ -19,7 +19,7 @@
     <span *ngIf="!generalData.owner" matLine flex="100" class="mat-caption ">Chưa xác định</span>
     <span *ngIf="generalData.address" flex="100" class="mat-caption ">{{generalData.address}}</span>
     <span *ngIf="!generalData.address" flex="100" class="mat-caption ">Chưa cập nhật</span>
-    <button *ngIf="generalData.lat && generalData.lng" class="margin-5" mat-icon-button matTooltip="Xem trên Google map"><mat-icon color="primary" (click)="displayMapEvent()">place</mat-icon></button>
+    <!-- <button *ngIf="generalData.lat && generalData.lng" class="margin-5" mat-icon-button matTooltip="Xem trên Google map"><mat-icon color="primary" (click)="displayMapEvent()">place</mat-icon></button> -->
     <!-- <button *ngIf="generalData.address.latitude" class="margin-5" mat-icon-button matTooltip="Cập nhật toạ độ"><mat-icon color="warn" (click)="updateGeoEvent()">place</mat-icon></button> -->
     <button class="margin-5" mat-icon-button matTooltip="Xoá sổ đỏ này"><mat-icon color="warn" (click)="deleteEvent()">delete_forever</mat-icon></button>
     <button class="margin-5" mat-icon-button matTooltip="Cập nhật ảnh"><mat-icon color="primary" (click)="uploadImageEvent()">insert_photo</mat-icon></button>

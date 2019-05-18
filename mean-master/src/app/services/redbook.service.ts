@@ -5,8 +5,7 @@ import { redbookData } from '../interface/common-interface';
 const addRBAPI = "/api/redbook/add";
 const changeOwnerAPI = "/api/person/change";
 const detailAPI = "/api/redbook/getdetail";
-const uploadImageAPI = "/api/redbook/uploadImage";
-const updateStatus = "/api/redbook/updateStatus";
+const updateAPI = "/api/redbook/update";
 @Injectable({
   providedIn: 'root'
 })
@@ -56,8 +55,8 @@ export class RedbookService {
     return this.http.post( detailAPI, { rb_id : rbId});
   }
 
-  uploadImage( data){
-    return this.http.post( uploadImageAPI, { imageData : data});
+  update( data){
+    return this.http.post( updateAPI, { imageData : data});
   }
 
 }

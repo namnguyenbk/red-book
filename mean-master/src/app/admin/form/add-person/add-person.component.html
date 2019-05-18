@@ -47,7 +47,8 @@
       </mat-form-field>
     </mat-grid-tile>
   </mat-grid-list>
-  <app-address #addrOwner></app-address>
+  <AutocompleteComponent (setAddress)="getAddress($event)" adressType="geocode"></AutocompleteComponent>
+  <!-- <app-address #addrOwner></app-address> -->
   <!-- <div>
       <button mat-button color="primary" (click)="getDate()">Hien thi ngay</button>
     <button mat-button matStepperNext color="primary">Tiếp</button>

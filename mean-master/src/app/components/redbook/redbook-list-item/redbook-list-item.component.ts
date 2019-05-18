@@ -51,11 +51,14 @@ export class RedbookListItemComponent implements OnInit {
   }
 
   deleteEvent(){
-    this.onDelete.emit(this.generalData.redbook._id);
+    let rb_id = this.generalData.redbook._id;
+    this.onDelete.emit( rb_id);
   }
 
   uploadImageEvent(){
-    this.onUploadImage.emit(this.generalData.redbook._id);
-  }
+    let rb_id = this.generalData.redbook._id;
+    alert(rb_id);
+    this.onUploadImage.emit(rb_id);
+  } 
 
 }

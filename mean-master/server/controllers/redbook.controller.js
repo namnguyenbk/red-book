@@ -217,9 +217,32 @@ async function getDetail(objId){
     }
 
 }
+
+async function updateRedbook(req){
+    let rb_id = req.rb_id;
+    if(!rb_id){
+        return {
+            code : 1001,
+            message : 'rb_id param is required!'
+        }
+    }
+    let rb = await Redbook.findOne({ _id : rb_id});
+    if(req.status_id){
+        rb.status_id = req.status_id;
+    }
+    if( red.images){
+        rb.images = req.images;
+    }
+     await rb.save();
+     return {
+         code : '1000'
+     }
+
+}
 module.exports = {
     search,
     addRB,
     change_owner,
     getDetail,
+    updateRedbook
 };

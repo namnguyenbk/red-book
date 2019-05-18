@@ -47,7 +47,11 @@ const RedBookSchema = new mongoose.Schema({
         required: true,
     },
     images: {
-        type: [String],
+        type: String,
+        required: false,
+    },
+    status: {
+        type: String,
         required: false,
     },
     description: {
