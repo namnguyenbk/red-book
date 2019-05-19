@@ -20,6 +20,7 @@ const assetRoute = require('../routes/asset.route');
 const personRoute = require('../routes/person.route');
 const transactionRoute = require('../routes/transaction.route');
 const addressRoute = require('../routes/address.route');
+const getStatis = require('../routes/statistic.route');
 const app = express();
 
 if (config.env === 'development') {
@@ -73,6 +74,7 @@ app.use('/api/asset',assetRoute);
 app.use('/api/person',personRoute);
 app.use('/api/transaction',transactionRoute);
 app.use('/api/address',addressRoute);
+app.use('/api/statis',getStatis);
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new httpError(404)
