@@ -43,9 +43,14 @@ export class RedbookListItemComponent implements OnInit {
   }
 
   displayMapEvent() {
+    // alert(this.generalData.images);
     let data = {
+      area : this.redbook.area,
       address : this.generalData.address,
-      ownername : this.generalData.owner.fullname
+      ownername : this.generalData.owner.fullname,
+      lat : this.generalData.lat,
+      lng : this.generalData.lng,
+      images : this.generalData.redbook.images
     }
     this.onDisplayMap.emit(data);
   }
@@ -57,7 +62,6 @@ export class RedbookListItemComponent implements OnInit {
 
   uploadImageEvent(){
     let rb_id = this.generalData.redbook._id;
-    alert(rb_id);
     this.onUploadImage.emit(rb_id);
   } 
 

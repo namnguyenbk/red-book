@@ -12,23 +12,18 @@ export class AddressMapComponent implements OnInit {
   @Input() ownername : string;
   @Input() address : string;
   @Input() area : string;
-  zoom: number = 8;
+  @Input() image : string;
+  zoom: number = 15;
 
   constructor() { }
 
   ngOnInit() {
-    this.lat = 21.022736;
-    this.lng = 105.8019441;
-
+  
   }
   
 
   mapClicked($event: MouseEvent) {
-    // this.markers.push({
-    //   lat: $event.coords.lat,
-    //   lng: $event.coords.lng,
-    //   draggable: true
-    // });
+
   }
 
   markerDragEnd(m: any, $event: MouseEvent) {

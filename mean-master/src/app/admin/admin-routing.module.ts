@@ -11,12 +11,17 @@ import { RedbookListComponent} from './redbooks/redbooks.component';
 import { AddPartyComponent} from '../admin/add-party/add-party.component';
 import { RedbookInfoComponent} from '../components/redbook/redbook-info/redbook-info.component'
 import { MapComponent } from '../components/map/map.component';
+import { ChartsComponent } from './charts/charts.component';
 const routes: Routes = [
   {
   path: 'admin',
   canActivate: [OnlyAdminUsersGuard],
   component: AdminComponent,
   children: [
+    {
+      path: '',
+      component: RedbookListComponent,
+    },
     {
       path: 'add',
       component: AddPartyComponent,
@@ -32,6 +37,10 @@ const routes: Routes = [
     {
       path: 'detail/:redbook_id',
       component: RedbookInfoComponent,
+    },
+    {
+      path: 'chart',
+      component: ChartsComponent,
     },
     
   ]

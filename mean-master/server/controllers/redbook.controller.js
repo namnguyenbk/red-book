@@ -92,10 +92,10 @@ async function search(searchObj){
 
 
 async function addRB(infoRB){
-    if(!infoRB.owner_id || !infoRB.no_land || !infoRB.province ||
+    if(!infoRB.owner_id || !infoRB.no_land ||
        !infoRB.type || !infoRB.exp || !infoRB.source_provide ||
-       !infoRB.no_license || !infoRB.use_for || !infoRB.district ||
-       !infoRB.street || !infoRB.address || !infoRB.area){
+       !infoRB.no_license || !infoRB.use_for ||
+        !infoRB.address || !infoRB.area){
            return {
                code: 1001,
                result: {},
@@ -104,17 +104,22 @@ async function addRB(infoRB){
        }
     
     // get address info
-    let province = infoRB.province;
-    let district = infoRB.district;
-    let street = infoRB.street;
-    let address = infoRB.address;
+    let province = infoRB.address.province;
+    let district = infoRB.address.district;
+    let street = infoRB.address.street;
+    let address = infoRB.address.address? infoRB.address.address : " ";
+    let latidute = infoRB.address.latidute;
+    let longtidute = infoRB.address.longtidute;
 
     let newAddress = new Address({
         _id: new mongoose.Types.ObjectId(),
         province,
         district,
         street,
-        address
+        address,
+        latidute,
+        longtidute
+
     });
     
 
@@ -195,7 +200,7 @@ async function getDetail(objId){
     if(rb){
         let addr = await Address.findOne({rbAddress: rb._id});
         if(addr){
-            let address = addr.address + addr.street + addr.district + addr.province;
+            let address = addr.address + ", " + addr.street + ", " + addr.district + ", " + addr.province;
             let lat = addr.latidute?addr.latidute:"";
             let lng = addr.longtidute?addr.longtidute: "";
             let person = await Person.findOne({_id: rb.owner_id});
@@ -219,7 +224,7 @@ async function getDetail(objId){
 }
 
 async function updateRedbook(req){
-    let rb_id = req.rb_id;
+    let rb_id = req.updateData.rb_id;
     if(!rb_id){
         return {
             code : 1001,
@@ -227,11 +232,11 @@ async function updateRedbook(req){
         }
     }
     let rb = await Redbook.findOne({ _id : rb_id});
-    if(req.status_id){
-        rb.status_id = req.status_id;
+    if(req.updateData.status_id){
+        rb.status_id = req.updateData.status_id;
     }
-    if( red.images){
-        rb.images = req.images;
+    if( req.updateData.images){
+        rb.images = req.updateData.images;
     }
      await rb.save();
      return {

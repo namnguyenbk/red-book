@@ -1,23 +1,28 @@
 <mat-toolbar color="primary">BẢN ĐỒ CÁC VỊ TRÍ CỦA SỔ ĐỎ</mat-toolbar>
 <agm-map 
-  [latitude]="lat"
-  [longitude]="lng"
+  [latitude]="latCenter"
+  [longitude]="lngCenter"
   [zoom]="zoom"
   [disableDefaultUI]="false"
-  [zoomControl]="false"
-  (mapClick)="mapClicked($event)">
+  [zoomControl]="false">
 
   <agm-marker 
       *ngFor="let m of markers; let i = index"
-      (markerClick)="clickedMarker(m.label, i)"
       [latitude]="m.lat"
-      [longitude]="m.lng"
-      [label]="m.label"
-      [markerDraggable]="m.draggable"
-      (dragEnd)="markerDragEnd(m, $event)">
+      [longitude]="m.lng">
       
     <agm-info-window>
-      <strong>InfoWindow content</strong>
+      <h3><mat-icon color="warn">code</mat-icon> Mã số : {{m.no_land}}</h3><br>
+      <hr>
+      <strong><mat-icon color="warn">crop_square</mat-icon> Diện tích : {{m.area}} m<sup>2</sup></strong><br>
+      <strong><mat-icon color="warn">merge_type</mat-icon> Loại : {{m.use_for}}</strong><br>
+      <strong> <mat-icon color="warn">place</mat-icon>Địa chỉ : {{m.addr}}</strong><br>
+      <hr>
+      <nz-card style="width:400px;" [nzCover]="coverTemplate">
+        </nz-card>
+        <ng-template #coverTemplate>
+          <img alt="example" [src]="m.images" />
+        </ng-template>
     </agm-info-window>
     
   </agm-marker>

@@ -22,11 +22,11 @@
   <!-- </ng-template> -->
 </mat-nav-list>
 
-<td-paging-bar #pagingBarPageSize [firstLast]="true" [pageSize]="pageSize" [total]="numRedbook"
+<td-paging-bar #pagingBarPageSize [firstLast]="true" [pageSize]="12" [total]="numRedbook"
   (change)="changePager($event)">
   <span hide-xs>Số lượng trên 1 trang: </span>
   <mat-select [style.width.px]="50" [(ngModel)]="pageSize">
-    <mat-option *ngFor="let size of [6,12,24,36,72,144,288,1000]" [value]="size">
+    <mat-option *ngFor="let size of [12,24,36,72,144,288,1000]" [value]="size">
       {{size}}
     </mat-option>
   </mat-select>
@@ -38,33 +38,32 @@
   nzWidth="1000" nzHeight="600" [nzFooter]="modalFooter">
   <!-- <app-add-trans #addTrans *ngIf="dataAddTrans" [rbId]="dataAddTrans.rbId" [ownername]="dataAddtrans.ownername" [ownerId]="dataAddTrans.ownerId"></app-add-trans> -->
   <app-add-trans #addTrans *ngIf="rbId" [rbId]="rbId" [ownername]="ownername" [ownerId]="ownerId"></app-add-trans>
-  <ng-template #modalFooter>
-    </ng-template>
+  <ng-template #modalFooter></ng-template>
 </nz-modal>
 
-<nz-modal [(nzVisible)]="isVisibleModalMap" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter"
+<nz-modal [(nzVisible)]="isVisibleModalMap" [nzTitle]="modalTitleMap" [nzContent]="modalContentMap" [nzFooter]="modalFooterMap"
   nzWidth="1200" nzHeight="1200" (nzOnCancel)="cancelModalMap()">
-  <ng-template #modalTitle>
+  <ng-template #modalTitleMap>
     Vị trí của mảnh đất
   </ng-template>
-  <ng-template #modalContent>
-    <app-address-map *ngIf="isVisibleModalMap" [ownername]="ownername" [area]="area" [address]="address"> </app-address-map>
+  <ng-template #modalContentMap>
+    <app-address-map *ngIf="isVisibleModalMap" [ownername]="ownername" [area]="area" [address]="address" [lat]="lat" [lng]="lng" [image]="images"> </app-address-map>
   </ng-template>
-  <ng-template #modalFooter>
+  <ng-template #modalFooterMap>
     </ng-template>
 </nz-modal>
 
-<nz-modal [(nzVisible)]="isVisibleModalUpload" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter"
+<nz-modal [(nzVisible)]="isVisibleModalUpload" [nzTitle]="modalTitleUpload" [nzContent]="modalContentUpload" [nzFooter]="modalFooterUpload"
   nzWidth="700" nzHeight="50" (nzOnCancel)="cancelModalUpload()" >
-  <ng-template #modalTitle>
+  <ng-template #modalTitleUpload>
     Thay đổi ảnh
   </ng-template>
-  <ng-template #modalContent>
+  <ng-template #modalContentUpload>
       <label for="file">Chọn ảnh: </label>
       <mat-icon matSuffix>folder</mat-icon>
       <input nz-input type="file" (change)="onChangeImage($event)" accept=".png,.jpg" />
   </ng-template>
-  <ng-template #modalFooter>
+  <ng-template #modalFooterUpload>
       <button nz-button nzType="primary" (click)="onSaveImage()" >Tải lên</button>
     </ng-template>
 </nz-modal>

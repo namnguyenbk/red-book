@@ -56,6 +56,19 @@ export class AddressService {
     return this.http.post(getAdressAPI, { addr_id : addrId});
   }
 
+  getAddressDetail( placeGoogle : string) : any{
+    let addrApdapter : Array<string> = placeGoogle.split(',');
+    let length : number = addrApdapter.length;
+    let detail = addrApdapter.slice(0, length -4);
+    let addressDetail = {
+      province: addrApdapter[length - 2 ]?addrApdapter[length - 2 ].trim()  : 'Hà Nội',
+      district :addrApdapter[length - 3 ]?addrApdapter[length - 3 ].trim() : 'Hai Bà Trưng',
+      street: addrApdapter[length - 4 ]?addrApdapter[length - 4 ].trim() : 'Bách Khoa',
+      address: detail? detail.join(): '43 Trần Đại Nghĩa',
+    }
+    return addressDetail;
+
+  }
 
 }
 

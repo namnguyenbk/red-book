@@ -17,9 +17,10 @@ export class AddPersonComponent implements OnInit, OnChanges {
   @Input() personForm: FormGroup;
   @ViewChild('addrOwner') addr: AddressComponent;
   personData: personData;
-  addrOwner: address;
+  addrOwner: any;
   addr_id : string;
   owner_id : string;
+  address : string;
 
   constructor(private _formBuilder: FormBuilder,
     private addrService: AddressService,
@@ -48,12 +49,14 @@ export class AddPersonComponent implements OnInit, OnChanges {
   }
 
   getPostalAddr() {
-    return this.addrOwner = {
-      province: this.addr.provinceName? this.addr.provinceName : 'Hà Nội',
-      district: this.addr.districtName? this.addr.districtName : 'Hai Bà Trưng',
-      street: this.addr.wardName? this.addr.wardName : 'Bách Khoa',
-      address: this.addr.detail? this.addr.detail : '43 Trần Đại Nghĩa',
-    }
+    
+    // return this.addrOwner = {
+    //   province: this.addr.provinceName? this.addr.provinceName : 'Hà Nội',
+    //   district: this.addr.districtName? this.addr.districtName : 'Hai Bà Trưng',
+    //   street: this.addr.wardName? this.addr.wardName : 'Bách Khoa',
+    //   address: this.addr.detail? this.addr.detail : '43 Trần Đại Nghĩa',
+    // }
+    return this.addrOwner = this.addrService.getAddressDetail(this.address);
 
   }
 
@@ -84,7 +87,8 @@ export class AddPersonComponent implements OnInit, OnChanges {
 
   getAddress(place: object) {
      let address = place['formatted_address'];
-     alert(address);
+     this.address = address;
+    //  alert(place);
   }
 
 }

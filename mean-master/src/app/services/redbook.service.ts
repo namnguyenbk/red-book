@@ -56,7 +56,7 @@ export class RedbookService {
   }
 
   update( data){
-    return this.http.post( updateAPI, { imageData : data});
+    return this.http.post( updateAPI, { updateData : data});
   }
 
 }

@@ -23,6 +23,7 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { environment } from '../../environments/environment';
 import { RedbooksComponent } from '../components/redbook/redbooks/redbooks.component';
 import { AutocompleteComponent } from '../components/map/google-place.components';
+import { ChartsComponent } from './charts/charts.component';
 
 // import { AddressComponent} from '../components/address/address.component';
 @NgModule({
@@ -37,7 +38,8 @@ import { AutocompleteComponent } from '../components/map/google-place.components
     // RedbookListComponent,
     ManageListComponent,
     AddPartyComponent,
-    AutocompleteComponent
+    AutocompleteComponent,
+    ChartsComponent
   ],
   imports: [
     CommonModule,

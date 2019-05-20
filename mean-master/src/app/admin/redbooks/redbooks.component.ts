@@ -7,6 +7,7 @@ import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage'
 import { RedbookService } from '../../services/redbook.service';
 import { DialogService } from '../../services/common/dialog.service';
 import { LoadingEffectService } from '../../services/common/loading-effect.service';
+import { Router } from '@angular/router';
 
 export interface dataAddTrans{
   rbId : string,
@@ -39,10 +40,13 @@ export class RedbookListComponent implements OnInit {
   imageLink : string;
 // item click data
   rbId : string;
+  images : string;
   ownerId : string;
   ownername : string;
   address : string;
   area : string;
+  lat : string;
+  lng : string;
 
   
   constructor(
@@ -50,7 +54,8 @@ export class RedbookListComponent implements OnInit {
     private afStorage: AngularFireStorage,
     private rbService : RedbookService,
     private dialogService : DialogService,
-    private loadingEffect : LoadingEffectService) { }
+    private loadingEffect : LoadingEffectService,
+    private router: Router,) { }
 
   ngOnInit() {
     let searchTemp : searchReq =  {
@@ -96,7 +101,10 @@ export class RedbookListComponent implements OnInit {
     this.rbId = event.rbId;
     this.area = event.area;
     this.ownername = event.ownername;
-    this.address = event.address
+    this.address = event.address;
+    this.lat = event.lat;
+    this.lng = event.lng;
+    this.images = event.images;
     this.displayModalMap();
   }
 
@@ -122,19 +130,20 @@ export class RedbookListComponent implements OnInit {
     ref.put(this.image).then((uploadSnapshot: firebase.storage.UploadTaskSnapshot) => {
         this.afStorage.ref(randomId).getDownloadURL().subscribe(url => {
           this.imageLink = url;
-          let imageData : any = {
+          let updateData : any = {
             rb_id: this.rbId,
             images: this.imageLink
           }
           console.log(url);
-          this.rbService.update(imageData).subscribe((res: any) => {
+          this.rbService.update(updateData).subscribe((res: any) => {
             this.loadingEffect.stopLoading();
             if (res.code == "1000") {
               // this.dialogService.showNotification("Upload ảnh", "Upload ảnh thành công", "success");
-              this.dialogService.showNotify("fail","Upload ảnh","Upload ảnh thành công");
+              this.dialogService.showNotify("success","Upload ảnh","Upload ảnh thành công");
+              this.updateList();
             } else {
               // this.dialogService.showNotification("Upload ảnh", "Upload ảnh thất bại", "fail");
-              this.dialogService.showNotify("fail","Upload ảnh","Upload ảnh thất bại");
+              this.dialogService.showNotify("error","Upload ảnh","Upload ảnh thất bại");
             }
           })
         })

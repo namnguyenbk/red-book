@@ -1,35 +1,30 @@
-<agm-map 
-  [latitude]="lat"
-  [longitude]="lng"
-  [zoom]="zoom"
-  [disableDefaultUI]="false"
-  [zoomControl]="false"
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false"
   (mapClick)="mapClicked($event)">
 
-  <agm-marker 
-      (markerClick)="clickedMarker()"
-      [latitude]="lat"
-      [longitude]="lng"
-      (dragEnd)="markerDragEnd(m, $event)">
+  <agm-marker (markerClick)="clickedMarker()" [latitude]="lat" [longitude]="lng" (dragEnd)="markerDragEnd(m, $event)">
     <agm-info-window>
-        <nz-card style="width:300px;" [nzCover]="coverTemplate" [nzActions]="[actionEllipsis]" >
-            <nz-card-meta
-              nzDescription="{{address}}"
-              [nzAvatar]="avatarTemplate"
-            >
-          </nz-card-meta>
-          </nz-card>
-          <ng-template #avatarTemplate>
-            <nz-avatar nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
-          </ng-template>
-          <ng-template #coverTemplate>
-            <img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />
-          </ng-template>
-          <ng-template #actionEllipsis>
-            <i nz-icon type="ellipsis"></i>
-          </ng-template>
+      <h3>
+        <mat-icon color="warn">code</mat-icon> Mã số : 1322AD
+      </h3><br>
+      <mat-divider></mat-divider>
+      <strong>
+        <mat-icon color="warn">crop_square</mat-icon> Diện tích : {{area}} m<sup>2</sup>
+      </strong><br>
+      <strong>
+        <mat-icon color="warn">merge_type</mat-icon> Loại : {{ownername}}
+      </strong><br>
+      <strong>
+        <mat-icon color="warn">place</mat-icon>Địa chỉ : {{address}}
+      </strong><br>
+      <hr>
+      <br>
+      <nz-card style="width:400px;" [nzCover]="coverTemplate">
+        </nz-card>
+        <ng-template #coverTemplate>
+          <img alt="example" [src]="image" />
+        </ng-template>
     </agm-info-window>
-    
+
   </agm-marker>
-  
+
 </agm-map>

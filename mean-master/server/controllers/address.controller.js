@@ -2,7 +2,7 @@ const Address = require('../models/address.model');
 const mongoose = require('mongoose');
 
 async function add_addr(addrInfo) {
-    if(!addrInfo.address|| !addrInfo.street || !addrInfo.district ||!addrInfo.province ){
+    if(!addrInfo.street || !addrInfo.district ||!addrInfo.province ){
             return {
                 code: 1001,
                 result: {},
@@ -13,7 +13,7 @@ async function add_addr(addrInfo) {
     let province = addrInfo.province;
     let district = addrInfo.district;
     let street = addrInfo.street;
-    let address = addrInfo.address;
+    let address = addrInfo.address ? addrInfo.address : " " ;
 
     let newAddress = new Address({
         _id: new mongoose.Types.ObjectId(),
@@ -37,10 +37,14 @@ async function getFullAddr(req){
     }else{
         let addr = await Address.findOne({_id: req.addr_id});
         if(addr){
-            let fullAddr = addr.address + " " + addr.street + " " + addr.district + " " + addr.province;
+            let fullAddr = addr.address + ", " + addr.street + ", " + addr.district + ", " + addr.province;
+            let lat = addr.latidute;
+            let lng = addr.longtidute;
             return {
                 code : "1000",
                 full_addr : fullAddr,
+                lat : lat,
+                lng : lng
             }
         }
     }

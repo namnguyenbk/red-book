@@ -6,6 +6,10 @@ import { RouterModule } from '@angular/router';
 import { CovalentHttpModule } from '@covalent/http';
 import { CovalentDynamicFormsModule } from '@covalent/dynamic-forms';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+// import { CovalentBaseEchartsModule } from '@covalent/echarts/base';
+// import { CovalentLineEchartsModule } from '@covalent/echarts/line';
+// import { CovalentTooltipEchartsModule } from '@covalent/echarts/tooltip';
+// import { CovalentToolboxEchartsModule } from '@covalent/echarts/toolbox';
 import {
     CovalentLayoutModule,
     CovalentStepsModule,
@@ -91,6 +95,10 @@ import {
         CovalentMenuModule,
         CovalentDataTableModule,
         CovalentMessageModule,
+        // CovalentBaseEchartsModule,
+        // CovalentLineEchartsModule,
+        // CovalentTooltipEchartsModule,
+        // CovalentToolboxEchartsModule,
 
         NgZorroAntdModule,
 
@@ -146,6 +154,11 @@ import {
         CovalentMenuModule,
         CovalentDataTableModule,
         CovalentMessageModule,
+        // CovalentBaseEchartsModule,
+        // CovalentLineEchartsModule,
+        // CovalentTooltipEchartsModule,
+        // CovalentToolboxEchartsModule,
+
 
     ],
     providers: [

@@ -14,7 +14,7 @@ export class AddRedbookComponent implements OnInit {
   @Input() redbookForm : FormGroup;
   @ViewChild('addrRB') addrRB : AddressComponent;
   rb_data : any;
-  addr : address;
+  addr : any;
   exp : any;
   constructor(
     private _formBuilder: FormBuilder,
@@ -36,10 +36,12 @@ export class AddRedbookComponent implements OnInit {
       use_for : this.rbService.getuse_for(this.redbookForm.get('use_for').value),
       no_land : this.redbookForm.get('no_land').value,
       source_provide : this.rbService.getres(this.redbookForm.get('source_provide').value),
-      address : this.addrRB.detail? this.addrRB.detail : '',
-      street : this.addrRB.wardName,
-      district : this.addrRB.districtName,
-      province : this.addrRB.provinceName,
+      address : this.addr,
+      images : "https://firebasestorage.googleapis.com/v0/b/redbook-c0408.appspot.com/o/pngtree-vector-flat-snowy-landscape-png-clipart_2530446.jpg?alt=media&token=3f44ed2d-849a-4c31-863f-7216b7a906b7"
+      // address : this.addrRB.detail? this.addrRB.detail : '',
+      // street : this.addrRB.wardName,
+      // district : this.addrRB.districtName,
+      // province : this.addrRB.provinceName,
     }
   }
 
@@ -51,7 +53,10 @@ export class AddRedbookComponent implements OnInit {
     alert(this.redbookForm.get('exp').value);
   }
 
-  // getAddress(place: object) { 
-  //   alert( place['formatted_address']);
-  // }
+  getAddress(place: any) { 
+    // alert( place['formatted_address']);
+    this.addr = this.addrService.getAddressDetail(place['formatted_address']);
+    this.addr['latidute'] = place.geometry.location.lat();
+    this.addr['longtidute'] = place.geometry.location.lng();
+  }
 }

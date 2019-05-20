@@ -22,15 +22,18 @@ export class SearchItemComponent implements OnInit, OnChanges {
   ngOnInit() {
     if(this.type =="province"){
       this.data = this.addrService.getAdrrById( 'province', '0');
+      this.data.push("Null");
     }
   }
 
   ngOnChanges(): void {
     if(this.type == "district"){
       this.data = this.addrService.getAdrrById("district", this.preId);
+      this.data.push("Null");
     }else
     if(this.type == "ward"){
       this.data = this.addrService.getAdrrById("ward", this.preId);
+      this.data.push("Null");
     }
   }
 
@@ -39,7 +42,7 @@ export class SearchItemComponent implements OnInit, OnChanges {
       {
         "type": this.type,
         "id" : this.addr.code,
-        "name" : this.addr.name_with_type,
+        "name" : this.addr.name,
   });
   }
  

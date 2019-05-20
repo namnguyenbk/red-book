@@ -13,13 +13,14 @@
 </button> -->
 <nz-skeleton *ngIf="!generalData" [nzAvatar]="true" ></nz-skeleton>
 <a  *ngIf="generalData" mat-list-item >
-    <img matListAvatar src="https://firebasestorage.googleapis.com/v0/b/redbook-c0408.appspot.com/o/pngtree-vector-flat-snowy-landscape-png-clipart_2530446.jpg?alt=media&token=3f44ed2d-849a-4c31-863f-7216b7a906b7" />
+    <!-- <img matListAvatar  src="https://firebasestorage.googleapis.com/v0/b/redbook-c0408.appspot.com/o/pngtree-vector-flat-snowy-landscape-png-clipart_2530446.jpg?alt=media&token=3f44ed2d-849a-4c31-863f-7216b7a906b7" /> -->
+    <img matListAvatar  [src]="generalData.redbook.images" />
     <h4 matLine class="cursor-pointer">Mã số: {{redbook.no_land}} </h4>
     <span *ngIf="generalData.owner" matLine flex="100" class="mat-caption ">{{generalData.owner.fullname}}</span>
     <span *ngIf="!generalData.owner" matLine flex="100" class="mat-caption ">Chưa xác định</span>
     <span *ngIf="generalData.address" flex="100" class="mat-caption ">{{generalData.address}}</span>
     <span *ngIf="!generalData.address" flex="100" class="mat-caption ">Chưa cập nhật</span>
-    <!-- <button *ngIf="generalData.lat && generalData.lng" class="margin-5" mat-icon-button matTooltip="Xem trên Google map"><mat-icon color="primary" (click)="displayMapEvent()">place</mat-icon></button> -->
+    <button *ngIf="generalData.lat && generalData.lng" class="margin-5" mat-icon-button matTooltip="Xem trên Google map"><mat-icon color="primary" (click)="displayMapEvent()">place</mat-icon></button>
     <!-- <button *ngIf="generalData.address.latitude" class="margin-5" mat-icon-button matTooltip="Cập nhật toạ độ"><mat-icon color="warn" (click)="updateGeoEvent()">place</mat-icon></button> -->
     <button class="margin-5" mat-icon-button matTooltip="Xoá sổ đỏ này"><mat-icon color="warn" (click)="deleteEvent()">delete_forever</mat-icon></button>
     <button class="margin-5" mat-icon-button matTooltip="Cập nhật ảnh"><mat-icon color="primary" (click)="uploadImageEvent()">insert_photo</mat-icon></button>

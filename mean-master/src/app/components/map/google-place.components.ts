@@ -45,8 +45,7 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
             });
         google.maps.event.addListener(autocomplete, 'place_changed', () => {
             const place = autocomplete.getPlace();
-            const geocode = autocomplete.getBounds();
-            this.invokeEvent(geocode);
+            this.invokeEvent(place);
         });
     }
 

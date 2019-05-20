@@ -80,7 +80,7 @@ export class AddPartyComponent implements OnInit {
                       asset_id = res.asset_id;
                       this.dialog.showNotification('Thành công', 'Đã thêm thông tin về chủ sở hữu, đất, tài sản thành công!', 'success');
                       this.asset.uploadMediaAsset(asset_id, rb_id);
-                      this.router.navigate(['/admin/add']);
+                      this.router.navigate(['/admin/detail/'+ rb_id]);
                     }else{
                       this.dialog.showNotification('Thất bại', 'Có lỗi khi thêm thông tin sổ đỏ', 'error');
                     }
