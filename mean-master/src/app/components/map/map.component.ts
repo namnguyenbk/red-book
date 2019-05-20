@@ -20,7 +20,7 @@ export class MapComponent implements OnInit {
 
   zoom: number = 8;
   latCenter: number = 20.5231057;
-  lngCenter: number =  105.1219711;
+  lngCenter: number =  105.6219711;
 
   markers: marker[] = [];
 

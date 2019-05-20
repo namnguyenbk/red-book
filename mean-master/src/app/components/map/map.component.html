@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">BẢN ĐỒ CÁC VỊ TRÍ CỦA SỔ ĐỎ</mat-toolbar>
+<mat-toolbar color="primary" class="header2">BẢN ĐỒ CÁC VỊ TRÍ CỦA SỔ ĐỎ</mat-toolbar>
 <agm-map 
   [latitude]="latCenter"
   [longitude]="lngCenter"
@@ -18,7 +18,7 @@
       <strong><mat-icon color="warn">merge_type</mat-icon> Loại : {{m.use_for}}</strong><br>
       <strong> <mat-icon color="warn">place</mat-icon>Địa chỉ : {{m.addr}}</strong><br>
       <hr>
-      <nz-card style="width:400px;" [nzCover]="coverTemplate">
+      <nz-card [nzCover]="coverTemplate">
         </nz-card>
         <ng-template #coverTemplate>
           <img alt="example" [src]="m.images" />

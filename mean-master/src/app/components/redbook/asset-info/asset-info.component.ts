@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AssetService } from '../../../services/asset.service';
-
+import { TdMediaService } from '@covalent/core/media';
 @Component({
   selector: 'app-asset-info',
   templateUrl: './asset-info.component.html',
-  styleUrls: ['./asset-info.component.css']
+  styleUrls: ['./asset-info.component.css'],
+  providers : [TdMediaService]
 })
 export class AssetInfoComponent implements OnInit {
 
@@ -15,7 +16,8 @@ export class AssetInfoComponent implements OnInit {
     "https://firebasestorage.googleapis.com/v0/b/redbook-c0408.appspot.com/o/q5e3hdy2yme?alt=media&token=069a7e77-073c-4be7-ae1d-bc440b31f8ec"
   ]
   constructor(
-    private assetService : AssetService
+    private assetService : AssetService,
+    private media : TdMediaService,
   ) { }
 
   ngOnInit() {

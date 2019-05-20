@@ -24,6 +24,7 @@ import { environment } from '../../environments/environment';
 import { RedbooksComponent } from '../components/redbook/redbooks/redbooks.component';
 import { AutocompleteComponent } from '../components/map/google-place.components';
 import { ChartsComponent } from './charts/charts.component';
+import { AuthGuard } from '../auth/auth-guard.service';
 
 // import { AddressComponent} from '../components/address/address.component';
 @NgModule({
@@ -58,7 +59,8 @@ import { ChartsComponent } from './charts/charts.component';
         AngularFireStorageModule
   ],
   providers: [
-    OnlyAdminUsersGuard
+    OnlyAdminUsersGuard,
+    AuthGuard
   ],
 
   exports: [

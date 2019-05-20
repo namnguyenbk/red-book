@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { RedbookService } from '../../../services/redbook.service';
-
+import { TdMediaService } from '@covalent/core/media';
 @Component({
   selector: 'app-redbook-info',
   templateUrl: './redbook-info.component.html',
-  styleUrls: ['./redbook-info.component.css']
+  styleUrls: ['./redbook-info.component.css'],
+  providers : [TdMediaService],
 })
 export class RedbookInfoComponent implements OnInit {
 
@@ -16,6 +17,7 @@ export class RedbookInfoComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router, 
     private rbService : RedbookService,
+    private media : TdMediaService
   ) { }
 
   ngOnInit() {

@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { OnlyAdminUsersGuard } from './admin-user-guard';
 
 import { AdminComponent } from './admin.component';
-import { SearchBarComponent } from '../components/search-bar/search-bar.component';
-import { ManageListComponent } from './manage-list/manage-list.component';
-import { RedbooksComponent} from '../components/redbook/redbooks/redbooks.component';
+// import { SearchBarComponent } from '../components/search-bar/search-bar.component';
+// import { ManageListComponent } from './manage-list/manage-list.component';
+// import { RedbooksComponent} from '../components/redbook/redbooks/redbooks.component';
 import { RedbookListComponent} from './redbooks/redbooks.component';
 import { AddPartyComponent} from '../admin/add-party/add-party.component';
 import { RedbookInfoComponent} from '../components/redbook/redbook-info/redbook-info.component'
 import { MapComponent } from '../components/map/map.component';
 import { ChartsComponent } from './charts/charts.component';
+import { AuthGuard } from '../auth/auth-guard.service';
 const routes: Routes = [
   {
   path: 'admin',
-  canActivate: [OnlyAdminUsersGuard],
+  canActivate : [AuthGuard],
   component: AdminComponent,
   children: [
     {
@@ -45,19 +45,11 @@ const routes: Routes = [
     
   ]
 },
-// {
-//   path: 'admin/:action',
-//   component: AdminComponent,
-//   canActivate: [OnlyAdminUsersGuard],
-//   children: [
-//     { path: 'test1', component: SearchBarComponent },
-//     { path: 'test2', component: ManageListComponent }
-//   ],
-// }
+
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 

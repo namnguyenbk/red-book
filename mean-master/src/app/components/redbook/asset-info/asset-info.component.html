@@ -27,9 +27,12 @@
           <p>+ Thời gian được thêm vào: {{asset.date}}   </p>
           <p>+. Chi tiết: {{asset.detail_info}}  </p>
         </div>
-        <div nz-col nzSpan="6">
+        <div nz-col *ngIf="media.query('gt-xs')" nzSpan="6">
           <app-image-view *ngIf="asset.images" [src]="asset.images"></app-image-view>
         </div>
+        <div nz-col *ngIf="!media.query('gt-xs')" nzSpan="24">
+            <app-image-view *ngIf="asset.images" [src]="asset.images"></app-image-view>
+          </div>
         <mat-divider *ngIf="assetData"></mat-divider>
       </div>
     </mat-card-content>

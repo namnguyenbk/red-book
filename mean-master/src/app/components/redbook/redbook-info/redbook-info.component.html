@@ -41,10 +41,11 @@
 <!-- <mat-card class="card-rgb">
   <div class="mat-title text-header" >THÔNG TIN CHI TIẾT VỀ SỔ ĐỎ</div>
 </mat-card> -->
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="header">
     Thông tin chi tiết về sổ đỏ
 </mat-toolbar>
-<div nz-row *ngIf="redbookData && personData" class="card-back">
+
+<div nz-row *ngIf="redbookData && personData && media.query('gt-xs')" class="card-back">
   <div nz-col nzSpan="14">
     <app-general-info [redbookData]="redbookData" [personData]="personData">
     </app-general-info>
@@ -54,11 +55,28 @@
     </app-transaction-info>
   </div>
 </div>
+
+
+<div nz-row *ngIf="redbookData && personData && !media.query('gt-xs')" class="card-back" >
+    <div nz-col nzSpan="24">
+      <app-general-info [redbookData]="redbookData" [personData]="personData">
+      </app-general-info>
+    </div>
+</div>
+
 <div nz-row>
   <div nz-col nzSpan="24">
     <app-asset-info [rbId]="rbId" >
     </app-asset-info>
   </div>
+</div>
+
+
+<div nz-row *ngIf="!media.query('gt-xs')">
+    <div nz-col nzSpan="24">
+        <app-transaction-info [rbId]="rbId" [listTransId]="redbookData.trans">
+          </app-transaction-info>
+    </div>
 </div>
 <mat-card *ngIf="!redbookData || !personData">
     <nz-skeleton></nz-skeleton>

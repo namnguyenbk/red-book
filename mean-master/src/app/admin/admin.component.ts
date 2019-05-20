@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, AfterViewChecked } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material';
-import { TdMediaService } from '@covalent/core';
+import { TdMediaService } from '@covalent/core/media';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../auth/auth.service';
@@ -10,12 +10,14 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+  styleUrls: ['./admin.component.scss'],
+  providers : [TdMediaService]
 })
 export class AdminComponent implements OnInit{
   
   userSubscription: Subscription;
   user: any;
+  isSmall : boolean = false;
 
   constructor(
     public media: TdMediaService, 
@@ -25,6 +27,15 @@ export class AdminComponent implements OnInit{
 }
 
   ngOnInit() {
+    // alert('nam');
+    // if(!this.authService.me()){
+    //   this.router.navigate(['/auth/login']);
+    // }
+    // if(this.media.query('gt-xs')){
+    //   this.isSmall = false;
+    // }else{
+    //   this.isSmall = true;
+    // }
     this.authService.me().subscribe(data => {
       this.user = data.user;
     });

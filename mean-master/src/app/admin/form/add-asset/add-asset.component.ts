@@ -18,6 +18,8 @@ export class AddAssetComponent implements OnInit {
   image2: any;
   images: Array<string>;
   uploadProgress: any;
+  breakpoint : number;
+  isSmall : boolean;
   taskUpload: AngularFireUploadTask;
 
   constructor(
@@ -30,6 +32,10 @@ export class AddAssetComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.breakpoint = (window.innerWidth <= 1100) ? 1 : 3; 
+    if(window.innerWidth <= 1100){
+      this.isSmall = true;
+    }
     this.assetForm = this._formBuilder.group({
       area: ['', Validators.required],
       type: ['0', Validators.required],
@@ -115,6 +121,9 @@ export class AddAssetComponent implements OnInit {
       });
   }
 
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 1100) ? 1 : 3;
+  }
   
 
 }

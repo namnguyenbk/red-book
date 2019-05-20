@@ -16,6 +16,8 @@ export class AddRedbookComponent implements OnInit {
   rb_data : any;
   addr : any;
   exp : any;
+  breakpoint1 : number;
+  breakpoint2 : number;
   constructor(
     private _formBuilder: FormBuilder,
     private addrService : AddressService,
@@ -23,6 +25,8 @@ export class AddRedbookComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.breakpoint1 = (window.innerWidth <= 1100) ? 1 : 3; 
+    this.breakpoint2 = (window.innerWidth <= 1100) ? 1 : 4; 
   }
 
   getRBData( owner_id : string){
@@ -58,5 +62,10 @@ export class AddRedbookComponent implements OnInit {
     this.addr = this.addrService.getAddressDetail(place['formatted_address']);
     this.addr['latidute'] = place.geometry.location.lat();
     this.addr['longtidute'] = place.geometry.location.lng();
+  }
+
+  onResize(event) {
+    this.breakpoint1 = (event.target.innerWidth <= 1100) ? 1 : 3;
+    this.breakpoint2 = (event.target.innerWidth <= 1100) ? 1 : 4;
   }
 }

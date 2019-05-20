@@ -3,9 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth-guard.service';
 import { HomeComponent } from './components/home/home.component';
 import { ImageViewComponent } from './components/image-view/image-view.component';
+import {RedbookListComponent} from './admin/redbooks/redbooks.component';
 const routes: Routes = [{
   path: '',
-  component: HomeComponent
+  component: RedbookListComponent
 }, {
   path: 'auth',
   loadChildren: 'app/auth/auth.module#AuthModule'

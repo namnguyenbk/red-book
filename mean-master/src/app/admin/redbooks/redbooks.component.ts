@@ -8,6 +8,7 @@ import { RedbookService } from '../../services/redbook.service';
 import { DialogService } from '../../services/common/dialog.service';
 import { LoadingEffectService } from '../../services/common/loading-effect.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
 
 export interface dataAddTrans{
   rbId : string,
@@ -55,9 +56,13 @@ export class RedbookListComponent implements OnInit {
     private rbService : RedbookService,
     private dialogService : DialogService,
     private loadingEffect : LoadingEffectService,
-    private router: Router,) { }
+    private router: Router,
+    private authService : AuthService) { }
 
   ngOnInit() {
+    // if(!localStorage.getItem('AuthToken')){
+    //   this.router.navigate(['/auth/login'])
+    // }
     let searchTemp : searchReq =  {
       owner_name : '',
       province : '',

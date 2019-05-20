@@ -22,7 +22,7 @@
   <!-- </ng-template> -->
 </mat-nav-list>
 
-<td-paging-bar #pagingBarPageSize [firstLast]="true" [pageSize]="12" [total]="numRedbook"
+<!-- <td-paging-bar #pagingBarPageSize [firstLast]="true" [pageSize]="12" [total]="numRedbook"
   (change)="changePager($event)">
   <span hide-xs>Số lượng trên 1 trang: </span>
   <mat-select [style.width.px]="50" [(ngModel)]="pageSize">
@@ -31,7 +31,7 @@
     </mat-option>
   </mat-select>
   <span>{{pagingBarPageSize.range}} <span hide-xs>of {{pagingBarPageSize.total}}</span></span>
-</td-paging-bar>
+</td-paging-bar> -->
 </mat-card>
 
 <nz-modal [(nzVisible)]="isVisibleModalTrans" nzTitle="Thêm giao dịch" (nzOnCancel)="cancelModalTrans()" nzZIndex="50"

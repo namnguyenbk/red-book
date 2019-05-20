@@ -1,4 +1,4 @@
-    <div nz-row>
+    <div nz-row *ngIf="media.query('gt-xs')">
         <div nz-col [nzSpan]="1" >
           </div>
         <div nz-col [nzSpan]="10" >
@@ -12,6 +12,16 @@
         <div nz-col [nzSpan]="1" >
           </div>
       </div>
+
+      <!-- small device -->
+      <div nz-row *ngIf="!media.query('gt-xs')">
+          <div nz-col [nzSpan]="24" >
+              <img class="img-s" src={{src[0]}} (click)="zoom(1)">
+          </div>
+          <div nz-col [nzSpan]="24" >
+              <img class="img-s" src={{src[1]}} (click)="zoom(2)">
+          </div>
+        </div>
       <div nz-row>
           <div nz-col [nzSpan]="6" >
               </div>

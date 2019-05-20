@@ -22,6 +22,8 @@ export class AddPersonComponent implements OnInit, OnChanges {
   owner_id : string;
   address : string;
 
+  breakpoint : number;
+
   constructor(private _formBuilder: FormBuilder,
     private addrService: AddressService,
     private personService: PersonService,
@@ -30,6 +32,7 @@ export class AddPersonComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    this.breakpoint = (window.innerWidth <= 1100) ? 1 : 3; 
   }
 
   ngOnChanges() {
@@ -89,6 +92,10 @@ export class AddPersonComponent implements OnInit, OnChanges {
      let address = place['formatted_address'];
      this.address = address;
     //  alert(place);
+  }
+
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 1100) ? 1 : 3;
   }
 
 }

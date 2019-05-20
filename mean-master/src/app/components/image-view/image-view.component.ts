@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { TdMediaService } from '@covalent/core/media';
 @Component({
   selector: 'app-image-view',
   templateUrl: './image-view.component.html',
-  styleUrls: ['./image-view.component.css']
+  styleUrls: ['./image-view.component.css'],
+  providers : [TdMediaService],
 })
 export class ImageViewComponent implements OnInit {
   @Input() src : Array<string>;
@@ -13,7 +14,9 @@ export class ImageViewComponent implements OnInit {
   // ]
   isZoom : boolean;
   current : string;
-  constructor() { }
+  constructor(
+    private media : TdMediaService,
+  ) { }
 
   ngOnInit() {
     if(this.src[0] === undefined){

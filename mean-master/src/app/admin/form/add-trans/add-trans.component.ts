@@ -28,6 +28,7 @@ export class AddTransComponent implements OnInit {
   detail: "";
   new_owner: "";
   isVisibleModal: boolean;
+  breakpoint : number;
 
   rb_id: string;
   myOwner = new FormControl();
@@ -52,6 +53,7 @@ export class AddTransComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.breakpoint = (window.innerWidth <= 1100) ? 1 : 2; 
     this.personForm = this._formBuilder.group({
       fname: ['', Validators.required],
       mname: ['', Validators.required],
@@ -178,5 +180,9 @@ export class AddTransComponent implements OnInit {
         })
       }
     })
+  }
+
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 1100) ? 1 : 2;
   }
 }

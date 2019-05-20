@@ -1,17 +1,17 @@
 <form [formGroup]="redbookForm">
-  <mat-grid-list cols="3" rowHeight="3:1">
+  <mat-grid-list [cols]="breakpoint1" rowHeight="3:1" (window:resize)="onResize($event)">
     <mat-grid-tile>
-      <mat-form-field>
+      <mat-form-field class="example-full-width">
         <input matInput placeholder="Diện tích" formControlName="area" type="number" required>
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile>
-      <mat-form-field>
+      <mat-form-field class="example-full-width">
         <input matInput placeholder="Số thửa" formControlName="no_land" type="number" required>
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile>
-      <mat-form-field>
+      <mat-form-field class="example-full-width">
         <mat-label>Hình thức</mat-label>
         <mat-select formControlName="type" >
           <mat-option [value]="1">
@@ -24,9 +24,9 @@
       </mat-form-field>
     </mat-grid-tile>
   </mat-grid-list>
-  <mat-grid-list cols="4" rowHeight="4:1">
+  <mat-grid-list [cols]="breakpoint2" rowHeight="4:2" (window:resize)="onResize($event)">
       <mat-grid-tile>
-        <mat-form-field>
+        <mat-form-field class="example-full-width">
           <mat-label>Mục đích</mat-label>
         <mat-select formControlName="use_for" required>
           <mat-option [value]="1">
@@ -39,10 +39,10 @@
         </mat-form-field>
       </mat-grid-tile>
       <mat-grid-tile>
-        <!-- <mat-form-field>
+        <mat-form-field class="example-full-width">
           <input matInput placeholder="Thời hạn( năm)" formControlName="exp" type="number" required>
-        </mat-form-field> -->
-        <nz-row>
+        </mat-form-field>
+        <!-- <nz-row>
             <label>Thời hạn: </label>
         </nz-row>
         <nz-row>
@@ -58,16 +58,16 @@
                 [(ngModel)]="exp"
               ></nz-input-number>
             </div>
-          </nz-row>
+          </nz-row> -->
       </mat-grid-tile>
       <mat-grid-tile>
-        <mat-form-field>
+        <mat-form-field class="example-full-width">
             <input matInput placeholder="Số hiệu văn bản" formControlName="num_license" required>
         </mat-form-field>
         
       </mat-grid-tile>
       <mat-grid-tile>
-          <mat-form-field>
+          <mat-form-field class="example-full-width">
               <mat-label>Nguồn gốc sử dụng đất</mat-label>
               <mat-select formControlName="source_provide" >
                 <mat-option [value]="1">

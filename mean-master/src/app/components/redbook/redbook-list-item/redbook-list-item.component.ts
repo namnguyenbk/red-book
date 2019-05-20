@@ -1,12 +1,15 @@
-import { Component, OnInit, Input, Inject, Output, EventEmitter } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { RedbookService } from '../../../services/redbook.service';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { TdMediaService } from '@covalent/core/media';
 
 @Component({
   selector: 'app-redbook-list-item',
   templateUrl: './redbook-list-item.component.html',
-  styleUrls: ['./redbook-list-item.component.css']
+  styleUrls: ['./redbook-list-item.component.css'],
+  providers : [
+    TdMediaService
+  ]
 })
 export class RedbookListItemComponent implements OnInit {
 
@@ -16,20 +19,31 @@ export class RedbookListItemComponent implements OnInit {
   @Output() onDelete : EventEmitter<any> = new EventEmitter<any>(); 
   @Output() onUploadImage : EventEmitter<any> = new EventEmitter<any>(); 
   isVisibleModalTrans : boolean;
+  isAdmin : boolean;
   generalData : any
   constructor(
     private router : Router,
     private rbService : RedbookService,
+    private media : TdMediaService,
   ) { }
 
   ngOnInit() {
+    if( this.router.url.includes('admin')){
+      this.isAdmin = true;
+    }
+    // this.router.url 
     this.rbService.getDetail(this.redbook._id).subscribe( (res : any) =>{
       this.generalData = res;
-    })
+    });
   }
 
   detail(){
-    this.router.navigate(['/admin/detail/' + this.redbook._id]);
+    if(this.isAdmin){
+      this.router.navigate(['/admin/detail/' + this.redbook._id]);
+    }else{
+      this.router.navigate(['/control/detail/' + this.redbook._id]);
+    }
+    
   }
 
 

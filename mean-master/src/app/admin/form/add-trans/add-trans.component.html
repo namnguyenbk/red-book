@@ -1,11 +1,11 @@
-<mat-grid-list cols="2" rowHeight="4:1">
+<mat-grid-list [cols]="breakpoint" rowHeight="5:2" (window:resize)="onResize($event)">
   <mat-grid-tile>
     <p class="example-full-width mat-body-strong">Chủ sở hữu hiện tại : {{ownername}}</p>
   </mat-grid-tile>
   <mat-grid-tile>
     <form class="example-form" class="example-full-width">
       <mat-form-field class="example-full-width">
-        <input type="text" placeholder="Chọn chủ sở hữu mới" aria-label="Tên" matInput [formControl]="myOwner"
+        <input type="text" placeholder="Chọn chủ sở hữu mới hoặc thêm" aria-label="Tên" matInput [formControl]="myOwner"
           [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option.code" >
