@@ -63,7 +63,7 @@ async function getStatistic(){
     let i = 0;
     num_new_rb_byday.map((item)=>{
         num_new_rb_byday[i].value.num_new = dates.filter((dateDetail) =>{
-            return parseInt(dateDetail[0]) == item.value.date.getDate() && parseInt(dateDetail[1]) == (item.value.date.getMonth() + 1) && parseInt(dateDetail[2]) == item.value.date.getFullYear();
+            return parseInt(dateDetail[0]) == item.value.date.getDate() && parseInt(dateDetail[1]) == (item.value.date.getMonth()) && parseInt(dateDetail[2]) == item.value.date.getFullYear();
         }).length;
         i++;
     });
