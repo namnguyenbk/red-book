@@ -32,7 +32,7 @@ export class AddPersonComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.breakpoint = (window.innerWidth <= 1100) ? 1 : 3; 
+    this.breakpoint = (window.innerWidth <= 700) ? 1 : 3; 
   }
 
   ngOnChanges() {
@@ -95,7 +95,7 @@ export class AddPersonComponent implements OnInit, OnChanges {
   }
 
   onResize(event) {
-    this.breakpoint = (event.target.innerWidth <= 1100) ? 1 : 3;
+    this.breakpoint = (event.target.innerWidth <= 700) ? 1 : 3;
   }
 
 }

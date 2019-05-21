@@ -25,11 +25,11 @@ export class SearchBarComponent implements OnInit {
   constructor( private searchSerivce : SearchService) { }
 
   ngOnInit() {
-    this.breakpoint = (window.innerWidth <= 1100) ? 1 : 5;
+    this.breakpoint = (window.innerWidth <= 800) ? 1 : 5;
   }
 
   onResize(event) {
-  this.breakpoint = (event.target.innerWidth <= 1100) ? 1 : 5;
+  this.breakpoint = (event.target.innerWidth <= 800) ? 1 : 5;
 }
 
   onSearch(){

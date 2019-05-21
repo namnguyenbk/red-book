@@ -49,7 +49,7 @@ export class AddressService {
   }
 
   getDate( dateTime : Date){
-    return dateTime.getDate() + '/'+ dateTime.getMonth()+ '/' + dateTime.getFullYear();
+    return dateTime.getDate() + '/'+ dateTime.getMonth() + 1 + '/' + dateTime.getFullYear();
   }
 
   getAddr( addrId : string){

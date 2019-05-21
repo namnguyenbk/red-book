@@ -5,7 +5,7 @@
   </mat-toolbar>
   <mat-card >
 <div class="container">
-  <mat-grid-list [cols]="breakpoint" rowHeight="5:5" (window:resize)="onResize($event)">
+  <mat-grid-list [cols]="breakpoint" rowHeight="5:2" (window:resize)="onResize($event)">
     <mat-grid-tile>
       <app-search-item [title]=" 'Tỉnh, thành' " [type]="'province'" (onchange)="updateIdAddr($event)"></app-search-item>
     </mat-grid-tile>

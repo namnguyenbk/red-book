@@ -2,14 +2,14 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from '@angular/common';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { CovalentHttpModule } from '@covalent/http';
 import { CovalentDynamicFormsModule } from '@covalent/dynamic-forms';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
-// import { CovalentBaseEchartsModule } from '@covalent/echarts/base';
-// import { CovalentLineEchartsModule } from '@covalent/echarts/line';
-// import { CovalentTooltipEchartsModule } from '@covalent/echarts/tooltip';
-// import { CovalentToolboxEchartsModule } from '@covalent/echarts/toolbox';
+import { CovalentBaseEchartsModule } from '@covalent/echarts/base';
+import { CovalentLineEchartsModule } from '@covalent/echarts/line';
+import { CovalentTooltipEchartsModule } from '@covalent/echarts/tooltip';
+import { CovalentToolboxEchartsModule } from '@covalent/echarts/toolbox';
 import {
     CovalentLayoutModule,
     CovalentStepsModule,
@@ -26,7 +26,7 @@ import {
 
 } from '@covalent/core';
 
-import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
+import { NgZorroAntdModule} from 'ng-zorro-antd';
 
 import { CovalentDialogsModule} from '@covalent/core/dialogs';
 import { CovalentLoadingModule} from '@covalent/core/loading';
@@ -49,6 +49,7 @@ import {
 @NgModule({
     imports: [
         CommonModule,
+        NgxChartsModule,
         /** Material Modules */
         MatToolbarModule,
         MatButtonModule,
@@ -95,16 +96,17 @@ import {
         CovalentMenuModule,
         CovalentDataTableModule,
         CovalentMessageModule,
-        // CovalentBaseEchartsModule,
-        // CovalentLineEchartsModule,
-        // CovalentTooltipEchartsModule,
-        // CovalentToolboxEchartsModule,
+        CovalentBaseEchartsModule,
+        CovalentLineEchartsModule,
+        CovalentTooltipEchartsModule,
+        CovalentToolboxEchartsModule,
 
         NgZorroAntdModule,
 
         RouterModule
     ],
     exports: [
+        NgxChartsModule,
         CommonModule,
         ReactiveFormsModule,
         MatToolbarModule,
@@ -154,10 +156,10 @@ import {
         CovalentMenuModule,
         CovalentDataTableModule,
         CovalentMessageModule,
-        // CovalentBaseEchartsModule,
-        // CovalentLineEchartsModule,
-        // CovalentTooltipEchartsModule,
-        // CovalentToolboxEchartsModule,
+        CovalentBaseEchartsModule,
+        CovalentLineEchartsModule,
+        CovalentTooltipEchartsModule,
+        CovalentToolboxEchartsModule,
 
 
     ],

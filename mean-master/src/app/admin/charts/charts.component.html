@@ -1,12 +1,59 @@
+<mat-toolbar class="header2" color="primary" >
+  Biến động số lượng trong 30 ngày
+</mat-toolbar>
+<mat-card>
+<td-chart [style.height.px]="300" *ngIf="dataNumNewRb">
+  <td-chart-tooltip [trigger]="'item'">
+  </td-chart-tooltip>
+  <td-chart-x-axis [show]="true"
+                    [position]="'top'"
+                    [type]="'time'"
+                    [splitLine]="{show: false}"
+                    [boundaryGap]="false">
+  </td-chart-x-axis>
+  <td-chart-y-axis [show]="true"
+                    [type]="'value'">
+  </td-chart-y-axis>
+  <td-chart-series td-line
+                    [symbolSize]="14"
+                    [data]="dataNumNewRb.slice(0,30)"
+                    [name]="'Số lượng sổ đỏ'"
+                    [symbol]="'roundRect'"
+                    [color]="'#F2724B'">
+    <td-chart-series-tooltip>
+      <ng-template let-params let-ticket="ticket" tdTooltipFormatter>
+        <ng-container *ngIf="params">
+          <div layout="row" layout-align="start center">
+            <mat-icon>
+              <span class="tc-accent">account_balance</span>
+            </mat-icon>
+            <span class="mat-caption pad-left-sm">
+              {{params.seriesName + ': ' + params.value[1]}}
+            </span>
+          </div>
+          <div class="mat-caption">
+            cập nhật vào {{(params.name | date:'medium')}}
+          </div>
+        </ng-container>
+      </ng-template>
+    </td-chart-series-tooltip>
+  </td-chart-series>
+</td-chart>
+</mat-card>
 
-<div nz-row>
-  <div nz-col nzXs="2" nzSm="4" nzMd="6" nzLg="8" nzXl="10">
-    Col
-  </div>
-  <div nz-col nzXs="20" nzSm="16" nzMd="12" nzLg="8" nzXl="4">
-    Col
-  </div>
-  <div nz-col nzXs="2" nzSm="4" nzMd="6" nzLg="8" nzXl="10">
-    Col
-  </div>
-</div>
+<mat-toolbar class="header2" color="primary" >
+  Số lượng sổ đỏ theo các tỉnh/ thành phố
+</mat-toolbar>
+<!-- <mat-card> -->
+<ngx-charts-bar-vertical 
+  [legendTitle]="'Tỉnh/ thành phố'"
+  [results]="dataNumRbDis"
+  [xAxis]="true"
+  [yAxis]="true"
+  [legend]="true">
+</ngx-charts-bar-vertical>
+
+<!-- </mat-card> -->
+<mat-toolbar class="header2" color="primary" >
+  Số lượng sổ đỏ theo các tỉnh/ thành phố
+</mat-toolbar>

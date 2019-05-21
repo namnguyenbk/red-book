@@ -47,11 +47,8 @@ async function getStatistic(){
         let d = new Date();
         d.setDate(d.getDate() - i);
         let obj = {
-            name:`${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`,
-            value: {
-                num_new: 0,
-                date: d,
-            }
+            name:`${d.getDate()}/${d.getMonth()}/${d.getFullYear()}`,
+            value: [d, 0]
         };
         num_new_rb_byday.push(obj);
     }
@@ -62,8 +59,8 @@ async function getStatistic(){
 
     let i = 0;
     num_new_rb_byday.map((item)=>{
-        num_new_rb_byday[i].value.num_new = dates.filter((dateDetail) =>{
-            return parseInt(dateDetail[0]) == item.value.date.getDate() && parseInt(dateDetail[1]) == (item.value.date.getMonth()) && parseInt(dateDetail[2]) == item.value.date.getFullYear();
+        num_new_rb_byday[i].value[1] = dates.filter((dateDetail) =>{
+            return parseInt(dateDetail[0]) == item.value[0].getDate() && parseInt(dateDetail[1]) == (item.value[0].getMonth()) && parseInt(dateDetail[2]) == item.value[0].getFullYear();
         }).length;
         i++;
     });
@@ -116,8 +113,8 @@ async function getStatistic(){
             }
         });
         return {
-            dis,
-            num,
+            'name' : dis,
+            'value' : num,
         };
     });
 
