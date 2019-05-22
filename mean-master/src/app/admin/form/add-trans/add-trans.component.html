@@ -7,15 +7,15 @@
       <mat-form-field class="example-full-width">
         <input type="text" placeholder="Chọn chủ sở hữu mới hoặc thêm" aria-label="Tên" matInput [formControl]="myOwner"
           [matAutocomplete]="auto">
+          <button matSuffix mat-mini-fab color="accent" matTooltip="Thêm chủ sở hữu khác" (click)="displayModalPerson()" >
+            <mat-icon >add</mat-icon>
+        </button>
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option.code" >
             {{option.owner_name}}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-      <button mat-mini-fab color="accent" matTooltip="Thêm chủ sở hữu khác" (click)="displayModalPerson()" >
-          <mat-icon >add</mat-icon>
-      </button>
     </form>
   </mat-grid-tile>
   <mat-grid-tile>

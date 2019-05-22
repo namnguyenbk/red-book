@@ -63,6 +63,14 @@ export class AddPartyComponent implements OnInit {
 
   completeAdd() {
     var person_id, rb_id, asset_id;
+    if(!this.personForm.address){
+      this.dialog.showNotify('error','Thông báo','Thiếu địa chỉ, vui lòng nhập đầy đủ!');
+              return;
+    }
+    if(!this.redbookForm.addr){
+      this.dialog.showNotify('error','Thông báo','Thiếu địa chỉ, vui lòng nhập đầy đủ!');
+      return;
+    }
     this.addrService.addAdress(this.personForm.getPostalAddr()).subscribe((res: any) => {
       if (res.code == '1000') {
         let addrPerson_id = res.addr_id;
@@ -78,6 +86,7 @@ export class AddPartyComponent implements OnInit {
                   this.asset.uploadAsset(this.asset.getDataAsset(rb_id)).subscribe((res: any) => {
                     if (res.code == '1000') {
                       asset_id = res.asset_id;
+                      this.dialog.showNotify('success','Thành công', 'Đã thêm thông tin về chủ sở hữu, đất, tài sản thành công!');
                       this.dialog.showNotification('Thành công', 'Đã thêm thông tin về chủ sở hữu, đất, tài sản thành công!', 'success');
                       this.asset.uploadMediaAsset(asset_id, rb_id);
                       this.router.navigate(['/admin/detail/'+ rb_id]);
@@ -86,8 +95,12 @@ export class AddPartyComponent implements OnInit {
                     }
                   })
                 // });
+              }else{
+                this.dialog.showNotification('Thất bại', 'Có lỗi khi thêm thông tin sổ đỏ', 'error');
               }
             })
+          }else{
+            this.dialog.showNotify('error','Thông báo', 'Có lỗi khi thêm thông tin chủ sở hữu!');
           }
         })
       }

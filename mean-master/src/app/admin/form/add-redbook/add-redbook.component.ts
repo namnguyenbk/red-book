@@ -4,6 +4,7 @@ import { AddressComponent} from '../../../components/address/address.component';
 import { redbookData, address} from '../../../interface/common-interface';
 import { AddressService} from '../../../services/common/address.service';
 import { RedbookService} from '../../../services/redbook.service';
+import { DialogService } from '../../../services/common/dialog.service';
 @Component({
   selector: 'app-add-redbook',
   templateUrl: './add-redbook.component.html',
@@ -21,7 +22,8 @@ export class AddRedbookComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private addrService : AddressService,
-    private rbService : RedbookService) {
+    private rbService : RedbookService,
+    private dialog : DialogService) {
    }
 
   ngOnInit() {
@@ -62,6 +64,7 @@ export class AddRedbookComponent implements OnInit {
     this.addr = this.addrService.getAddressDetail(place['formatted_address']);
     this.addr['latidute'] = place.geometry.location.lat();
     this.addr['longtidute'] = place.geometry.location.lng();
+    
   }
 
   onResize(event) {

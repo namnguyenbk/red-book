@@ -23,7 +23,7 @@ export class AddTransComponent implements OnInit {
   listOwner: any;
   isHasOwner: true;
   type: string;
-  amount: Number;
+  amount: Number = 0;
   date = new Date();
   detail: "";
   new_owner: "";
@@ -106,6 +106,10 @@ export class AddTransComponent implements OnInit {
   }
 
   addTrans() {
+    if( !this.myOwner.value){
+      this.dialog.showNotify('error', 'Thông báo', 'Nhập đầy đủ thông tin về giao dịch!');
+      return;
+    }
     let transData: any = {
       rb_id: this.rbId,
       owner_old: this.ownerId,
@@ -165,6 +169,12 @@ export class AddTransComponent implements OnInit {
   }
 
   addPerson() {
+    if(!this.addPersonForm.address){
+      if(!this.addPersonForm.personForm.valid){
+        this.dialog.showNotify('error', 'Thông báo', 'Nhập đầy đủ thông tin về chủ sở hữu!');
+        return;
+      }
+    }
     this.isVisibleModal = false;
     this.addService.addAdress(this.addPersonForm.getPostalAddr()).subscribe((res: any) => {
       if (res.code == '1000') {

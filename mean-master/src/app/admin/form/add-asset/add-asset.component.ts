@@ -53,6 +53,11 @@ export class AddAssetComponent implements OnInit {
   }
 
   uploadMediaAsset(asseId: string, rbId: string) {
+    if(!this.image1){
+      if(!this.image2){
+        return;
+      }
+    }
     const randomId1 = Math.random().toString(36).substring(2);
     const randomId2 = Math.random().toString(36).substring(2);
 
@@ -75,7 +80,11 @@ export class AddAssetComponent implements OnInit {
             console.log(url);
             this.assetService.uploadImage(imageData).subscribe((res: any) => {
               if (res.code == "1000") {
+                this.dialogSeervice.showNotify('success', "Upload ảnh", "Upload ảnh thành công");
                 this.dialogSeervice.showNotification("Upload ảnh", "Upload ảnh thành công", "success");
+                setTimeout( function() {
+                  window.location.reload();
+                }, 2000);
               } else {
                 this.dialogSeervice.showNotification("Upload ảnh", "Upload ảnh thất bại", "success");
               }

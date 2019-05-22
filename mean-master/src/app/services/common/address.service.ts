@@ -49,7 +49,8 @@ export class AddressService {
   }
 
   getDate( dateTime : Date){
-    return dateTime.getDate() + '/'+ dateTime.getMonth() + 1 + '/' + dateTime.getFullYear();
+    let month = dateTime.getMonth() + 1
+    return dateTime.getDate() + '/'+ month + '/' + dateTime.getFullYear();
   }
 
   getAddr( addrId : string){

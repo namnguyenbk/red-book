@@ -11,7 +11,7 @@ import { } from "googlemaps";
         type="text"
         placeholder="Nhập địa chỉ: "
         [(ngModel)]="autocompleteInput"
-        #addresstext
+        #addresstext required
     >
     </mat-form-field>
       

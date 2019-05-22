@@ -128,6 +128,10 @@ export class RedbookListComponent implements OnInit {
   }
 
   onSaveImage(){
+    if(!this.image){
+      this.dialogService.showNotify('error','Lỗi','Vui lòng chọn ảnh!');
+      return;
+    }
     this.cancelModalUpload();
     let randomId = this.rbId;
     let ref = this.afStorage.ref(randomId);
@@ -145,7 +149,9 @@ export class RedbookListComponent implements OnInit {
             if (res.code == "1000") {
               // this.dialogService.showNotification("Upload ảnh", "Upload ảnh thành công", "success");
               this.dialogService.showNotify("success","Upload ảnh","Upload ảnh thành công");
-              this.updateList();
+              setTimeout( function() {
+                window.location.reload();
+              }, 2000);
             } else {
               // this.dialogService.showNotification("Upload ảnh", "Upload ảnh thất bại", "fail");
               this.dialogService.showNotify("error","Upload ảnh","Upload ảnh thất bại");
