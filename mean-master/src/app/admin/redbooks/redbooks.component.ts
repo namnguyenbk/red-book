@@ -149,9 +149,10 @@ export class RedbookListComponent implements OnInit {
             if (res.code == "1000") {
               // this.dialogService.showNotification("Upload ảnh", "Upload ảnh thành công", "success");
               this.dialogService.showNotify("success","Upload ảnh","Upload ảnh thành công");
-              setTimeout( function() {
-                window.location.reload();
-              }, 2000);
+              this.ngOnInit();
+              // setTimeout( function() {
+              //   window.location.reload();
+              // }, 2000);
             } else {
               // this.dialogService.showNotification("Upload ảnh", "Upload ảnh thất bại", "fail");
               this.dialogService.showNotify("error","Upload ảnh","Upload ảnh thất bại");
@@ -159,6 +160,12 @@ export class RedbookListComponent implements OnInit {
           })
         })
      });
+  }
+
+  addTransSuccess(){
+    this.isVisibleModalTrans = false;
+    this.router.navigateByUrl('/admin/list', {skipLocationChange: true}).then(()=>
+          this.ngOnInit())
   }
 
   displayModalTrans() {

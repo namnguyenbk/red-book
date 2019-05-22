@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Inject, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
@@ -9,6 +9,8 @@ import { DialogService } from '../../../services/common/dialog.service';
 import { RedbookService } from '../../../services/redbook.service';
 import { AddPersonComponent } from '../add-person/add-person.component';
 import { NzNotificationService } from 'ng-zorro-antd';
+import { LoadingEffectService } from '../../../services/common/loading-effect.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-trans',
@@ -20,6 +22,7 @@ export class AddTransComponent implements OnInit {
   @Input() ownername : string;
   @Input() ownerId : string;
   @Input() rbId : string;
+  @Output('addTransSuccess')  addTransSuccess : EventEmitter<null> = new EventEmitter();
   listOwner: any;
   isHasOwner: true;
   type: string;
@@ -41,12 +44,14 @@ export class AddTransComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
+    private router : Router,
     private addService: AddressService,
     private transService: TransactionService,
     private personService: PersonService,
     private dialog: DialogService,
     private rbService: RedbookService,
     private notify : NzNotificationService,
+    private loading : LoadingEffectService
 
   ) {
 
@@ -110,6 +115,14 @@ export class AddTransComponent implements OnInit {
       this.dialog.showNotify('error', 'Thông báo', 'Nhập đầy đủ thông tin về giao dịch!');
       return;
     }
+    if(this.amount == 0){
+      this.dialog.showNotify('error', 'Thông báo', 'Nhập đầy đủ thông tin về giao dịch!');
+      return;
+    }
+    if(!this.detail && !this.type){
+      this.dialog.showNotify('error', 'Thông báo', 'Nhập đầy đủ thông tin về giao dịch!');
+      return;
+    }
     let transData: any = {
       rb_id: this.rbId,
       owner_old: this.ownerId,
@@ -121,6 +134,7 @@ export class AddTransComponent implements OnInit {
     }
 
     this.transService.addTrans(transData).subscribe((res: any) => {
+      this.loading.showLoading2();
       if (res.code == "1000") {
         this.rbService.changOwner({
           rb_id: this.rbId,
@@ -128,12 +142,24 @@ export class AddTransComponent implements OnInit {
         }).subscribe((res: any) => {
           if (res.code == "1000") {
             this.notify.create( 'success', 'Thành công', 'Thêm mới giao dịch hữu thành công!');
+            this.loading.stopLoading2();
+            this.addTransSuccess.emit();
+            // this.reload();
+              // setTimeout( function() {
+              //   window.location.reload();
+              // }, 2000);
           }
         })
       } else {
+        this.loading.stopLoading2();
         this.notify.create( 'error', 'Thất bại', 'Có lỗi khi thêm mới giao dịch!');
       }
     })
+  }
+
+  reload(){
+    this.router.navigateByUrl('/admin/list', {skipLocationChange: true}).then(()=>
+      this.router.navigate([''])); 
   }
 
   getOnwerId(code: string) {
@@ -180,16 +206,20 @@ export class AddTransComponent implements OnInit {
       if (res.code == '1000') {
         let addrPerson_id = res.addr_id;
         let personData = this.addPersonForm.getPersonData(addrPerson_id);
+        // this.addPersonForm.personForm.reset();
         this.addPersonForm.uploadPersonData(personData).subscribe((res: any) => {
           if (res.code == '1000') {
             this.notify.create( 'success', 'Thành công', 'Thêm mới chủ sở hữu thành công!');
             this.updateListOwner();
           }else{
+            if(res.code = '1001'){
+              this.dialog.showNotify('error', 'Thông báo', 'Thiếu thông tin về số CMND!');
+            }
             this.notify.create( 'error', 'Thất bại', 'Có lỗi khi thêm mới chủ sở hữu!');
           }
         })
       }
-    })
+    });
   }
 
   onResize(event) {

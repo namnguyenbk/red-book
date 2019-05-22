@@ -6,11 +6,18 @@ import { TdLoadingService, LoadingMode, LoadingType } from '@covalent/core/loadi
   providedIn: 'root'
 })
 export class LoadingEffectService {
-  constructor(private loadingService: TdLoadingService) {
+  constructor(private loadingService: TdLoadingService,
+    private loadingSerice2 : TdLoadingService) {
     this.loadingService.create({
       name: 'loading',
       mode: LoadingMode.Indeterminate,
       type: LoadingType.Linear,
+      color: 'primary',
+    });
+    this.loadingSerice2.create({
+      name: 'loading2',
+      mode: LoadingMode.Indeterminate,
+      type: LoadingType.Circular,
       color: 'primary',
     });
    }
@@ -21,5 +28,13 @@ export class LoadingEffectService {
   
   stopLoading(){
     this.loadingService.resolve('loading');
+  }
+
+  showLoading2(){
+    this.loadingSerice2.register('loading2');
+  }
+  
+  stopLoading2(){
+    this.loadingSerice2.resolve('loading2');
   }
 }

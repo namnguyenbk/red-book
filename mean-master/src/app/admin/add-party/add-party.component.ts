@@ -63,12 +63,12 @@ export class AddPartyComponent implements OnInit {
 
   completeAdd() {
     var person_id, rb_id, asset_id;
-    if(!this.personForm.address){
-      this.dialog.showNotify('error','Thông báo','Thiếu địa chỉ, vui lòng nhập đầy đủ!');
-              return;
+    if (!this.personForm.address) {
+      this.dialog.showNotify('error', 'Thông báo', 'Thiếu địa chỉ, vui lòng nhập đầy đủ!');
+      return;
     }
-    if(!this.redbookForm.addr){
-      this.dialog.showNotify('error','Thông báo','Thiếu địa chỉ, vui lòng nhập đầy đủ!');
+    if (!this.redbookForm.addr) {
+      this.dialog.showNotify('error', 'Thông báo', 'Thiếu địa chỉ, vui lòng nhập đầy đủ!');
       return;
     }
     this.addrService.addAdress(this.personForm.getPostalAddr()).subscribe((res: any) => {
@@ -83,24 +83,27 @@ export class AddPartyComponent implements OnInit {
               if (res.code == '1000') {
                 rb_id = res.rb_id;
                 // this.asset.getDataAsset(rb_id).then((assetData: any) => {
-                  this.asset.uploadAsset(this.asset.getDataAsset(rb_id)).subscribe((res: any) => {
-                    if (res.code == '1000') {
-                      asset_id = res.asset_id;
-                      this.dialog.showNotify('success','Thành công', 'Đã thêm thông tin về chủ sở hữu, đất, tài sản thành công!');
-                      this.dialog.showNotification('Thành công', 'Đã thêm thông tin về chủ sở hữu, đất, tài sản thành công!', 'success');
-                      this.asset.uploadMediaAsset(asset_id, rb_id);
-                      this.router.navigate(['/admin/detail/'+ rb_id]);
-                    }else{
-                      this.dialog.showNotification('Thất bại', 'Có lỗi khi thêm thông tin sổ đỏ', 'error');
-                    }
-                  })
+                this.asset.uploadAsset(this.asset.getDataAsset(rb_id)).subscribe((res: any) => {
+                  if (res.code == '1000') {
+                    asset_id = res.asset_id;
+                    this.dialog.showNotify('success', 'Thành công', 'Đã thêm thông tin về chủ sở hữu, đất, tài sản thành công!');
+                    this.dialog.showNotification('Thành công', 'Đã thêm thông tin về chủ sở hữu, đất, tài sản thành công!', 'success');
+                    this.asset.uploadMediaAsset(asset_id, rb_id);
+                    this.router.navigate(['/admin/detail/' + rb_id]);
+                  } else {
+                    this.dialog.showNotification('Thất bại', 'Có lỗi khi thêm thông tin sổ đỏ', 'error');
+                    setTimeout(function () {
+                      window.location.reload();
+                    }, 1000);
+                  }
+                })
                 // });
-              }else{
+              } else {
                 this.dialog.showNotification('Thất bại', 'Có lỗi khi thêm thông tin sổ đỏ', 'error');
               }
             })
-          }else{
-            this.dialog.showNotify('error','Thông báo', 'Có lỗi khi thêm thông tin chủ sở hữu!');
+          } else {
+            this.dialog.showNotify('error', 'Thông báo', 'Có lỗi khi thêm thông tin chủ sở hữu!');
           }
         })
       }

@@ -37,7 +37,7 @@
 <nz-modal [(nzVisible)]="isVisibleModalTrans" nzTitle="Thêm giao dịch" (nzOnCancel)="cancelModalTrans()" nzZIndex="50"
   nzWidth="1000" nzHeight="600" [nzFooter]="modalFooter">
   <!-- <app-add-trans #addTrans *ngIf="dataAddTrans" [rbId]="dataAddTrans.rbId" [ownername]="dataAddtrans.ownername" [ownerId]="dataAddTrans.ownerId"></app-add-trans> -->
-  <app-add-trans #addTrans *ngIf="rbId" [rbId]="rbId" [ownername]="ownername" [ownerId]="ownerId"></app-add-trans>
+  <app-add-trans #addTrans *ngIf="rbId" [rbId]="rbId"  (addTransSuccess)="addTransSuccess()" [ownername]="ownername" [ownerId]="ownerId"></app-add-trans>
   <ng-template #modalFooter></ng-template>
 </nz-modal>
 

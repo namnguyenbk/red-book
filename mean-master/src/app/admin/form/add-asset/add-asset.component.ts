@@ -120,6 +120,10 @@ export class AddAssetComponent implements OnInit {
 
 
   confirmComplete() {
+    if(!this.assetForm.valid){
+      this.dialogSeervice.showNotify('error','Thông báo','Thiếu dữ liệu, vui lòng nhập đầy đủ!');
+      return;
+    }
     this.dialogSeervice.openConfirm('Xác nhận', 'Bạn đã kiểm tra kĩ các thông tin, vui lòng đồng ý để tiếp tục!')
       .afterClosed().subscribe((accept: boolean) => {
         if (accept) {
